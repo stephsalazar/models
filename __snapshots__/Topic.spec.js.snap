@@ -1,0 +1,20 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Topic should ... 1`] = `
+Object {
+  "locale": [ValidatorError: Path \`locale\` is required.],
+  "order": [ValidatorError: Path \`order\` is required.],
+  "parserVersion": [ValidatorError: Path \`parserVersion\` is required.],
+  "path": [ValidatorError: Path \`path\` is required.],
+  "repo": [ValidatorError: Path \`repo\` is required.],
+  "slug": [ValidatorError: Path \`slug\` is required.],
+  "stats.duration": [ValidatorError: Path \`stats.duration\` is required.],
+  "stats.durationString": [ValidatorError: Path \`stats.durationString\` is required.],
+  "stats.exerciseCount": [ValidatorError: Path \`stats.exerciseCount\` is required.],
+  "stats.partCount": [ValidatorError: Path \`stats.partCount\` is required.],
+  "stats.unitCount": [ValidatorError: Path \`stats.unitCount\` is required.],
+  "title": [ValidatorError: Path \`title\` is required.],
+  "track": [ValidatorError: Path \`track\` is required.],
+  "version": [ValidatorError: Path \`version\` is required.],
+}
+`;
