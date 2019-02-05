@@ -1,5 +1,7 @@
 # Laboratoria/schemas
 
+[![Build Status](https://travis-ci.com/Laboratoria/schemas.svg?branch=master)](https://travis-ci.com/Laboratoria/schemas)
+
 ## Installation
 
 ```sh
