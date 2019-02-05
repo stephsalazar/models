@@ -1,8 +1,8 @@
 const mongoose = require('mongoose');
-const TopicSchema = require('./Topic');
+const TopicSchema = require('../TopicSchema');
 
 
-describe('Topic', () => {
+describe('TopicSchema', () => {
   it('should ...', (done) => {
     const TopicModel = mongoose.model('Topic', TopicSchema);
     const topic = new TopicModel({ name: null });

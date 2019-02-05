@@ -1,8 +1,8 @@
 const mongoose = require('mongoose');
-const ProjectSchema = require('./Project');
+const ProjectSchema = require('../ProjectSchema');
 
 
-describe('Project', () => {
+describe('ProjectSchema', () => {
   it('should ...', (done) => {
     const ProjectModel = mongoose.model('Project', ProjectSchema);
     const project = new ProjectModel({ name: null });

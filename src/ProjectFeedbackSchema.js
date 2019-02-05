@@ -1,24 +1,5 @@
 const { Schema } = require('mongoose');
 
-/*
-{
-  "reviewerSurvey": {
-    "perception": 2,
-    "soft": "soft comment",
-    "dropout": 3,
-    "tech": "tech comment",
-    "engagement": 1
-  },
-  "rubricResults": {
-    "logic": 5,
-    "architecture": 3,
-    "communication": 4,
-    "github": 5
-    ...
-  }
-}
-*/
-
 
 module.exports = new Schema({
   // `projectid` debería ser un `ObjectId` que apunte al `project`????

@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Project should ... 1`] = `
+exports[`ProjectSchema should ... 1`] = `
 Object {
   "locale": [ValidatorError: Path \`locale\` is required.],
   "parserVersion": [ValidatorError: Path \`parserVersion\` is required.],
@@ -11,15 +11,5 @@ Object {
   "title": [ValidatorError: Path \`title\` is required.],
   "track": [ValidatorError: Path \`track\` is required.],
   "version": [ValidatorError: Path \`version\` is required.],
-}
-`;
-
-exports[`ProjectFeedback should ... 1`] = `
-Object {
-  "cohortid": [ValidatorError: Path \`cohortid\` is required.],
-  "createdBy": [ValidatorError: Path \`createdBy\` is required.],
-  "projectid": [ValidatorError: Path \`projectid\` is required.],
-  "reviewerSurvey": [ValidatorError: Path \`reviewerSurvey\` is required.],
-  "uid": [ValidatorError: Path \`uid\` is required.],
 }
 `;

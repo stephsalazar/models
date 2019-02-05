@@ -1,9 +1,9 @@
 const mongoose = require('mongoose');
-const ProjectFeedbackSchema = require('./ProjectFeedback');
+const ProjectFeedbackSchema = require('../ProjectFeedbackSchema');
 
 
-describe('ProjectFeedback', () => {
-  it('should ...', (done) => {
+describe('ProjectFeedbackSchema', () => {
+  it('should validate example', (done) => {
     const ProjectFeedbackModel = mongoose.model('ProjectFeedback', ProjectFeedbackSchema);
     const projectFeedback = new ProjectFeedbackModel({
       "projectid": "cipher",
@@ -29,9 +29,7 @@ describe('ProjectFeedback', () => {
       "notes": "revisar esto:\n-\n-\n-"
     });
     projectFeedback.validate((err) => {
-      console.log(err);
-      // expect(err.name).toBe('ValidationError');
-      // expect(err.errors).toMatchSnapshot();
+      expect(err).toBe(null);
       done();
     });
   });

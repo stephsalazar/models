@@ -1,0 +1,12 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`validate should invoke callback with mongoose errors 1`] = `
+Object {
+  "locale": [ValidatorError: Path \`locale\` is required.],
+  "parserVersion": [ValidatorError: Path \`parserVersion\` is required.],
+  "rubric": [ValidatorError: Path \`rubric\` is required.],
+  "title": [ValidatorError: Path \`title\` is required.],
+  "track": [ValidatorError: Path \`track\` is required.],
+  "version": [ValidatorError: Path \`version\` is required.],
+}
+`;

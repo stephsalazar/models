@@ -8,5 +8,5 @@ module.exports = new Schema({
   country: { type: String, required: true },
   title:  { type: String, required: true },
   locale: { type: String, required: true },
-  timezone: { type: String: required: true },
+  timezone: { type: String, required: true },
 });
