@@ -60,8 +60,8 @@ const { Schema } = require('mongoose');
 
 module.exports = new Schema({
   slug: { type: String, required: true },
-  order:  { type: Number, required: true }, // ????
-  title:  { type: String, required: true },
+  order: { type: Number, required: true }, // ????
+  title: { type: String, required: true },
   description: { type: String },
   tags: {},
   targetAudience: { type: String },

@@ -6,7 +6,7 @@ module.exports = new Schema({
   city: { type: String, required: true },
   // address ???
   country: { type: String, required: true },
-  title:  { type: String, required: true },
+  title: { type: String, required: true },
   locale: { type: String, required: true },
   timezone: { type: String, required: true },
 });

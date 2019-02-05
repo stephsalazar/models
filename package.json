@@ -3,8 +3,17 @@
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
+  "scripts": {
+    "pretest": "eslint .",
+    "test": "jest --coverage --verbose"
+  },
   "dependencies": {
-    "jest": "^24.1.0",
     "mongoose": "^5.4.9"
+  },
+  "devDependencies": {
+    "eslint": "^5.13.0",
+    "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-plugin-import": "^2.16.0",
+    "jest": "^24.1.0"
   }
 }
