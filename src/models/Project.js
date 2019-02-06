@@ -1,7 +1,7 @@
-const { Schema } = require('mongoose');
+const mongoose = require('mongoose');
 
 
-module.exports = new Schema({
+const ProjectSchema = new mongoose.Schema({
   slug: { type: String, required: true },
   repo: { type: String, required: true },
   path: { type: String, required: true },
@@ -15,3 +15,11 @@ module.exports = new Schema({
   track: { type: String, required: true },
   skills: {},
 });
+
+
+const Project = mongoose.model('Project', ProjectSchema);
+
+
+module.exports = Project;
+module.exports.Project = Project;
+module.exports.ProjectSchema = ProjectSchema;

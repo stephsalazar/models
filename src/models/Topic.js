@@ -1,4 +1,4 @@
-const { Schema } = require('mongoose');
+const mongoose = require('mongoose');
 
 
 /*
@@ -58,7 +58,7 @@ const { Schema } = require('mongoose');
 */
 
 
-module.exports = new Schema({
+const TopicSchema = new mongoose.Schema({
   slug: { type: String, required: true },
   order: { type: Number, required: true }, // ????
   title: { type: String, required: true },
@@ -89,3 +89,11 @@ module.exports = new Schema({
     partCount: { type: Number, required: true },
   },
 });
+
+
+const Topic = mongoose.model('Topic', TopicSchema);
+
+
+module.exports = Topic;
+module.exports.Topic = Topic;
+module.exports.TopicSchema = TopicSchema;

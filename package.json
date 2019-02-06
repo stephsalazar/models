@@ -1,19 +1,21 @@
 {
   "name": "schemas",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "src/index.js",
   "license": "MIT",
   "scripts": {
     "pretest": "eslint .",
-    "test": "jest --coverage --verbose"
+    "test": "jest --coverage --verbose ./src/**/*.spec.js ./src/*/**/*.spec.js",
+    "e2e": "jest --config=./e2e/jest.config.js ./e2e/**/*.spec.js"
   },
   "dependencies": {
-    "mongoose": "^5.4.9"
-  },
-  "devDependencies": {
     "eslint": "^5.13.0",
     "eslint-config-airbnb-base": "^13.1.0",
     "eslint-plugin-import": "^2.16.0",
-    "jest": "^24.1.0"
+    "jest": "^24.1.0",
+    "jest-environment-node": "^24.0.0",
+    "mongodb": "^3.1.13",
+    "mongodb-memory-server": "^3.0.0",
+    "mongoose": "^5.4.9"
   }
 }

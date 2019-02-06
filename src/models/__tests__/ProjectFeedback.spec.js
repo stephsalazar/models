@@ -1,8 +1,8 @@
 const mongoose = require('mongoose');
-const ProjectFeedbackSchema = require('../ProjectFeedbackSchema');
+const { ProjectFeedbackSchema } = require('../ProjectFeedback');
 
 
-describe('ProjectFeedbackSchema', () => {
+describe('ProjectFeedback', () => {
   it('should validate example', (done) => {
     const ProjectFeedbackModel = mongoose.model('ProjectFeedback', ProjectFeedbackSchema);
     const projectFeedback = new ProjectFeedbackModel({

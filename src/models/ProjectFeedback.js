@@ -1,7 +1,7 @@
-const { Schema } = require('mongoose');
+const mongoose = require('mongoose');
 
 
-module.exports = new Schema({
+const ProjectFeedbackSchema = new mongoose.Schema({
   // `projectid` debería ser un `ObjectId` que apunte al `project`????
   projectid: { type: String, required: true },
   // `uid` debería ser un `ObjectId` que apunte al `user`????
@@ -18,3 +18,11 @@ module.exports = new Schema({
   rubricResults: { type: Map, of: Number },
   notes: { type: String },
 });
+
+
+const ProjectFeedback = mongoose.model('ProjectFeedback', ProjectFeedbackSchema);
+
+
+module.exports = ProjectFeedback;
+module.exports.ProjectFeedback = ProjectFeedback;
+module.exports.ProjectFeedbackSchema = ProjectFeedbackSchema;

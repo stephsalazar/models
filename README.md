@@ -50,21 +50,52 @@ project.validate((err) => {
 });
 ```
 
+Uso de _modelos_ de `mongoose`
+
+```js
+const { Project } = require('schemas');
+const project = new Project({
+  slug: 'cipher',
+  repo: 'Laboratoria/curricula-js',
+  path: 'projects/01-cipher',
+  // ...
+});
+
+project.validate((err) => {
+  // ...
+});
+```
+
 ## Testing
 
 ```
 npm test
 ```
 
+***
+
+## Models
+
+* [`Campus`](./src/models/Campus.js)
+* [`Cohort`](./src/models/Cohort.js)
+* [`Project`](./src/models/Project.js)
+* [`ProjectFeedback`](./src/models/ProjectFeedback.js)
+* [`ProjectReviewerSurvey`](./src/models/ProjectReviewerSurvey.js)
+* [`Topic`](./src/models/Topic.js)
+* `TopicUnit` (TBD)
+* `TopicUnitPart` (TBD)
+* `TopicProgress` (TBD)
+* `UserProfile` (TBD)
+
 ## Schemas
 
 * `CampusSchema`
-* `CohortSchema` (TBD)
-* `ProjectFeedbackSchema`
+* `CohortSchema`
 * `ProjectSchema`
-* `ReviewerSurveySchema`
+* `ProjectFeedbackSchema`
+* `ProjectReviewerSurveySchema`
 * `TopicSchema`
-* `UnitSchema` (TBD)
-* `PartSchema` (TBD)
+* `TopicUnitSchema` (TBD)
+* `TopicUnitPartSchema` (TBD)
+* `TopicProgressSchema` (TBD)
 * `UserProfileSchema` (TBD)
-* `TopicProgress` (TBD)
