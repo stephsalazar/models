@@ -36,12 +36,12 @@ describe('e2e::projects', () => {
 
     return project.save()
       .then((result) => {
-        // console.log('result', result);
+        console.log('result', result);
         return Project.find().exec();
       })
-      // .then((docs) => {
-      //   console.log(docs);
-      // });
+      .then((docs) => {
+        console.log(docs);
+      });
 
     // ProjectModel.find().exec()
     //   .then((docs) => {
