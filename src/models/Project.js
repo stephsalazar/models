@@ -10,10 +10,10 @@ const ProjectSchema = new mongoose.Schema({
   createdAt: { type: Date, default: Date.now },
   prefix: Number,
   title: { type: String, required: true },
-  rubric: { type: String, required: true },
   locale: { type: String, required: true },
   track: { type: String, required: true },
-  skills: {},
+  rubric: { type: String, required: true, default: '2.0.0' },
+  skills: { type: Map, of: Number }, // ???
 });
 
 
