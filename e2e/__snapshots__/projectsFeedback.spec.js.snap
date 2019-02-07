@@ -1,0 +1,32 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`e2e::projectsFeedback should ... 1`] = `
+Object {
+  "__v": 0,
+  "cohortid": "lim-2019-01-bc-js-09",
+  "createdBy": "lupo",
+  "projectid": "cipher",
+  "reviewerSurvey": "xxxx",
+  "rubric": "2",
+  "rubricResults": Object {
+    "completion": 3,
+    "selfLearning": 2,
+  },
+  "uid": "xxxxxxxxxxxxxxxxxxxx",
+}
+`;
+
+exports[`e2e::projectsFeedback should ... 2`] = `
+Object {
+  "n": 1,
+  "nModified": 1,
+  "ok": 1,
+}
+`;
+
+exports[`e2e::projectsFeedback should fail when missing props 1`] = `
+Object {
+  "rubric": [ValidatorError: Path \`rubric\` is required.],
+  "rubricResults": [ValidatorError: Path \`rubricResults\` is required.],
+}
+`;

@@ -6,7 +6,7 @@
   "scripts": {
     "pretest": "eslint .",
     "test": "jest --coverage --verbose ./src/**/*.spec.js ./src/*/**/*.spec.js",
-    "e2e": "jest --config=./e2e/jest.config.js ./e2e/**/*.spec.js"
+    "e2e": "jest --config=./e2e/jest.config.js ./e2e/*.spec.js"
   },
   "dependencies": {
     "eslint": "^5.13.0",

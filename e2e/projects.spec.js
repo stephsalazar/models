@@ -1,8 +1,6 @@
 // const { MongoClient } = require('mongodb');
 const mongoose = require('mongoose');
-const ProjectSchema = require('../src/models/Project');
-
-const ProjectModel = mongoose.model('Project', ProjectSchema);
+const Project = require('../src/models/Project');
 
 
 describe('e2e::projects', () => {
@@ -22,7 +20,7 @@ describe('e2e::projects', () => {
   });
 
   it('should ...', () => {
-    const project = new ProjectModel({
+    const project = new Project({
       slug: 'cipher',
       repo: 'Laboratoria/curricula-js',
       path: 'projects/01-cipher',
@@ -38,12 +36,12 @@ describe('e2e::projects', () => {
 
     return project.save()
       .then((result) => {
-        console.log('result', result);
-        return ProjectModel.find().exec();
+        // console.log('result', result);
+        return Project.find().exec();
       })
-      .then((docs) => {
-        console.log(docs);
-      });
+      // .then((docs) => {
+      //   console.log(docs);
+      // });
 
     // ProjectModel.find().exec()
     //   .then((docs) => {
@@ -75,40 +73,4 @@ describe('e2e::projects', () => {
 
     // console.log(connection);
   });
-
-  it('...', (done) => {
-    done();
-    // const campuses = db.collection('campuses');
-    //
-    // campuses.find().then((result) => {
-    //   console.log('result', result);
-    //   done();
-    // });
-  });
-
-  // it('should aggregate docs from collection', async () => {
-  //   const files = db.collection('files');
-  //
-  //   await files.insertMany([
-  //     {type: 'Document'},
-  //     {type: 'Video'},
-  //     {type: 'Image'},
-  //     {type: 'Document'},
-  //     {type: 'Image'},
-  //     {type: 'Document'},
-  //   ]);
-  //
-  //   const topFiles = await files
-  //     .aggregate([
-  //       {$group: {_id: '$type', count: {$sum: 1}}},
-  //       {$sort: {count: -1}},
-  //     ])
-  //     .toArray();
-  //
-  //   expect(topFiles).toEqual([
-  //     {_id: 'Document', count: 3},
-  //     {_id: 'Image', count: 2},
-  //     {_id: 'Video', count: 1},
-  //   ]);
-  // });
 });

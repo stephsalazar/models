@@ -1,6 +1,10 @@
 const mongoose = require('mongoose');
 
 
+// TODO: Must validate that `version`, `parserVersion` and `rubric` are semver
+// compatible version strings.
+
+
 const ProjectSchema = new mongoose.Schema({
   slug: { type: String, required: true },
   repo: { type: String, required: true },

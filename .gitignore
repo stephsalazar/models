@@ -1,3 +1,3 @@
-.jest/globalConfig.json
+e2e/globalConfig.json
 coverage/
 node_modules/
