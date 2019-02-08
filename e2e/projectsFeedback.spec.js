@@ -199,8 +199,7 @@ describe('e2e::projectsFeedback', () => {
         const updatedProps = {
           reviewerSurveyResults: { perception: 'foo...' },
         };
-        const { _id, createdAt } = result.toJSON();
-        expect(_id.constructor.name).toBe('ObjectID');
+        expect(result._id.constructor.name).toBe('ObjectID');
         expect(result.createdAt instanceof Date).toBe(true);
         // projectFeedback.reviewerSurveyResults = { perception: 'foo...' };
         // return projectFeedback.save();
