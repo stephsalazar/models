@@ -1,11 +1,11 @@
-# Laboratoria/schemas
+# Laboratoria/models
 
-[![Build Status](https://travis-ci.com/Laboratoria/schemas.svg?branch=master)](https://travis-ci.com/Laboratoria/schemas)
+[![Build Status](https://travis-ci.com/Laboratoria/models.svg?branch=master)](https://travis-ci.com/Laboratoria/models)
 
 ## Installation
 
 ```sh
-npm i Laboratoria/schemas
+npm i Laboratoria/models
 ```
 
 In your `package.json`:
@@ -13,7 +13,7 @@ In your `package.json`:
 ```json
 {
   "dependencies": {
-    "schemas": "Laboratoria/schemas#v1.3.9"
+    "models": "Laboratoria/models#v1.3.9"
   }
 }
 ```
@@ -23,7 +23,7 @@ In your `package.json`:
 Validación sin saber nada de `mongoose` (internals).
 
 ```js
-const { validate } = require('schemas');
+const { validate } = require('models');
 
 validate('Project', {
   slug: 'cipher',
@@ -33,10 +33,10 @@ validate('Project', {
 });
 ```
 
-Uso de _schemas_ de `mongoose`
+Uso de _schemas_ de `mongoose`:
 
 ```js
-const { ProjectSchema } = require('schemas');
+const { ProjectSchema } = require('models');
 const ProjectModel = mongoose.model('Project', ProjectSchema);
 const project = new ProjectModel({
   slug: 'cipher',
@@ -50,10 +50,10 @@ project.validate((err) => {
 });
 ```
 
-Uso de _modelos_ de `mongoose`
+Uso de _modelos_ de `mongoose`:
 
 ```js
-const { Project } = require('schemas');
+const { Project } = require('models');
 const project = new Project({
   slug: 'cipher',
   repo: 'Laboratoria/curricula-js',
