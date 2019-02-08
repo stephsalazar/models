@@ -2,9 +2,17 @@ const mongoose = require('mongoose');
 
 
 const ReviewQuestionSchema = new mongoose.Schema({
-  // order: { type: Number, required: true },
+  id: { type: String, required: true },
   type: { type: String, enum: ['open', 'multiple-choice'], require: true },
-  options: { type: Number }, // solo si es multiple choice????
+  options: { type: Number },
+});
+
+
+ReviewQuestionSchema.pre('validate', function (next) {
+  if (this.type === 'multiple-choice' && !this.options) {
+    return next(new Error('Options is required when type is multiple-choice'));
+  }
+  return next();
 });
 
 

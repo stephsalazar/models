@@ -1,16 +1,21 @@
-const mongoose = require('mongoose');
-const { ProjectFeedbackSchema } = require('../ProjectFeedback');
+const Cohort = require('../Cohort');
+const Project = require('../Project');
+const ProjectFeedback = require('../ProjectFeedback');
+const ReviewerSurvey = require('../ReviewerSurvey');
 
 
 describe('ProjectFeedback', () => {
   it('should validate example', (done) => {
-    const ProjectFeedbackModel = mongoose.model('ProjectFeedback', ProjectFeedbackSchema);
-    const projectFeedback = new ProjectFeedbackModel({
-      projectid: 'cipher',
+    const project = new Project({});
+    const cohort = new Cohort({});
+    const reviewerSurvey = new ReviewerSurvey({});
+
+    const projectFeedback = new ProjectFeedback({
+      project: project._id,
+      cohort: cohort._id,
       uid: '9x7YelqRH8hX3QRz0qV6IAhYlek1',
-      cohortid: 'lim-2018-09-bc-js-am"',
       createdBy: '<UID>',
-      createdAt: '2019-02-05T20:54:40.810Z',
+      createdAt: new Date(),
       rubric: '2',
       rubricResults: {
         logic: 5,
@@ -18,7 +23,7 @@ describe('ProjectFeedback', () => {
         communication: 4,
         github: 5,
       },
-      reviewerSurvey: 'xxxx',
+      reviewerSurvey: reviewerSurvey._id,
       reviewerSurveyResults: {
         perception: 2,
         soft: 'soft comment',

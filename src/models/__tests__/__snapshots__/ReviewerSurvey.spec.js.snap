@@ -1,0 +1,22 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ReviewerSurvey should fail validation when multiple-choice missing options 1`] = `
+Object {
+  "questions": [Error: Options is required when type is multiple-choice],
+}
+`;
+
+exports[`ReviewerSurvey should fail validation when question missing id 1`] = `[ValidatorError: Path \`id\` is required.]`;
+
+exports[`ReviewerSurvey should fail validation when question options not a number 1`] = `
+Object {
+  "questions": [Error: Options is required when type is multiple-choice],
+  "questions.0.options": [CastError: Cast to Number failed for value "hola" at path "options"],
+}
+`;
+
+exports[`ReviewerSurvey should fail validation when wrong type 1`] = `
+Object {
+  "questions.0.type": [ValidatorError: \`other\` is not a valid enum value for path \`type\`.],
+}
+`;

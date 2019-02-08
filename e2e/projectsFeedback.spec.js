@@ -1,4 +1,7 @@
 const mongoose = require('mongoose');
+const Cohort = require('../src/models/Cohort');
+const Project = require('../src/models/Project');
+const ReviewerSurvey = require('../src/models/ReviewerSurvey');
 const ProjectFeedback = require('../src/models/ProjectFeedback');
 
 
@@ -13,8 +16,21 @@ describe('e2e::projectsFeedback', () => {
 
   it('should fail when missing props', () => {
     const projectFeedback = new ProjectFeedback({
-      projectid: 'cipher',
-      cohortid: 'lim-2019-01-bc-js-09',
+      project: (new Project())._id,
+      cohort: (new Cohort())._id,
+      uid: 'xxxxxxxxxxxxxxxxxxxx',
+      reviewerSurvey: (new ReviewerSurvey())._id,
+      createdBy: 'lupo',
+    });
+
+    return projectFeedback.save()
+      .catch(err => expect(err.errors).toMatchSnapshot());
+  });
+
+  it('should fail when project, cohort or reviewerSurvey not ObjectId', () => {
+    const projectFeedback = new ProjectFeedback({
+      project: 'cipher',
+      cohort: 'lim-2019-01-bc-js-09',
       uid: 'xxxxxxxxxxxxxxxxxxxx',
       reviewerSurvey: 'xxxx',
       createdBy: 'lupo',
@@ -24,46 +40,178 @@ describe('e2e::projectsFeedback', () => {
       .catch(err => expect(err.errors).toMatchSnapshot());
   });
 
-  it.only('should ...', () => {
-    const projectJson = {
-      projectid: 'cipher',
-      cohortid: 'lim-2019-01-bc-js-09',
+  it('should fail when project does not exist', () => {
+    const project = new Project();
+    const cohort = new Cohort();
+    const reviewerSurvey = new ReviewerSurvey();
+    const projectFeedback = new ProjectFeedback({
+      project: project._id,
+      cohort: cohort._id,
       uid: 'xxxxxxxxxxxxxxxxxxxx',
-      reviewerSurvey: 'xxxx',
+      reviewerSurvey: reviewerSurvey._id,
       createdBy: 'lupo',
       rubric: '2',
       rubricResults: {
         completion: 3,
         selfLearning: 2,
       },
-    };
-    const projectFeedback = new ProjectFeedback(projectJson);
+    });
 
     return projectFeedback.save()
-      .then((result) => {
-        const updatedProps = {
-          reviewerSurveyResults: { perception: 'foo...' },
-        };
-        const { _id, createdAt, ...obj } = result.toJSON();
-        expect(_id.constructor.name).toBe('ObjectID');
-        expect(result.createdAt instanceof Date).toBe(true);
-        expect(obj).toMatchSnapshot();
-        // projectFeedback.reviewerSurveyResults = { perception: 'foo...' };
-        // return projectFeedback.save();
-        // return ProjectFeedback.findByIdAndUpdate(result._id, updatedProps);
-        return projectFeedback.update(updatedProps);
-      })
-      .then((updateResult) => {
-        expect(updateResult).toMatchSnapshot();
-        return ProjectFeedback.find({
-          projectid: projectJson.projectid,
-          cohortid: projectJson.cohortid,
-        }).exec();
-      })
-      .then((docs) => {
-        expect(Array.isArray(docs)).toBe(true);
-        expect(docs.length).toBe(1);
-        expect(`${docs[0].toJSON()._id}`).toBe(`${projectFeedback.toJSON()._id}`);
+      .catch(err => expect(err.message).toBe('Project does not exist'));
+  });
+
+  it('should fail when cohort does not exist', () => {
+    const project = new Project({
+      slug: 'cipher',
+      repo: 'Laboratoria/curricula-js',
+      path: 'projects/01-cipher',
+      version: '2.0.0',
+      parserVersion: '1.1.1',
+      createdAt: new Date(),
+      prefix: 1,
+      title: 'Cifrado César',
+      rubric: '2',
+      locale: 'es-ES',
+      track: 'js',
+      skills: {},
+    });
+    const cohort = new Cohort();
+    const reviewerSurvey = new ReviewerSurvey();
+
+    return project.save()
+      .then((saveResult) => {
+        expect(saveResult.slug).toBe('cipher');
+        const projectFeedback = new ProjectFeedback({
+          project: project._id,
+          cohort: cohort._id,
+          uid: 'xxxxxxxxxxxxxxxxxxxx',
+          reviewerSurvey: reviewerSurvey._id,
+          createdBy: 'lupo',
+          rubric: '2',
+          rubricResults: {
+            completion: 3,
+            selfLearning: 2,
+          },
+        });
+
+        return projectFeedback.save()
+          .then(console.log)
+          .catch(err => expect(err.message).toBe('Cohort does not exist'));
       });
+  });
+
+  it('should fail when reviewerSurvey does not exist', async () => {
+    const project = new Project({
+      slug: 'cipher',
+      repo: 'Laboratoria/curricula-js',
+      path: 'projects/01-cipher',
+      version: '2.0.0',
+      parserVersion: '1.1.1',
+      createdAt: new Date(),
+      prefix: 1,
+      title: 'Cifrado César',
+      rubric: '2',
+      locale: 'es-ES',
+      track: 'js',
+      skills: {},
+    });
+    const cohort = new Cohort({
+      campus: 'lim',
+      program: 'bc',
+      track: 'core',
+      generation: 9,
+      start: new Date(),
+      end: new Date(),
+    });
+    const reviewerSurvey = new ReviewerSurvey();
+    const projectFeedback = new ProjectFeedback({
+      project: project._id,
+      cohort: cohort._id,
+      uid: 'xxxxxxxxxxxxxxxxxxxx',
+      reviewerSurvey: reviewerSurvey._id,
+      createdBy: 'lupo',
+      rubric: '2',
+      rubricResults: {
+        completion: 3,
+        selfLearning: 2,
+      },
+    });
+
+    await project.save();
+    await cohort.save();
+
+    return projectFeedback.save()
+      .catch(err => expect(err.message).toBe('ReviewerSurvey does not exist'));
+  });
+
+  it.only('should ...', async () => {
+    const project = new Project({
+      slug: 'cipher',
+      repo: 'Laboratoria/curricula-js',
+      path: 'projects/01-cipher',
+      version: '2.0.0',
+      parserVersion: '1.1.1',
+      createdAt: new Date(),
+      prefix: 1,
+      title: 'Cifrado César',
+      rubric: '2',
+      locale: 'es-ES',
+      track: 'js',
+      skills: {},
+    });
+    const cohort = new Cohort({
+      campus: 'lim',
+      program: 'bc',
+      track: 'core',
+      generation: 9,
+      start: new Date(),
+      end: new Date(),
+    });
+    const reviewerSurvey = new ReviewerSurvey({
+      // ...
+    });
+    const projectFeedback = new ProjectFeedback({
+      project: project._id,
+      cohort: cohort._id,
+      uid: 'xxxxxxxxxxxxxxxxxxxx',
+      reviewerSurvey: reviewerSurvey._id,
+      createdBy: 'lupo',
+      rubric: '2',
+      rubricResults: {
+        completion: 3,
+        selfLearning: 2,
+      },
+    });
+
+    await project.save();
+    await cohort.save();
+
+    return projectFeedback.save();
+    // .then((result) => {
+    //   const updatedProps = {
+    //     reviewerSurveyResults: { perception: 'foo...' },
+    //   };
+    //   const { _id, createdAt, ...obj } = result.toJSON();
+    //   expect(_id.constructor.name).toBe('ObjectID');
+    //   expect(result.createdAt instanceof Date).toBe(true);
+    //   // expect(obj).toMatchSnapshot();
+    //   // projectFeedback.reviewerSurveyResults = { perception: 'foo...' };
+    //   // return projectFeedback.save();
+    //   // return ProjectFeedback.findByIdAndUpdate(result._id, updatedProps);
+    //   return projectFeedback.update(updatedProps);
+    // })
+    // .then((updateResult) => {
+    //   expect(updateResult).toMatchSnapshot();
+    //   return ProjectFeedback.find({
+    //     project: project._id,
+    //     cohort: cohort._id,
+    //   }).exec();
+    // })
+    // .then((docs) => {
+    //   expect(Array.isArray(docs)).toBe(true);
+    //   expect(docs.length).toBe(1);
+    //   expect(`${docs[0].toJSON()._id}`).toBe(`${projectFeedback.toJSON()._id}`);
+    // });
   });
 });
