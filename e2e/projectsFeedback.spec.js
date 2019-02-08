@@ -145,7 +145,7 @@ describe('e2e::projectsFeedback', () => {
       .catch(err => expect(err.message).toBe('ReviewerSurvey does not exist'));
   });
 
-  it.only('should ...', async () => {
+  it.only('should save projectFeedback and save again with reviewerSurveyResults', async () => {
     const project = new Project({
       slug: 'cipher',
       repo: 'Laboratoria/curricula-js',
@@ -169,7 +169,10 @@ describe('e2e::projectsFeedback', () => {
       end: new Date(),
     });
     const reviewerSurvey = new ReviewerSurvey({
-      // ...
+      questions: [
+        { id: 'foo', type: 'open' },
+        { id: 'bar', type: 'multiple-choice', options: 4 },
+      ],
     });
     const projectFeedback = new ProjectFeedback({
       project: project._id,
@@ -186,32 +189,36 @@ describe('e2e::projectsFeedback', () => {
 
     await project.save();
     await cohort.save();
+    await reviewerSurvey.save();
 
-    return projectFeedback.save();
-    // .then((result) => {
-    //   const updatedProps = {
-    //     reviewerSurveyResults: { perception: 'foo...' },
-    //   };
-    //   const { _id, createdAt, ...obj } = result.toJSON();
-    //   expect(_id.constructor.name).toBe('ObjectID');
-    //   expect(result.createdAt instanceof Date).toBe(true);
-    //   // expect(obj).toMatchSnapshot();
-    //   // projectFeedback.reviewerSurveyResults = { perception: 'foo...' };
-    //   // return projectFeedback.save();
-    //   // return ProjectFeedback.findByIdAndUpdate(result._id, updatedProps);
-    //   return projectFeedback.update(updatedProps);
-    // })
-    // .then((updateResult) => {
-    //   expect(updateResult).toMatchSnapshot();
-    //   return ProjectFeedback.find({
-    //     project: project._id,
-    //     cohort: cohort._id,
-    //   }).exec();
-    // })
-    // .then((docs) => {
-    //   expect(Array.isArray(docs)).toBe(true);
-    //   expect(docs.length).toBe(1);
-    //   expect(`${docs[0].toJSON()._id}`).toBe(`${projectFeedback.toJSON()._id}`);
-    // });
+    return projectFeedback.save()
+      .then((result) => {
+        expect(`${result.project}`).toBe(`${project._id}`);
+        expect(`${result.cohort}`).toBe(`${cohort._id}`);
+        expect(`${result.reviewerSurvey}`).toBe(`${reviewerSurvey._id}`);
+        const updatedProps = {
+          reviewerSurveyResults: { perception: 'foo...' },
+        };
+        const { _id, createdAt } = result.toJSON();
+        expect(_id.constructor.name).toBe('ObjectID');
+        expect(result.createdAt instanceof Date).toBe(true);
+        // projectFeedback.reviewerSurveyResults = { perception: 'foo...' };
+        // return projectFeedback.save();
+        // return ProjectFeedback.findByIdAndUpdate(result._id, updatedProps);
+        return projectFeedback.update(updatedProps);
+      })
+      .then((updateResult) => {
+        expect(updateResult).toMatchSnapshot();
+        return ProjectFeedback.find({
+          project: project._id,
+          cohort: cohort._id,
+        }).exec();
+      })
+      .then((docs) => {
+        console.log(docs);
+        expect(Array.isArray(docs)).toBe(true);
+        expect(docs.length).toBe(1);
+        expect(`${docs[0].toJSON()._id}`).toBe(`${projectFeedback.toJSON()._id}`);
+      });
   });
 });
