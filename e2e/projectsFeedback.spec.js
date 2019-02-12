@@ -170,8 +170,8 @@ describe('e2e::projectsFeedback', () => {
     });
     const reviewerSurvey = new ReviewerSurvey({
       questions: [
-        { id: 'foo', type: 'open' },
-        { id: 'bar', type: 'multiple-choice', options: 4 },
+        { slug: 'foo', type: 'open' },
+        { slug: 'bar', type: 'multiple-choice', options: 4 },
       ],
     });
     const projectFeedback = new ProjectFeedback({
