@@ -170,8 +170,8 @@ describe('e2e::projectsFeedback', () => {
     });
     const reviewerSurvey = new ReviewerSurvey({
       questions: [
-        { id: 'foo', type: 'open' },
-        { id: 'bar', type: 'multiple-choice', options: 4 },
+        { slug: 'foo', type: 'open' },
+        { slug: 'bar', type: 'multiple-choice', options: 4 },
       ],
     });
     const projectFeedback = new ProjectFeedback({
@@ -208,13 +208,19 @@ describe('e2e::projectsFeedback', () => {
       })
       .then((updateResult) => {
         expect(updateResult).toMatchSnapshot();
-        return ProjectFeedback.find({
-          project: project._id,
-          cohort: cohort._id,
-        }).exec();
+        return ProjectFeedback
+          .find({
+            project: project._id,
+            cohort: cohort._id,
+          })
+          .populate('project', 'slug')
+          .populate('cohort')
+          .populate('reviewerSurvey')
+          .exec();
       })
       .then((docs) => {
         console.log(docs);
+        console.log(docs[0].reviewerSurvey);
         expect(Array.isArray(docs)).toBe(true);
         expect(docs.length).toBe(1);
         expect(`${docs[0].toJSON()._id}`).toBe(`${projectFeedback.toJSON()._id}`);

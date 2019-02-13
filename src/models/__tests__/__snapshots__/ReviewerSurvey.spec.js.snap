@@ -6,7 +6,7 @@ Object {
 }
 `;
 
-exports[`ReviewerSurvey should fail validation when question missing id 1`] = `[ValidatorError: Path \`id\` is required.]`;
+exports[`ReviewerSurvey should fail validation when question missing slug 1`] = `[ValidatorError: Path \`slug\` is required.]`;
 
 exports[`ReviewerSurvey should fail validation when question options not a number 1`] = `
 Object {
