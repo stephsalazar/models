@@ -1,13 +1,5 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`e2e::projectsFeedback should ... 1`] = `
-Object {
-  "n": 1,
-  "nModified": 1,
-  "ok": 1,
-}
-`;
-
 exports[`e2e::projectsFeedback should fail when missing props 1`] = `
 Object {
   "rubric": [ValidatorError: Path \`rubric\` is required.],

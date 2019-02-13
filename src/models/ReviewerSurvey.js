@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 
 const ReviewQuestionSchema = new mongoose.Schema({
-  id: { type: String, required: true },
+  slug: { type: String, required: true },
   type: { type: String, enum: ['open', 'multiple-choice'], require: true },
   options: { type: Number },
 });
