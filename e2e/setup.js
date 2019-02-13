@@ -1,4 +1,3 @@
-// setup.js
 const path = require('path');
 const fs = require('fs');
 const { MongoMemoryServer } = require('mongodb-memory-server');

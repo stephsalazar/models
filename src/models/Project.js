@@ -12,9 +12,13 @@ const ProjectSchema = new mongoose.Schema({
   version: { type: String, required: true },
   parserVersion: { type: String, required: true },
   createdAt: { type: Date, default: Date.now },
-  prefix: Number,
+  prefix: { type: Number, required: true }, // order??
   title: { type: String, required: true },
-  locale: { type: String, required: true },
+  locale: {
+    type: String,
+    enum: ['es-ES', 'pt-BR'],
+    required: true,
+  },
   track: { type: String, required: true },
   rubric: { type: String, required: true, default: '2.0.0' },
   skills: { type: Map, of: Number }, // ???

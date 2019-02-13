@@ -1,15 +1,19 @@
-const mongoose = require('mongoose');
-const { TopicSchema } = require('../Topic');
+const { Topic } = require('../Topic');
+const babelTopicJson = require('./fixtures/topics/babel');
 
 
 describe('Topic', () => {
-  it('should ...', (done) => {
-    const TopicModel = mongoose.model('Topic', TopicSchema);
-    const topic = new TopicModel({ name: null });
-    topic.validate((err) => {
-      expect(err.name).toBe('ValidationError');
-      expect(err.errors).toMatchSnapshot();
-      done();
-    });
+  it('should fail validattion when missing props', () => {
+    const topic = new Topic({ name: null });
+    return topic.validate()
+      .catch((err) => {
+        expect(err.name).toBe('ValidationError');
+        expect(err.errors).toMatchSnapshot();
+      });
+  });
+
+  it('should validate existing topic json', () => {
+    const babelTopic = new Topic(babelTopicJson);
+    return babelTopic.validate();
   });
 });

@@ -10,6 +10,7 @@ exports[`validate should return promise when no callback is passed 1`] = `
 Object {
   "locale": [ValidatorError: Path \`locale\` is required.],
   "parserVersion": [ValidatorError: Path \`parserVersion\` is required.],
+  "prefix": [ValidatorError: Path \`prefix\` is required.],
   "title": [ValidatorError: Path \`title\` is required.],
   "track": [ValidatorError: Path \`track\` is required.],
   "version": [ValidatorError: Path \`version\` is required.],
