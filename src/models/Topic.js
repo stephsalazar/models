@@ -45,7 +45,11 @@ const TopicSchema = new mongoose.Schema({
   version: { type: String, required: true },
   parserVersion: { type: String, required: true },
   track: { type: String, required: true },
-  locale: { type: String, required: true },
+  locale: {
+    type: String,
+    enum: ['es-ES', 'pt-BR'],
+    required: true,
+  },
   createdAt: { type: Date, default: Date.now },
   title: { type: String, required: true },
   description: { type: String },
