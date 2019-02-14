@@ -5,10 +5,10 @@
 ## Installation
 
 ```sh
-npm i Laboratoria/models
+npm install --save Laboratoria/models
 ```
 
-In your `package.json`:
+Or add it in your `package.json` and then `npm install`:
 
 ```json
 {
