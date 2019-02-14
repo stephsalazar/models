@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const Campus = require('../src/models/Campus');
 const Cohort = require('../src/models/Cohort');
 const Project = require('../src/models/Project');
 const ReviewerSurvey = require('../src/models/ReviewerSurvey');
@@ -116,11 +117,26 @@ describe('e2e::projectsFeedback', () => {
       track: 'js',
       skills: {},
     });
+    const campus = new Campus({
+      slug: 'lim',
+      name: 'Lima',
+      locale: 'es-PE',
+      timezone: 'America/Lima',
+      active: true,
+    });
+    const admissionCohort = new Cohort({
+      campus: campus._id,
+      program: 'pre',
+      track: 'core',
+      name: 'am',
+      start: new Date(),
+      end: new Date(),
+    });
     const cohort = new Cohort({
-      campus: 'lim',
+      campus: campus._id,
       program: 'bc',
       track: 'core',
-      generation: 9,
+      generation: 1,
       start: new Date(),
       end: new Date(),
     });
@@ -139,13 +155,15 @@ describe('e2e::projectsFeedback', () => {
     });
 
     await project.save();
+    await campus.save();
+    await admissionCohort.save();
     await cohort.save();
 
     return projectFeedback.save()
       .catch(err => expect(err.message).toBe('ReviewerSurvey does not exist'));
   });
 
-  it.only('should save projectFeedback and save again with reviewerSurveyResults', async () => {
+  it('should save projectFeedback and save again with reviewerSurveyResults', async () => {
     const project = new Project({
       slug: 'cipher',
       repo: 'Laboratoria/curricula-js',
@@ -160,11 +178,26 @@ describe('e2e::projectsFeedback', () => {
       track: 'js',
       skills: {},
     });
+    const campus = new Campus({
+      slug: 'lim',
+      name: 'Lima',
+      locale: 'es-PE',
+      timezone: 'America/Lima',
+      active: true,
+    });
+    const admissionCohort = new Cohort({
+      campus: campus._id,
+      program: 'pre',
+      track: 'core',
+      name: 'am',
+      start: new Date(),
+      end: new Date(),
+    });
     const cohort = new Cohort({
-      campus: 'lim',
+      campus: campus._id,
       program: 'bc',
       track: 'core',
-      generation: 9,
+      generation: 1,
       start: new Date(),
       end: new Date(),
     });
@@ -188,6 +221,8 @@ describe('e2e::projectsFeedback', () => {
     });
 
     await project.save();
+    await campus.save();
+    await admissionCohort.save();
     await cohort.save();
     await reviewerSurvey.save();
 
@@ -219,11 +254,12 @@ describe('e2e::projectsFeedback', () => {
           .exec();
       })
       .then((docs) => {
-        console.log(docs);
-        console.log(docs[0].reviewerSurvey);
         expect(Array.isArray(docs)).toBe(true);
         expect(docs.length).toBe(1);
         expect(`${docs[0].toJSON()._id}`).toBe(`${projectFeedback.toJSON()._id}`);
       });
   });
+
+  // TODO: qué pasa cuando tratamos de crear un cohort de bootcamp en un cohort
+  // donde no hay ningún cohort de admisión
 });

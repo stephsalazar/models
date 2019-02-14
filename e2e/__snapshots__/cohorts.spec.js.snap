@@ -1,0 +1,50 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`e2e::cohorts should create L4B cohort 1`] = `
+Object {
+  "__v": 0,
+  "name": "alicorp",
+  "program": "l4b",
+  "publicAdmission": false,
+  "rubric": "2",
+  "track": "business",
+}
+`;
+
+exports[`e2e::cohorts should create admission cohort (new generation) for existing campus 1`] = `
+Object {
+  "__v": 0,
+  "generation": 2,
+  "name": "am",
+  "program": "pre",
+  "publicAdmission": false,
+  "rubric": "2",
+  "track": "core",
+}
+`;
+
+exports[`e2e::cohorts should create admission cohort (new generation) for new campus 1`] = `
+Object {
+  "__v": 0,
+  "generation": 1,
+  "name": "am",
+  "program": "pre",
+  "publicAdmission": false,
+  "rubric": "2",
+  "slug": "lim-2017-09-pre-core-am",
+  "track": "core",
+}
+`;
+
+exports[`e2e::cohorts should create common core cohort for a given generation 1`] = `
+Object {
+  "__v": 0,
+  "generation": 1,
+  "name": "am",
+  "program": "bc",
+  "publicAdmission": false,
+  "rubric": "2",
+  "slug": "lim-2017-09-bc-core-am",
+  "track": "core",
+}
+`;

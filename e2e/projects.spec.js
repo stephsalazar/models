@@ -19,7 +19,7 @@ describe('e2e::projects', () => {
     await mongoose.disconnect();
   });
 
-  it('should ...', () => {
+  it.skip('should ...', () => {
     const project = new Project({
       slug: 'cipher',
       repo: 'Laboratoria/curricula-js',
@@ -42,35 +42,5 @@ describe('e2e::projects', () => {
       .then((docs) => {
         console.log(docs);
       });
-
-    // ProjectModel.find().exec()
-    //   .then((docs) => {
-    //     console.log(docs);
-    //     done();
-    //   })
-    //   .catch(done);
-
-    // const project = new ProjectModel();
-    // console.log(project);
-    // project.validate((err) => {
-    //   console.log(err);
-    //   done();
-    // });
-    // const campuses = db.collection('campuses');
-    //
-    // campuses.insertMany([
-    //   { code: 'LIM' },
-    //   { code: 'SCL' },
-    //   { code: 'CDMX' },
-    //   { code: 'GDL' },
-    //   { code: 'SPL' },
-    // ])
-    //   .then((/* result */) => {
-    //     // console.log(result);
-    //     done();
-    //   })
-    //   .catch(done);
-
-    // console.log(connection);
   });
 });
