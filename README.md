@@ -13,14 +13,14 @@ In your `package.json`:
 ```json
 {
   "dependencies": {
-    "models": "Laboratoria/models#v1.3.9"
+    "models": "Laboratoria/models#v1.0.0-alpha.1"
   }
 }
 ```
 
 ## Usage
 
-Validación sin saber nada de `mongoose` (internals).
+Validation without knowing anything about `mongoose` (internals).
 
 ```js
 const { validate } = require('models');
@@ -30,10 +30,51 @@ validate('Project', {
   repo: 'Laboratoria/curricula-js',
   path: 'projects/01-cipher',
   // ...
+}, (err) => {
+  if (err) {
+    // validation failed ...
+  }
+
+  // ...
 });
 ```
 
-Uso de _schemas_ de `mongoose`:
+Using `validate` as a `Promise`:
+
+```js
+const { validate } = require('models');
+
+validate('Project', {
+  slug: 'cipher',
+  repo: 'Laboratoria/curricula-js',
+  path: 'projects/01-cipher',
+  // ...
+})
+  .then(() => {
+    // Validation succeeded ;-)
+  })
+  .catch((err) => {
+    // Validation failed :-(
+  });
+```
+
+Using `mongoose` _models_:
+
+```js
+const { Project } = require('models');
+const project = new Project({
+  slug: 'cipher',
+  repo: 'Laboratoria/curricula-js',
+  path: 'projects/01-cipher',
+  // ...
+});
+
+project.validate((err) => {
+  // ...
+});
+```
+
+Using `mongoose` _schemas_:
 
 ```js
 const { ProjectSchema } = require('models');
@@ -50,26 +91,18 @@ project.validate((err) => {
 });
 ```
 
-Uso de _modelos_ de `mongoose`:
-
-```js
-const { Project } = require('models');
-const project = new Project({
-  slug: 'cipher',
-  repo: 'Laboratoria/curricula-js',
-  path: 'projects/01-cipher',
-  // ...
-});
-
-project.validate((err) => {
-  // ...
-});
-```
-
 ## Testing
 
+Unit tests (and linter):
+
+```sh
+yarn test
 ```
-npm test
+
+End-to-end tests:
+
+```sh
+yarn e2e
 ```
 
 ***
@@ -80,10 +113,8 @@ npm test
 * [`Cohort`](./src/models/Cohort.js)
 * [`Project`](./src/models/Project.js)
 * [`ProjectFeedback`](./src/models/ProjectFeedback.js)
-* [`ProjectReviewerSurvey`](./src/models/ProjectReviewerSurvey.js)
+* [`ReviewerSurvey`](./src/models/ReviewerSurvey.js)
 * [`Topic`](./src/models/Topic.js)
-* `TopicUnit` (TBD)
-* `TopicUnitPart` (TBD)
 * `TopicProgress` (TBD)
 * `UserProfile` (TBD)
 
@@ -93,9 +124,7 @@ npm test
 * `CohortSchema`
 * `ProjectSchema`
 * `ProjectFeedbackSchema`
-* `ProjectReviewerSurveySchema`
+* `ReviewerSurveySchema`
 * `TopicSchema`
-* `TopicUnitSchema` (TBD)
-* `TopicUnitPartSchema` (TBD)
 * `TopicProgressSchema` (TBD)
 * `UserProfileSchema` (TBD)
