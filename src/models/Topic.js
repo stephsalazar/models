@@ -14,13 +14,21 @@ const PartSchema = new mongoose.Schema({
     enum: ['guided', 'self-paced'],
   },
   duration: { type: Number, required: true },
-  body: { type: String, required: true },
+  // `body` is required when `type` is not exercise or quiz
+  body: {
+    type: String,
+    // required: true,
+  },
   durationString: { type: String, required: true },
 });
 
 
-// const QuizSchema = new mongoose.Schema({});
-// const ExerciseSchema = new mongoose.Schema({});
+PartSchema.pre('validate', function (next) {
+  if (['exercise', 'quiz'].indexOf(this.type) === -1 && !this.body) {
+    return next(new Error(`Body is required for part type ${this.type}`));
+  }
+  return next();
+});
 
 
 const UnitSchema = new mongoose.Schema({
@@ -44,7 +52,17 @@ const TopicSchema = new mongoose.Schema({
   path: { type: String, required: true },
   version: { type: String, required: true },
   parserVersion: { type: String, required: true },
-  track: { type: String, required: true },
+  track: {
+    type: String,
+    required: true,
+    enum: [
+      'core', // Common Core (Bootcamp)
+      'js', // JavaScript Track (Bootcamp)
+      'ux', // UX Track (Bootcamp)
+      'mobile', // Mobile Track (Bootcamp) - NOT IN USE
+      'business', // Corporate Training
+    ],
+  },
   locale: {
     type: String,
     enum: ['es-ES', 'pt-BR'],
