@@ -43,7 +43,6 @@ const CohortSchema = new mongoose.Schema({
   start: { type: Date, default: Date.now },
   end: { type: Date, default: Date.now },
   publicAdmission: { type: Boolean, default: false, required: true },
-  // usersCount: { type: Number, required: true }, // ????
   rubric: {
     type: String,
     default: '2',
@@ -51,6 +50,7 @@ const CohortSchema = new mongoose.Schema({
   },
   // cohortCourses???
   // cohortProjects???
+  // usersCount: { type: Number, required: true }, // ????
 });
 
 
