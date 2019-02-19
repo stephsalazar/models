@@ -1,4 +1,6 @@
-const { ReviewerSurvey } = require('../ReviewerSurvey');
+const mongoose = require('mongoose');
+const { ReviewerSurveySchema } = require('schemas')(mongoose);
+const ReviewerSurvey = require('../ReviewerSurvey')(mongoose, ReviewerSurveySchema);
 
 
 describe('ReviewerSurvey', () => {

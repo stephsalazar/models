@@ -1,4 +1,6 @@
-const { Project } = require('../Project');
+const mongoose = require('mongoose');
+const { ProjectSchema } = require('schemas')(mongoose);
+const Project = require('../Project')(mongoose, ProjectSchema);
 
 
 describe('Project', () => {

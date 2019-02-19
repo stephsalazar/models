@@ -1,4 +1,6 @@
-const { Campus } = require('../Campus');
+const mongoose = require('mongoose');
+const { CampusSchema } = require('schemas')(mongoose);
+const Campus = require('../Campus')(mongoose, CampusSchema);
 
 
 describe('Campus', () => {

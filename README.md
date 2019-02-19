@@ -2,6 +2,11 @@
 
 [![Build Status](https://travis-ci.com/Laboratoria/models.svg?branch=master)](https://travis-ci.com/Laboratoria/models)
 
+This module is meant to be used with Node.js and expects the Node.js version of
+the [`mongoose`](https://mongoosejs.com/) module as an argument. If you are
+looking for _schemas_ to be used in the front-end please check
+[`Laboratoria/schemas`](https://github.com/Laboratoria/schemas).
+
 ## Installation
 
 ```sh
@@ -23,7 +28,8 @@ Or add it in your `package.json` and then `npm install`:
 Validation without knowing anything about `mongoose` (internals).
 
 ```js
-const { validate } = require('models');
+const mongoose = require('mongoose');
+const { validate } = require('models')(mongoose);
 
 validate('Project', {
   slug: 'cipher',
@@ -42,7 +48,8 @@ validate('Project', {
 Using `validate` as a `Promise`:
 
 ```js
-const { validate } = require('models');
+const mongoose = require('mongoose');
+const { validate } = require('models')(mongoose);
 
 validate('Project', {
   slug: 'cipher',
@@ -61,7 +68,10 @@ validate('Project', {
 Using `mongoose` _models_:
 
 ```js
-const { Project } = require('models');
+const mongoose = require('mongoose');
+const { Project } = require('models')(mongoose);
+
+// Creating a new instance of a Model
 const project = new Project({
   slug: 'cipher',
   repo: 'Laboratoria/curricula-js',
@@ -69,15 +79,30 @@ const project = new Project({
   // ...
 });
 
+// Validating model instance
 project.validate((err) => {
   // ...
+});
+
+// Saving model...
+project.save()
+  .then(console.log)
+  .catch(console.error);
+
+// Querying for all documents in collection
+Project.find({}, (err, docs) => {
+  if (err) {
+    console.error(err);
+  }
+  // doc something with `docs`...
 });
 ```
 
 Using `mongoose` _schemas_:
 
 ```js
-const { ProjectSchema } = require('models');
+const mongoose = require('mongoose');
+const { ProjectSchema } = require('models')(mongoose);
 const ProjectModel = mongoose.model('Project', ProjectSchema);
 const project = new ProjectModel({
   slug: 'cipher',

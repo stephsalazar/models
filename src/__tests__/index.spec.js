@@ -1,4 +1,5 @@
-const { validate } = require('../index');
+const mongoose = require('mongoose');
+const { validate } = require('../index')(mongoose);
 
 
 describe('validate', () => {

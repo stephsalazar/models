@@ -1,7 +1,14 @@
-const Cohort = require('../Cohort');
-const Project = require('../Project');
-const ProjectFeedback = require('../ProjectFeedback');
-const ReviewerSurvey = require('../ReviewerSurvey');
+const mongoose = require('mongoose');
+const {
+  CohortSchema,
+  ProjectSchema,
+  ReviewerSurveySchema,
+  ProjectFeedbackSchema,
+} = require('schemas')(mongoose);
+const Cohort = require('../Cohort')(mongoose, CohortSchema);
+const Project = require('../Project')(mongoose, ProjectSchema);
+const ReviewerSurvey = require('../ReviewerSurvey')(mongoose, ReviewerSurveySchema);
+const ProjectFeedback = require('../ProjectFeedback')(mongoose, ProjectFeedbackSchema);
 
 
 describe('ProjectFeedback', () => {

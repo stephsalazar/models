@@ -1,5 +1,7 @@
-const Campus = require('../Campus');
-const Cohort = require('../Cohort');
+const mongoose = require('mongoose');
+const { CampusSchema, CohortSchema } = require('schemas')(mongoose);
+const Cohort = require('../Cohort')(mongoose, CohortSchema);
+const Campus = require('../Campus')(mongoose, CampusSchema);
 
 
 describe('Cohort', () => {
