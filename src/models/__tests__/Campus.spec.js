@@ -4,13 +4,13 @@ const Campus = require('../Campus')(mongoose, CampusSchema);
 
 
 describe('Campus', () => {
-  it('should validate open question', (done) => {
+  it('should validate campus', (done) => {
     const campus = new Campus({
       slug: 'lim',
       name: 'Lima',
       locale: 'es-PE',
       timezone: 'America/Lima',
-      // active: true,
+      active: true,
     });
     campus.validate((err) => {
       expect(err).toBe(null);

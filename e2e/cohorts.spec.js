@@ -1,22 +1,36 @@
 const mongoose = require('mongoose');
-const Campus = require('../src/models/Campus');
-const Cohort = require('../src/models/Cohort');
+const { Campus, Cohort } = require('../')(mongoose);
 
 
 describe('e2e::cohorts', () => {
+  let campus;
+
   beforeAll(async () => {
-    await mongoose.connect(global.__MONGO_URI__);
+    await mongoose.connect(global.__MONGO_URI__, { useNewUrlParser: true });
   });
 
   afterAll(async () => {
     await mongoose.disconnect();
   });
 
+  beforeEach(async () => {
+    await mongoose.connection.db.dropDatabase();
+    await Campus.createIndexes();
+    await Cohort.createIndexes();
+    campus = new Campus({
+      slug: 'lim',
+      name: 'Lima',
+      locale: 'es-PE',
+      timezone: 'America/Lima',
+      active: true,
+    });
+    await campus.save();
+  });
+
   it('should fail when campus does not exist', () => {
-    const campus = new Campus({});
     const cohort = new Cohort({
       slug: 'lim-2017-09-bc-core-am',
-      campus: campus._id,
+      campus: (new Campus({}))._id,
       program: 'bc',
       track: 'core',
       name: 'am',
@@ -29,17 +43,7 @@ describe('e2e::cohorts', () => {
       .catch(err => expect(err.message).toBe('Campus does not exist'));
   });
 
-  it('should fail when generation does not exist', async () => {
-    const campus = new Campus({
-      slug: 'lim',
-      name: 'Lima',
-      locale: 'es-PE',
-      timezone: 'America/Lima',
-      active: true,
-    });
-
-    await campus.save();
-
+  it('should fail when generation does not exist', () => {
     const cohort = new Cohort({
       slug: 'lim-2017-09-bc-core-am',
       campus: campus._id,
@@ -56,14 +60,6 @@ describe('e2e::cohorts', () => {
   });
 
   it('should create common core cohort for a given generation', async () => {
-    const campus = new Campus({
-      slug: 'lim',
-      name: 'Lima',
-      locale: 'es-PE',
-      timezone: 'America/Lima',
-      active: true,
-    });
-
     const admissionCohort = new Cohort({
       slug: 'lim-2017-08-pre-core-am',
       campus: campus._id,
@@ -75,7 +71,6 @@ describe('e2e::cohorts', () => {
       end: new Date(),
     });
 
-    await campus.save();
     await admissionCohort.save();
 
     const cohort = new Cohort({
@@ -107,16 +102,6 @@ describe('e2e::cohorts', () => {
   });
 
   it('should create admission cohort (new generation) for new campus', async () => {
-    const campus = new Campus({
-      slug: 'lim',
-      name: 'Lima',
-      locale: 'es-PE',
-      timezone: 'America/Lima',
-      active: true,
-    });
-
-    await campus.save();
-
     const cohort = new Cohort({
       slug: 'lim-2017-09-pre-core-am',
       campus: campus._id,
@@ -146,14 +131,6 @@ describe('e2e::cohorts', () => {
   });
 
   it('should create admission cohort (new generation) for existing campus', async () => {
-    const campus = new Campus({
-      slug: 'lim',
-      name: 'Lima',
-      locale: 'es-PE',
-      timezone: 'America/Lima',
-      active: true,
-    });
-
     const prevAdmissionCohort = new Cohort({
       campus: campus._id,
       program: 'pre',
@@ -164,7 +141,6 @@ describe('e2e::cohorts', () => {
       end: new Date(),
     });
 
-    await campus.save();
     await prevAdmissionCohort.save();
 
     const cohort = new Cohort({
@@ -197,16 +173,6 @@ describe('e2e::cohorts', () => {
   });
 
   it('should create L4B cohort', async () => {
-    const campus = new Campus({
-      slug: 'lim',
-      name: 'Lima',
-      locale: 'es-PE',
-      timezone: 'America/Lima',
-      active: true,
-    });
-
-    await campus.save();
-
     const cohort = new Cohort({
       campus: campus._id,
       program: 'l4b',

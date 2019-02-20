@@ -1,18 +1,54 @@
 const mongoose = require('mongoose');
-const Campus = require('../src/models/Campus');
-const Cohort = require('../src/models/Cohort');
-const Project = require('../src/models/Project');
-const ReviewerSurvey = require('../src/models/ReviewerSurvey');
-const ProjectFeedback = require('../src/models/ProjectFeedback');
+const {
+  CampusSchema,
+  CohortSchema,
+  ProjectSchema,
+  ReviewerSurveySchema,
+  ProjectFeedbackSchema,
+} = require('schemas')(mongoose);
+const Campus = require('../src/models/Campus')(mongoose, CampusSchema);
+const Cohort = require('../src/models/Cohort')(mongoose, CohortSchema);
+const Project = require('../src/models/Project')(mongoose, ProjectSchema);
+const ReviewerSurvey = require('../src/models/ReviewerSurvey')(mongoose, ReviewerSurveySchema);
+const ProjectFeedback = require('../src/models/ProjectFeedback')(mongoose, ProjectFeedbackSchema);
+
+
+const projectJSON = {
+  slug: 'cipher',
+  repo: 'Laboratoria/curricula-js',
+  path: 'projects/01-cipher',
+  version: '2.0.0',
+  parserVersion: '1.1.1',
+  createdAt: new Date(),
+  prefix: 1,
+  title: 'Cifrado César',
+  rubric: '2',
+  locale: 'es-ES',
+  track: 'js',
+  skills: {},
+};
+
+const campusJSON = {
+  slug: 'lim',
+  name: 'Lima',
+  locale: 'es-PE',
+  timezone: 'America/Lima',
+  active: true,
+};
 
 
 describe('e2e::projectsFeedback', () => {
   beforeAll(async () => {
-    await mongoose.connect(global.__MONGO_URI__);
+    await mongoose.connect(global.__MONGO_URI__, { useNewUrlParser: true });
   });
 
   afterAll(async () => {
     await mongoose.disconnect();
+  });
+
+  beforeEach(async () => {
+    await mongoose.connection.db.dropDatabase();
+    await ProjectFeedback.createIndexes();
   });
 
   it('should fail when missing props', () => {
@@ -63,20 +99,7 @@ describe('e2e::projectsFeedback', () => {
   });
 
   it('should fail when cohort does not exist', () => {
-    const project = new Project({
-      slug: 'cipher',
-      repo: 'Laboratoria/curricula-js',
-      path: 'projects/01-cipher',
-      version: '2.0.0',
-      parserVersion: '1.1.1',
-      createdAt: new Date(),
-      prefix: 1,
-      title: 'Cifrado César',
-      rubric: '2',
-      locale: 'es-ES',
-      track: 'js',
-      skills: {},
-    });
+    const project = new Project(projectJSON);
     const cohort = new Cohort();
     const reviewerSurvey = new ReviewerSurvey();
 
@@ -103,27 +126,8 @@ describe('e2e::projectsFeedback', () => {
   });
 
   it('should fail when reviewerSurvey does not exist', async () => {
-    const project = new Project({
-      slug: 'cipher',
-      repo: 'Laboratoria/curricula-js',
-      path: 'projects/01-cipher',
-      version: '2.0.0',
-      parserVersion: '1.1.1',
-      createdAt: new Date(),
-      prefix: 1,
-      title: 'Cifrado César',
-      rubric: '2',
-      locale: 'es-ES',
-      track: 'js',
-      skills: {},
-    });
-    const campus = new Campus({
-      slug: 'lim',
-      name: 'Lima',
-      locale: 'es-PE',
-      timezone: 'America/Lima',
-      active: true,
-    });
+    const project = new Project(projectJSON);
+    const campus = new Campus(campusJSON);
     const admissionCohort = new Cohort({
       campus: campus._id,
       program: 'pre',
@@ -164,27 +168,8 @@ describe('e2e::projectsFeedback', () => {
   });
 
   it('should save projectFeedback and save again with reviewerSurveyResults', async () => {
-    const project = new Project({
-      slug: 'cipher',
-      repo: 'Laboratoria/curricula-js',
-      path: 'projects/01-cipher',
-      version: '2.0.0',
-      parserVersion: '1.1.1',
-      createdAt: new Date(),
-      prefix: 1,
-      title: 'Cifrado César',
-      rubric: '2',
-      locale: 'es-ES',
-      track: 'js',
-      skills: {},
-    });
-    const campus = new Campus({
-      slug: 'lim',
-      name: 'Lima',
-      locale: 'es-PE',
-      timezone: 'America/Lima',
-      active: true,
-    });
+    const project = new Project(projectJSON);
+    const campus = new Campus(campusJSON);
     const admissionCohort = new Cohort({
       campus: campus._id,
       program: 'pre',
