@@ -145,11 +145,4 @@ yarn e2e
 
 ## Schemas
 
-* `CampusSchema`
-* `CohortSchema`
-* `ProjectSchema`
-* `ProjectFeedbackSchema`
-* `ReviewerSurveySchema`
-* `TopicSchema`
-* `TopicProgressSchema` (TBD)
-* `UserProfileSchema` (TBD)
+See [`Laboratoria/schemas`](https://github.com/Laboratoria/schemas).
