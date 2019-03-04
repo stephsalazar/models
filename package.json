@@ -9,17 +9,17 @@
     "e2e": "jest --config=./e2e/jest.config.js --verbose ./e2e/*.spec.js"
   },
   "dependencies": {
-    "schemas": "Laboratoria/schemas#v1.0.0-alpha.3"
+    "schemas": "Laboratoria/schemas#v1.0.0-alpha.4"
   },
   "devDependencies": {
-    "eslint": "^5.13.0",
+    "eslint": "^5.15.0",
     "eslint-config-airbnb-base": "^13.1.0",
     "eslint-plugin-import": "^2.16.0",
     "jest": "^24.1.0",
     "jest-environment-node": "^24.0.0",
     "mongodb": "^3.1.13",
-    "mongodb-memory-server": "^3.1.0",
-    "mongoose": "^5.4.12"
+    "mongodb-memory-server": "^3.1.2",
+    "mongoose": "^5.4.17"
   },
   "peerDependencies": {
     "mongoose": "5.x"
