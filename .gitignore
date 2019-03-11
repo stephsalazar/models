@@ -1,3 +1,4 @@
-e2e/globalConfig.json
 coverage/
 node_modules/
+test/config/globalConfig.json
+

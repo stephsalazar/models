@@ -1,9 +1,8 @@
 const mongoose = require('mongoose');
-const { ProjectSchema } = require('schemas')(mongoose);
-const Project = require('../src/models/Project')(mongoose, ProjectSchema);
+const { Project } = require('../')(mongoose);
 
 
-describe('e2e::projects', () => {
+describe('Project', () => {
   const projectJSON = {
     slug: 'cipher',
     repo: 'Laboratoria/curricula-js',

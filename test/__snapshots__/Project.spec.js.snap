@@ -1,0 +1,40 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`e2e::projects should be able to query projects latest version of each project 1`] = `
+Array [
+  Object {
+    "latestVersion": "2.0.0",
+    "name": "Cifrado César",
+    "slug": "cipher",
+    "versions": Array [
+      "2.0.0",
+    ],
+  },
+  Object {
+    "latestVersion": "2.0.0",
+    "name": "Cifrado César",
+    "slug": "cipher-1",
+    "versions": Array [
+      "2.0.0",
+      "1.0.0",
+    ],
+  },
+  Object {
+    "latestVersion": "2.0.0",
+    "name": "Cifrado César",
+    "slug": "cipher-2",
+    "versions": Array [
+      "2.0.0",
+      "1.0.0",
+    ],
+  },
+  Object {
+    "latestVersion": "1.0.0",
+    "name": "Cifrado César",
+    "slug": "cipher-3",
+    "versions": Array [
+      "1.0.0",
+    ],
+  },
+]
+`;

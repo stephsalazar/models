@@ -1,16 +1,11 @@
 const mongoose = require('mongoose');
 const {
-  CampusSchema,
-  CohortSchema,
-  ProjectSchema,
-  ReviewerSurveySchema,
-  ProjectFeedbackSchema,
-} = require('schemas')(mongoose);
-const Campus = require('../src/models/Campus')(mongoose, CampusSchema);
-const Cohort = require('../src/models/Cohort')(mongoose, CohortSchema);
-const Project = require('../src/models/Project')(mongoose, ProjectSchema);
-const ReviewerSurvey = require('../src/models/ReviewerSurvey')(mongoose, ReviewerSurveySchema);
-const ProjectFeedback = require('../src/models/ProjectFeedback')(mongoose, ProjectFeedbackSchema);
+  Campus,
+  Cohort,
+  ProjectFeedback,
+  Project,
+  ReviewerSurvey,
+} = require('../')(mongoose);
 
 
 const projectJSON = {
@@ -37,7 +32,7 @@ const campusJSON = {
 };
 
 
-describe('e2e::projectsFeedback', () => {
+describe('ProjectFeedback', () => {
   beforeAll(async () => {
     await mongoose.connect(global.__MONGO_URI__, { useNewUrlParser: true });
   });

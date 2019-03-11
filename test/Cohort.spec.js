@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const { Campus, Cohort } = require('../')(mongoose);
 
 
-describe('e2e::cohorts', () => {
+describe('Cohort', () => {
   let campus;
 
   beforeAll(async () => {

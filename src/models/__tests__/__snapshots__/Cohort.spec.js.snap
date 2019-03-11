@@ -1,7 +1,0 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
-
-exports[`Cohort should fail validation when campus not an ObjectId 1`] = `
-Object {
-  "campus": [CastError: Cast to ObjectID failed for value "lim" at path "campus"],
-}
-`;
