@@ -7,6 +7,7 @@
     "test": "jest --coverage --verbose"
   },
   "dependencies": {
+    "mongoose-paginate": "^5.0.3",
     "schemas": "Laboratoria/schemas#v1.0.0-alpha.4"
   },
   "devDependencies": {
