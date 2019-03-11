@@ -43,7 +43,11 @@ describe('ProjectFeedback', () => {
 
   beforeEach(async () => {
     await mongoose.connection.db.dropDatabase();
+    await Campus.createIndexes();
+    await Cohort.createIndexes();
     await ProjectFeedback.createIndexes();
+    await Project.createIndexes();
+    await ReviewerSurvey.createIndexes();
   });
 
   it('should fail when missing props', () => {

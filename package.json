@@ -1,12 +1,10 @@
 {
   "name": "models",
   "version": "1.0.0-alpha.3",
-  "main": "src/index.js",
   "license": "MIT",
   "scripts": {
     "pretest": "eslint .",
-    "test": "jest --coverage --verbose ./src/**/*.spec.js ./src/*/**/*.spec.js",
-    "e2e": "jest --config=./e2e/jest.config.js --verbose ./e2e/*.spec.js"
+    "test": "jest --coverage --verbose"
   },
   "dependencies": {
     "schemas": "Laboratoria/schemas#v1.0.0-alpha.4"

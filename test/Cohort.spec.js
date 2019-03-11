@@ -163,6 +163,7 @@ describe('Cohort', () => {
           ...obj
         } = result.toJSON();
         expect(obj).toMatchSnapshot();
+        expect(obj.generation).toBe(2);
         return Cohort.find({ generation: cohort.generation });
       })
       .then((docs) => {

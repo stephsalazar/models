@@ -1,13 +1,13 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`e2e::projectsFeedback should fail when missing props 1`] = `
+exports[`ProjectFeedback should fail when missing props 1`] = `
 Object {
   "rubric": [ValidatorError: Path \`rubric\` is required.],
   "rubricResults": [ValidatorError: Path \`rubricResults\` is required.],
 }
 `;
 
-exports[`e2e::projectsFeedback should fail when project, cohort or reviewerSurvey not ObjectId 1`] = `
+exports[`ProjectFeedback should fail when project, cohort or reviewerSurvey not ObjectId 1`] = `
 Object {
   "cohort": [CastError: Cast to ObjectID failed for value "lim-2019-01-bc-js-09" at path "cohort"],
   "project": [CastError: Cast to ObjectID failed for value "cipher" at path "project"],
@@ -17,7 +17,7 @@ Object {
 }
 `;
 
-exports[`e2e::projectsFeedback should save projectFeedback and save again with reviewerSurveyResults 1`] = `
+exports[`ProjectFeedback should save projectFeedback and save again with reviewerSurveyResults 1`] = `
 Object {
   "n": 1,
   "nModified": 1,

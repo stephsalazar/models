@@ -1,15 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`e2e::projects should be able to query projects latest version of each project 1`] = `
+exports[`Project should be able to query projects latest version of each project 1`] = `
 Array [
-  Object {
-    "latestVersion": "2.0.0",
-    "name": "Cifrado César",
-    "slug": "cipher",
-    "versions": Array [
-      "2.0.0",
-    ],
-  },
   Object {
     "latestVersion": "2.0.0",
     "name": "Cifrado César",
@@ -38,3 +30,5 @@ Array [
   },
 ]
 `;
+
+exports[`Project should fail to save when project/version already exists 1`] = `"E11000 duplicate key error dup key: { : \\"cipher-bar\\", : \\"1.0.0\\" }"`;
