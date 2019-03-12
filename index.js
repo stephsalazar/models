@@ -21,7 +21,7 @@ module.exports = (conn) => {
     UserSchema,
   } = schemas(conn);
 
-  const models = {
+  return {
     Campus: createCampusModel(conn, CampusSchema),
     CohortMembership: createCohortMembershipModel(conn, CohortMembershipSchema),
     Cohort: createCohortModel(conn, CohortSchema),
@@ -38,17 +38,5 @@ module.exports = (conn) => {
     ProjectFeedbackSchema,
     TopicSchema,
     UserSchema,
-  };
-
-  return {
-    ...models,
-    validate: (type, value, cb) => {
-      const model = new models[type](value);
-      if (typeof cb === 'function') {
-        return model.validate(cb);
-      }
-      // When no args passed to `model.validate()` it returns a promise.
-      return model.validate();
-    },
   };
 };
