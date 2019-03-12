@@ -1,3 +1,7 @@
+//
+// This script is run once before each test suite
+//
+
 const path = require('path');
 const fs = require('fs');
 const NodeEnvironment = require('jest-environment-node');
