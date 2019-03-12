@@ -75,6 +75,11 @@ describe('Project', () => {
       .then(() => Project.findLatest())
       .then((docs) => {
         expect(docs.map(({ _id, ...doc }) => doc)).toMatchSnapshot();
+        return Project.findLatest('cipher-1');
+      })
+      .then((doc) => {
+        expect(`${doc._id}`).toBe(`${project1Version2._id}`);
+        expect(doc.slug).toBe(project1Version2.slug);
       });
   });
 });
