@@ -8,16 +8,16 @@
   },
   "dependencies": {
     "mongoose-paginate": "^5.0.3",
-    "schemas": "Laboratoria/schemas#v1.0.0-alpha.4"
+    "schemas": "Laboratoria/schemas#v1.0.0-alpha.5"
   },
   "devDependencies": {
     "eslint": "^5.15.1",
     "eslint-config-airbnb-base": "^13.1.0",
     "eslint-plugin-import": "^2.16.0",
-    "jest": "^24.4.0",
-    "jest-environment-node": "^24.4.0",
+    "jest": "^24.5.0",
+    "jest-environment-node": "^24.5.0",
     "mongodb": "^3.1.13",
-    "mongodb-memory-server": "^4.0.2",
+    "mongodb-memory-server": "^4.1.0",
     "mongoose": "^5.4.19"
   },
   "peerDependencies": {
