@@ -25,38 +25,58 @@ Or add it in your `package.json` and then `npm install`:
 
 ## Usage
 
-Validation without knowing anything about `mongoose` (internals).
+For more detailed information, please check the
+[official `mongoose` docs](https://mongoosejs.com/docs/guide.html)
+
+Creating and saving a model:
 
 ```js
 const mongoose = require('mongoose');
-const { validate } = require('models')(mongoose);
+const { Project } = require('models')(mongoose);
 
-validate('Project', {
+const project = new Project({
   slug: 'cipher',
   repo: 'Laboratoria/curricula-js',
   path: 'projects/01-cipher',
-  // ...
-}, (err) => {
-  if (err) {
-    // validation failed ...
-  }
-
   // ...
 });
+
+project.save()
+  .then(console.log)
+  .catch(console.error);
 ```
 
-Using `validate` as a `Promise`:
+Finding models:
+
+```js
+// Querying for all documents in collection
+Project.find({}, (err, docs) => {
+  if (err) {
+    console.error(err);
+  }
+  // doc something with `docs`...
+});
+
+// Alternatively using a promise
+Project.find({})
+  .then(console.log)
+  .catch(console.error);
+```
+
+Using `Model.validate` as a `Promise`:
 
 ```js
 const mongoose = require('mongoose');
-const { validate } = require('models')(mongoose);
+const { Project } = require('models')(mongoose);
 
-validate('Project', {
+const project = new Project({
   slug: 'cipher',
   repo: 'Laboratoria/curricula-js',
   path: 'projects/01-cipher',
   // ...
-})
+});
+
+project.validate()
   .then(() => {
     // Validation succeeded ;-)
   })
@@ -65,7 +85,7 @@ validate('Project', {
   });
 ```
 
-Using `mongoose` _models_:
+Using `Model.validate` with a _callback_:
 
 ```js
 const mongoose = require('mongoose');
@@ -80,37 +100,6 @@ const project = new Project({
 });
 
 // Validating model instance
-project.validate((err) => {
-  // ...
-});
-
-// Saving model...
-project.save()
-  .then(console.log)
-  .catch(console.error);
-
-// Querying for all documents in collection
-Project.find({}, (err, docs) => {
-  if (err) {
-    console.error(err);
-  }
-  // doc something with `docs`...
-});
-```
-
-Using `mongoose` _schemas_:
-
-```js
-const mongoose = require('mongoose');
-const { ProjectSchema } = require('models')(mongoose);
-const ProjectModel = mongoose.model('Project', ProjectSchema);
-const project = new ProjectModel({
-  slug: 'cipher',
-  repo: 'Laboratoria/curricula-js',
-  path: 'projects/01-cipher',
-  // ...
-});
-
 project.validate((err) => {
   // ...
 });
@@ -134,14 +123,15 @@ yarn e2e
 
 ## Models
 
-* [`Campus`](./src/models/Campus.js)
-* [`Cohort`](./src/models/Cohort.js)
-* [`Project`](./src/models/Project.js)
-* [`ProjectFeedback`](./src/models/ProjectFeedback.js)
-* [`ReviewerSurvey`](./src/models/ReviewerSurvey.js)
-* [`Topic`](./src/models/Topic.js)
+* [`Campus`](./src/Campus.js)
+* [`Cohort`](./src/Cohort.js)
+* [`CohortMembership`](./src/CohortMembership.js)
+* [`Project`](./src/Project.js)
+* [`ProjectFeedback`](./src/ProjectFeedback.js)
+* [`ReviewerSurvey`](./src/ReviewerSurvey.js)
+* [`Topic`](./src/Topic.js)
+* [`User`](./src/User.js)
 * `TopicProgress` (TBD)
-* `UserProfile` (TBD)
 
 ## Schemas
 
