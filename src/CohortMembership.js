@@ -1,5 +1,4 @@
-module.exports = (conn, CohortMembershipSchema) => {
-  const CohortMembership = conn.model('CohortMembership', CohortMembershipSchema);
-
-  return CohortMembership;
-};
+module.exports = (conn, CohortMembershipSchema) => conn.model(
+  'CohortMembership',
+  CohortMembershipSchema,
+);

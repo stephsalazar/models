@@ -1,58 +1,14 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Cohort should create L4B cohort 1`] = `
-Object {
-  "__v": 0,
-  "name": "alicorp",
-  "program": "l4b",
-  "projects": Array [],
-  "publicAdmission": false,
-  "rubric": "2",
-  "topics": Array [],
-  "track": "business",
-}
-`;
-
-exports[`Cohort should create admission cohort (new generation) for existing campus 1`] = `
-Object {
-  "__v": 0,
-  "generation": 2,
-  "name": "am",
-  "program": "pre",
-  "projects": Array [],
-  "publicAdmission": false,
-  "rubric": "2",
-  "topics": Array [],
-  "track": "core",
-}
-`;
-
-exports[`Cohort should create admission cohort (new generation) for new campus 1`] = `
-Object {
-  "__v": 0,
-  "generation": 1,
-  "name": "am",
-  "program": "pre",
-  "projects": Array [],
-  "publicAdmission": false,
-  "rubric": "2",
-  "slug": "lim-2017-09-pre-core-am",
-  "topics": Array [],
-  "track": "core",
-}
-`;
-
 exports[`Cohort should create common core cohort for a given generation 1`] = `
 Object {
   "__v": 0,
   "generation": 1,
   "name": "am",
   "program": "bc",
-  "projects": Array [],
   "publicAdmission": false,
   "rubric": "2",
   "slug": "lim-2017-09-bc-core-am",
-  "topics": Array [],
   "track": "core",
 }
 `;
