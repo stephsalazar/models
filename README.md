@@ -123,15 +123,46 @@ yarn e2e
 
 ## Models
 
+### Campuses
+
 * [`Campus`](./src/Campus.js)
+
+### Cohorts
+
 * [`Cohort`](./src/Cohort.js)
 * [`CohortMembership`](./src/CohortMembership.js)
+* [`CohortTopic`](./src/CohortTopic.js)
+* [`CohortTopicSettings`](./src/CohortTopicSettings.js)
+* [`CohortProject`](./src/CohortProject.js)
+* [`CohortPlatziCourse`](./src/CohortPlatziCourse.js)
+
+### Graduates
+
+* [`GraduateProfile`](./src/GraduateProfile.js)
+* [`GraduateProfileEndorsement`](./src/GraduateProfileEndorsement.js)
+* [`GraduateProfileProject`](./src/GraduateProfileProject.js)
+* [`GraduateProfileLifeSkill`](./src/GraduateProfileLifeSkill.js) (deprecated)
+
+### Organizations
+
+* [`Organization`](./src/Organization.js)
+
+### Projects
+
 * [`Project`](./src/Project.js)
 * [`ProjectFeedback`](./src/ProjectFeedback.js)
 * [`ReviewerSurvey`](./src/ReviewerSurvey.js)
+
+### Topics
+
 * [`Topic`](./src/Topic.js)
-* [`User`](./src/User.js)
+* [`TopicUnit`](./src/TopicUnit.js)
+* [`TopicUnitPart`](./src/TopicUnitPart.js)
 * `TopicProgress` (TBD)
+
+### Users
+
+* [`User`](./src/User.js)
 
 ## Schemas
 
