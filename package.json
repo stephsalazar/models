@@ -2,13 +2,14 @@
   "name": "models",
   "version": "1.0.0-alpha.5",
   "license": "MIT",
+  "repository": "Laboratoria/models",
   "scripts": {
     "pretest": "eslint .",
     "test": "jest --coverage --verbose --runInBand"
   },
   "dependencies": {
     "mongoose-paginate": "^5.0.3",
-    "schemas": "Laboratoria/schemas#v1.0.0-alpha.6"
+    "schemas": "Laboratoria/schemas#v1.0.0-alpha.7"
   },
   "devDependencies": {
     "eslint": "^5.16.0",
@@ -17,7 +18,7 @@
     "jest": "^24.6.0",
     "jest-environment-node": "^24.6.0",
     "mongodb": "^3.2.2",
-    "mongodb-memory-server": "^4.2.1",
+    "mongodb-memory-server": "^5.0.4",
     "mongoose": "^5.4.20"
   },
   "peerDependencies": {
