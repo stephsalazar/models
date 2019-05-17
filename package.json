@@ -9,7 +9,7 @@
   },
   "dependencies": {
     "mongoose-paginate": "^5.0.3",
-    "schemas": "Laboratoria/schemas#v1.0.0-alpha.7"
+    "schemas": "Laboratoria/schemas#v1.0.0-alpha.8"
   },
   "devDependencies": {
     "eslint": "^5.16.0",
