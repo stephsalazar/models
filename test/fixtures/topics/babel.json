@@ -25,6 +25,28 @@
   "learningObjectives": "<ul>\n<li>Qué es <code>babel</code> y para qué sirve</li>\n<li>Cómo usarlo</li>\n<li>Cómo configurarlo</li>\n<li>Plugins y presets populares</li>\n</ul>\n",
   "product": "",
   "syllabus": {
+    "02-foo": {
+      "title": "Foo",
+      "bonus": false,
+      "description": "",
+      "parts": {
+        "01-what-is-foo": {
+          "title": "¿Qué es Foo?",
+          "type": "read",
+          "format": "self-paced",
+          "duration": 10,
+          "body": "...",
+          "durationString": "10min"
+        }
+      },
+      "order": 1,
+      "stats": {
+        "duration": 10,
+        "durationString": "10min",
+        "exerciseCount": 0,
+        "partCount": 1
+      }
+    },
     "01-intro": {
       "title": "Conceptos básicos",
       "bonus": false,
