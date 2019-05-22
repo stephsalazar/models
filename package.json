@@ -8,6 +8,7 @@
     "test": "jest --coverage --verbose --runInBand"
   },
   "dependencies": {
+    "jsdom": "^15.1.0",
     "mongoose-paginate": "^5.0.3",
     "schemas": "Laboratoria/schemas#v1.0.0-alpha.8"
   },
