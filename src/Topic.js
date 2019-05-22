@@ -43,11 +43,11 @@ module.exports = (conn, TopicSchema) => {
 
 
   const handleUpdate = function (commandResultOrUpdatedDoc, next) {
-    if (commandResultOrUpdatedDoc.constructor.name === 'CommandResult') {
+    if (commandResultOrUpdatedDoc.constructor && commandResultOrUpdatedDoc.constructor.name === 'CommandResult') {
       // FIXME: Este handler puede invocarse updates que incluyen uno o más
       // documentos (los que satisfagan la query). Cómo hacemos en los casos donde
       // uno de los documentos no se actualizó correctamente?
-      // Sabemos que podemos saber que alguno fallón con
+      // Sabemos que podemos saber que alguno falló con
       // `commandResult.n !== commandResult.ok`, pero no sabemos cuáles fallaron??
       // console.log(commandResult.result);
     } else {
