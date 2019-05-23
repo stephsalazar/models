@@ -5,12 +5,14 @@
   "repository": "Laboratoria/models",
   "scripts": {
     "pretest": "eslint .",
-    "test": "jest --coverage --verbose --runInBand"
+    "test": "jest --coverage --verbose --runInBand",
+    "link-schemas": "rm -rf node_modules/schemas && ln -s ../../schemas ./node_modules/schemas"
   },
   "dependencies": {
     "jsdom": "^15.1.0",
     "mongoose-paginate": "^5.0.3",
-    "schemas": "Laboratoria/schemas#v1.0.0-alpha.9"
+    "schemas": "Laboratoria/schemas#v1.0.0-alpha.9",
+    "semver": "^6.0.0"
   },
   "devDependencies": {
     "eslint": "^5.16.0",
