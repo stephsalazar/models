@@ -3,6 +3,21 @@ const { Topic, TopicUnit, TopicUnitPart } = require('../')(mongoose);
 const babelJson = require('./fixtures/topics/babel.json');
 
 
+const createTestTopics = async () => {
+  await Promise.all([
+    babelJson,
+    { ...babelJson, version: '2.2.0' },
+    { ...babelJson, version: '2.3.0-test' },
+    { ...babelJson, version: '2.3.0-alpha.1' },
+    { ...babelJson, version: '2.3.0-lim-2018-05-bc-core-foo' },
+  ].map(async doc => {
+    const topic = new Topic(doc);
+    const saveResult = await topic.save();
+    expect(saveResult.slug).toBe('babel');
+  }));
+};
+
+
 describe('Topic', () => {
   beforeAll(async () => {
     await mongoose.connect(global.__MONGO_URI__, { useNewUrlParser: true });
@@ -17,24 +32,36 @@ describe('Topic', () => {
     await Topic.createIndexes();
   });
 
-  it('should save babel topic and then get with Topic.findLatest(slug)', () => {
-    const topic = new Topic(babelJson);
-    return topic.save()
-      .then((result) => {
-        expect(result.slug).toBe('babel');
-        return Topic.findLatest('babel');
-      })
-      .then(doc => expect(doc.slug).toBe('babel'));
+  it('should save babel topic and then get with Topic.findLatest(slug)', async () => {
+    await createTestTopics();
+    const latest = await Topic.findLatest('babel');
+    expect(latest.slug).toBe('babel');
+    expect(latest.version).toBe('2.3.0-test');
   });
 
-  it('should save babel topic and then get with Topic.findLatest()', () => {
-    const topic = new Topic(babelJson);
-    return topic.save()
-      .then((result) => {
-        expect(result.slug).toBe('babel');
-        return Topic.findLatest();
-      })
-      .then(docs => expect(docs[0].slug).toBe('babel'));
+  it('should save babel topic and then get with Topic.findLatest()', async () => {
+    await createTestTopics();
+    const latestTopics = await Topic.findLatest();
+    expect(latestTopics.length).toBe(1);
+    expect(latestTopics[0].slug).toBe('babel');
+    expect(latestTopics[0].version).toBe('2.3.0-test');
+  });
+
+  it('should save babel topic and then get with Topic.findStable()', async () => {
+    await createTestTopics();
+    const stableTopics = await Topic.findStable();
+
+    expect(stableTopics.length).toBe(1);
+    expect(stableTopics[0].slug).toBe('babel');
+    expect(stableTopics[0].version).toBe('2.2.0');
+  });
+
+  it('should save babel topic and then get with Topic.findStable(slug)', async () => {
+    await createTestTopics();
+    const stableTopic = await Topic.findStable('babel');
+
+    expect(stableTopic.slug).toBe('babel');
+    expect(stableTopic.version).toBe('2.2.0');
   });
 
   it('should save units and parts when topic is saved', () => {
@@ -144,12 +171,7 @@ describe('Topic', () => {
     const topic = new Topic(babelJson);
     await topic.save();
 
-    const results = await Topic.find().populate({
-      path: 'syllabus',
-      populate: {
-        path: 'parts',
-      },
-    });
+    const results = await Topic.findPopulated();
 
     expect(results.length).toBe(1);
     expect(results[0].syllabus.length).toBe(2);
@@ -187,12 +209,7 @@ describe('Topic', () => {
       },
     });
 
-    const updatedTopic = await Topic.findOne({ slug: 'babel' })
-      .populate({
-        path: 'syllabus',
-        populate: { path: 'parts' },
-        // sort???
-      });
+    const updatedTopic = await Topic.findOnePopulated({ slug: 'babel' });
 
     expect(updatedTopic.title).toBe('BabelJS');
     expect(updatedTopic.syllabus.length).toBe(3);
@@ -233,12 +250,7 @@ describe('Topic', () => {
       },
     });
 
-    const updatedTopics = await Topic.find({ slug: 'babel' })
-      .populate({
-        path: 'syllabus',
-        populate: { path: 'parts' },
-        // sort???
-      });
+    const updatedTopics = await Topic.findPopulated({ slug: 'babel' });
 
     expect(updatedTopics.length).toBe(2);
     expect(updatedTopics[0].version).toBe(babelJson.version);
@@ -247,11 +259,9 @@ describe('Topic', () => {
     updatedTopics.forEach((updatedTopic) => {
       expect(updatedTopic.slug).toBe('babel');
       expect(updatedTopic.syllabus.length).toBe(3);
-      // FIXME: Para poder hacer estas aserciones necesitamos garantizar orden!
-      // Cómo hacemos sort de los resultados de `populate`??
-      // expect(updatedTopic.syllabus[2].slug).toBe('09-foo');
-      // expect(updatedTopic.syllabus[2].parts.length).toBe(1);
-      // expect(updatedTopic.syllabus[2].parts[0].slug).toBe('00-intro');
+      expect(updatedTopic.syllabus[2].slug).toBe('09-foo');
+      expect(updatedTopic.syllabus[2].parts.length).toBe(1);
+      expect(updatedTopic.syllabus[2].parts[0].slug).toBe('00-intro');
     });
   });
 
@@ -288,7 +298,10 @@ describe('Topic', () => {
     });
 
     const updatedTopics = await Topic.find({ slug: 'babel' })
-      .sort({ version: 1 });
+      .sort({ version: 1 })
+      .then((result) => result.sort((a, b) => {
+        // ...
+      }));
 
     expect(updatedTopics.length).toBe(2);
     expect(updatedTopics[0].version).toBe(babelJson.version);
@@ -330,10 +343,7 @@ describe('Topic', () => {
 
     expect(updateResult).toEqual({ n: 1, nModified: 1, ok: 1 });
 
-    const updatedTopic = await Topic.findOne({ _id: topic._id }).populate({
-      path: 'syllabus',
-      populate: { path: 'parts' },
-    });
+    const updatedTopic = await Topic.findOnePopulated({ _id: topic._id });
 
     expect(updatedTopic.slug).toBe('babel');
     expect(updatedTopic.syllabus.length).toBe(3);
@@ -374,10 +384,7 @@ describe('Topic', () => {
 
     expect(updateResult.title).toBe('BabelJS');
 
-    const updatedTopic = await Topic.findOne({ _id: topic._id }).populate({
-      path: 'syllabus',
-      populate: { path: 'parts' },
-    });
+    const updatedTopic = await Topic.findOnePopulated({ _id: topic._id });
 
     expect(updatedTopic.slug).toBe('babel');
     expect(updatedTopic.syllabus.length).toBe(3);
@@ -420,7 +427,11 @@ describe('Topic', () => {
       { new: true },
     ).populate({
       path: 'syllabus',
-      populate: { path: 'parts' },
+      options: { sort: { order: 1, slug: 1 } },
+      populate: {
+        path: 'parts',
+        options: { sort: { order: 1, slug: 1 } },
+      },
     });
 
     expect(updatedTopic.title).toBe('BabelJS');
@@ -429,11 +440,10 @@ describe('Topic', () => {
     // NOTE: `findOneAndUpdate` resuelve al documento actualizado cuando usamos
     // { new: true }, pero los subdocumentos que llena populate no. Así que
     // hacemos otra query para verificar que se actualizaton los subdocumentos.
-    const updatedTopic2 = await Topic.findOne({ slug: babelJson.slug, version: babelJson.version })
-      .populate({
-        path: 'syllabus',
-        populate: { path: 'parts' },
-      });
+    const updatedTopic2 = await Topic.findOnePopulated({
+      slug: babelJson.slug,
+      version: babelJson.version,
+    });
 
     expect(updatedTopic2.syllabus.length).toBe(3);
     expect(updatedTopic2.syllabus[2].slug).toBe('09-foo');
