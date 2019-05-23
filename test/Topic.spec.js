@@ -10,7 +10,7 @@ const createTestTopics = async () => {
     { ...babelJson, version: '2.3.0-test' },
     { ...babelJson, version: '2.3.0-alpha.1' },
     { ...babelJson, version: '2.3.0-lim-2018-05-bc-core-foo' },
-  ].map(async doc => {
+  ].map(async (doc) => {
     const topic = new Topic(doc);
     const saveResult = await topic.save();
     expect(saveResult.slug).toBe('babel');
@@ -298,10 +298,7 @@ describe('Topic', () => {
     });
 
     const updatedTopics = await Topic.find({ slug: 'babel' })
-      .sort({ version: 1 })
-      .then((result) => result.sort((a, b) => {
-        // ...
-      }));
+      .sort({ version: 1 });
 
     expect(updatedTopics.length).toBe(2);
     expect(updatedTopics[0].version).toBe(babelJson.version);

@@ -114,30 +114,28 @@ module.exports = (conn, TopicSchema) => {
 
 
   const find = function (slug, stable = true) {
-    const getBySlug = (slug) => {
-      return this.find({ slug }, 'version')
-        .then(versions => versions
-          .map(({ version }) => version)
-          .filter(version => !stable || version.indexOf('-') === -1)
-          .sort((a, b) => {
-            if (semver.lt(a, b)) {
-              return 1;
-            }
-            if (semver.gt(a, b)) {
-              return -1;
-            }
-            return 0;
-          })
-        )
-        .then(sortedVersions => sortedVersions[0])
-        .then(version => this.findOne({ slug, version }))
-    };
+    // eslint-disable-next-line no-shadow
+    const getBySlug = slug => this.find({ slug }, 'version')
+      .then(versions => versions
+        .map(({ version }) => version)
+        .filter(version => !stable || version.indexOf('-') === -1)
+        .sort((a, b) => {
+          if (semver.lt(a, b)) {
+            return 1;
+          }
+          if (semver.gt(a, b)) {
+            return -1;
+          }
+          return 0;
+        }))
+      .then(sortedVersions => sortedVersions[0])
+      .then(version => this.findOne({ slug, version }));
 
     return (slug)
       ? getBySlug(slug)
       : this.distinct('slug')
         .then(slugs => Promise.all(slugs.map(getBySlug)))
-        .then(topics => topics.filter(topic => topic))
+        .then(topics => topics.filter(topic => topic));
   };
 
 
@@ -168,20 +166,21 @@ module.exports = (conn, TopicSchema) => {
   // Topic.find({ cohort });
   // Topic.findByCohort(cohort);
 
-  Topic.findByCohort = function (cohort) {
-    // ...
-  };
+  // Topic.findByCohort = function (cohort) {
+  //   // ...
+  // };
 
   Topic.findPopulated = function (...args) {
+    // FIXME: orden de versiones NO DEBE SER LEXICOGRÁFICO
     return this.find(...args)
       .populate(populateOpts)
       .sort({ slug: 1, version: 1 });
-      // FIXME: orden de versiones NO DEBE SER LEXICOGRÁFICO
   };
 
   Topic.findOnePopulated = function (...args) {
     return this.findOne(...args).populate(populateOpts);
   };
+
 
   return Topic;
 };
