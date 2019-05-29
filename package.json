@@ -10,20 +10,20 @@
     "changelog": "git log $(git describe --tags --abbrev=0)..HEAD --oneline --format=\"* %h %s (%an <%ae>)\""
   },
   "dependencies": {
-    "jsdom": "^15.1.0",
+    "jsdom": "^15.1.1",
     "mongoose-paginate": "^5.0.3",
     "schemas": "Laboratoria/schemas#v1.0.0-alpha.9",
-    "semver": "^6.0.0"
+    "semver": "^6.1.1"
   },
   "devDependencies": {
     "eslint": "^5.16.0",
     "eslint-config-airbnb-base": "^13.1.0",
-    "eslint-plugin-import": "^2.17.2",
+    "eslint-plugin-import": "^2.17.3",
     "jest": "^24.8.0",
     "jest-environment-node": "^24.8.0",
-    "mongodb": "^3.2.5",
+    "mongodb": "^3.2.6",
     "mongodb-memory-server": "^5.1.2",
-    "mongoose": "^5.5.10"
+    "mongoose": "^5.5.11"
   },
   "peerDependencies": {
     "mongoose": "5.x"
