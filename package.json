@@ -6,7 +6,8 @@
   "scripts": {
     "pretest": "eslint .",
     "test": "jest --coverage --verbose --runInBand",
-    "link-schemas": "rm -rf node_modules/schemas && ln -s ../../schemas ./node_modules/schemas"
+    "link-schemas": "rm -rf node_modules/schemas && ln -s ../../schemas ./node_modules/schemas",
+    "changelog": "git log $(git describe --tags --abbrev=0)..HEAD --oneline --format=\"* %h %s (%an <%ae>)\""
   },
   "dependencies": {
     "jsdom": "^15.1.0",
