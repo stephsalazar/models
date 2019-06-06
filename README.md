@@ -146,6 +146,12 @@ yarn e2e
 ### Organizations
 
 * [`Organization`](./src/Organization.js)
+* [`OrganizationMembership`](./src/OrganizationMembershipSchema.js)
+
+## Placement
+
+* [`JobOpportunity`](./src/JobOpportunity.js)
+* [`HiringProcess`](./src/HiringProcess.js)
 
 ### Projects
 

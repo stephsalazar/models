@@ -12,6 +12,9 @@ const GraduateProfileEndorsement = require('./src/GraduateProfileEndorsement');
 const GraduateProfileLifeSkill = require('./src/GraduateProfileLifeSkill');
 const GraduateProfileProject = require('./src/GraduateProfileProject');
 const Organization = require('./src/Organization');
+const OrganizationMembership = require('./src/OrganizationMembership');
+const JobOpportunity = require('./src/JobOpportunity');
+const HiringProcess = require('./src/HiringProcess');
 const Project = require('./src/Project');
 const ProjectFeedback = require('./src/ProjectFeedback');
 const ReviewerSurvey = require('./src/ReviewerSurvey');
@@ -35,6 +38,9 @@ module.exports = (conn) => {
     GraduateProfileLifeSkillSchema,
     GraduateProfileProjectSchema,
     OrganizationSchema,
+    OrganizationMembershipSchema,
+    JobOpportunitySchema,
+    HiringProcessSchema,
     ProjectSchema,
     ProjectFeedbackSchema,
     ReviewerSurveySchema,
@@ -53,6 +59,9 @@ module.exports = (conn) => {
     CohortTopic: CohortTopic(conn, CohortTopicSchema),
     CohortTopicSettings: CohortTopicSettings(conn, CohortTopicSettingsSchema),
     Organization: Organization(conn, OrganizationSchema),
+    OrganizationMembership: OrganizationMembership(conn, OrganizationMembershipSchema),
+    JobOpportunity: JobOpportunity(conn, JobOpportunitySchema),
+    HiringProcess: HiringProcess(conn, HiringProcessSchema),
     Project: Project(conn, ProjectSchema),
     ReviewerSurvey: ReviewerSurvey(conn, ReviewerSurveySchema),
     GraduateProfile: GraduateProfile(conn, GraduateProfileSchema),
@@ -76,6 +85,9 @@ module.exports = (conn) => {
     GraduateProfileLifeSkillSchema,
     GraduateProfileProjectSchema,
     OrganizationSchema,
+    OrganizationMembershipSchema,
+    JobOpportunitySchema,
+    HiringProcessSchema,
     ProjectSchema,
     ProjectFeedbackSchema,
     ReviewerSurveySchema,
