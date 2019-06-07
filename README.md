@@ -146,7 +146,7 @@ yarn e2e
 ### Organizations
 
 * [`Organization`](./src/Organization.js)
-* [`OrganizationMembership`](./src/OrganizationMembershipSchema.js)
+* [`OrganizationMembership`](./src/OrganizationMembership.js)
 
 ## Placement
 
