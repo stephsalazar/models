@@ -122,20 +122,20 @@ describe('Topic', () => {
     const saveResult = await topic.save();
     expect(saveResult.slug).toBe('babel');
 
-    const unitsBefore = await TopicUnit.find({ topic: topic._id });
+    const unitsBefore = await TopicUnit.find({ topic: topic._id }).sort({ order: 1, slug: 1 });
     expect(unitsBefore.length).toBe(2);
     const partsBefore = await Promise.all(
-      unitsBefore.map(unit => TopicUnitPart.find({ unit: unit._id })),
+      unitsBefore.map(unit => TopicUnitPart.find({ unit: unit._id }).sort({ order: 1, slug: 1 })),
     );
     expect(partsBefore.length).toBe(2);
     expect(partsBefore[0].length).toBe(3);
     expect(partsBefore[1].length).toBe(1);
 
     await Topic.remove({ _id: saveResult._id });
-    const unitsAfter = await TopicUnit.find({ topic: topic._id });
+    const unitsAfter = await TopicUnit.find({ topic: topic._id }).sort({ order: 1, slug: 1 });
     expect(unitsAfter.length).toBe(0);
     const partsAfter = await Promise.all(
-      unitsBefore.map(unit => TopicUnitPart.find({ unit: unit._id })),
+      unitsBefore.map(unit => TopicUnitPart.find({ unit: unit._id }).sort({ order: 1, slug: 1 })),
     );
     expect(partsAfter[0].length).toBe(0);
     expect(partsAfter[1].length).toBe(0);
@@ -147,20 +147,20 @@ describe('Topic', () => {
     const saveResult = await topic.save();
     expect(saveResult.slug).toBe('babel');
 
-    const unitsBefore = await TopicUnit.find({ topic: topic._id });
+    const unitsBefore = await TopicUnit.find({ topic: topic._id }).sort({ order: 1, slug: 1 });
     expect(unitsBefore.length).toBe(2);
     const partsBefore = await Promise.all(
-      unitsBefore.map(unit => TopicUnitPart.find({ unit: unit._id })),
+      unitsBefore.map(unit => TopicUnitPart.find({ unit: unit._id }).sort({ order: 1, slug: 1 })),
     );
     expect(partsBefore.length).toBe(2);
     expect(partsBefore[0].length).toBe(3);
     expect(partsBefore[1].length).toBe(1);
 
     await topic.remove();
-    const unitsAfter = await TopicUnit.find({ topic: topic._id });
+    const unitsAfter = await TopicUnit.find({ topic: topic._id }).sort({ order: 1, slug: 1 });
     expect(unitsAfter.length).toBe(0);
     const partsAfter = await Promise.all(
-      unitsBefore.map(unit => TopicUnitPart.find({ unit: unit._id })),
+      unitsBefore.map(unit => TopicUnitPart.find({ unit: unit._id }).sort({ order: 1, slug: 1 })),
     );
     expect(partsAfter[0].length).toBe(0);
     expect(partsAfter[1].length).toBe(0);
@@ -189,6 +189,7 @@ describe('Topic', () => {
         ...babelJson.syllabus,
         '09-foo': {
           title: 'goo',
+          order: 2,
           stats: {
             partCount: 1,
             exerciseCount: 0,
@@ -230,6 +231,7 @@ describe('Topic', () => {
         ...babelJson.syllabus,
         '09-foo': {
           title: 'goo',
+          order: 2,
           stats: {
             partCount: 1,
             exerciseCount: 0,
@@ -318,6 +320,7 @@ describe('Topic', () => {
         ...babelJson.syllabus,
         '09-foo': {
           title: 'goo',
+          order: 2,
           stats: {
             partCount: 1,
             exerciseCount: 0,
@@ -358,6 +361,7 @@ describe('Topic', () => {
       ...babelJson.syllabus,
       '09-foo': {
         title: 'goo',
+        order: 2,
         stats: {
           partCount: 1,
           exerciseCount: 0,
@@ -402,6 +406,7 @@ describe('Topic', () => {
           ...babelJson.syllabus,
           '09-foo': {
             title: 'goo',
+            order: 2,
             stats: {
               partCount: 1,
               exerciseCount: 0,
