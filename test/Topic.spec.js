@@ -467,4 +467,30 @@ describe('Topic', () => {
     expect(updatedTopics[0].title).toBe('BabelJS');
     expect(updatedTopics[1].title).toBe('BabelJS');
   });
+
+  it('validates units (syllabus)', () => {
+    const topic = new Topic({
+      ...babelJson,
+      syllabus: {
+        ...babelJson.syllabus,
+        foo: {},
+      },
+    });
+    return topic.validate()
+      .catch((err) => {
+        expect(err.name).toBe('ValidationError');
+        expect(err.errors).toMatchSnapshot();
+      });
+  });
+
+  it('validates parts', () => {
+    const json = { ...babelJson };
+    json.syllabus['01-intro'].parts['01-what-is-babel'].format = 'OMG';
+    const topic = new Topic(json);
+    return topic.validate()
+      .catch((err) => {
+        expect(err.name).toBe('ValidationError');
+        expect(err.errors).toMatchSnapshot();
+      });
+  });
 });

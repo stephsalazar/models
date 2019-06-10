@@ -1,24 +1,26 @@
+const { orderedObjectToArray } = require('./common');
+
+
 module.exports = (conn, TopicUnitSchema) => {
   TopicUnitSchema.virtual('parts', {
     ref: 'TopicUnitPart',
     localField: '_id',
     foreignField: 'unit',
   }).set(function (v) {
-    this._parts = (
-      (Array.isArray(v))
-        ? v
-        : Object.keys(v)
-          .sort((a, b) => {
-            if (v[a].order > v[b].order) {
-              return 1;
-            }
-            if (v[a].order < v[b].order) {
-              return -1;
-            }
-            return 0;
-          })
-          .map(slug => ({ ...v[slug], slug }))
-    );
+    this._parts = orderedObjectToArray(v);
+  });
+
+  TopicUnitSchema.post('validate', function (doc, next) {
+    if (!this._parts) {
+      return next();
+    }
+
+    return Promise.all(this._parts.map((partData) => {
+      const part = new conn.models.TopicUnitPart({ ...partData, unit: doc._id });
+      return part.validate();
+    }))
+      .then(() => next())
+      .catch(next);
   });
 
   TopicUnitSchema.post('save', function (doc, next) {

@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Topic validates parts 1`] = `
+Object {
+  "format": [ValidatorError: \`OMG\` is not a valid enum value for path \`format\`.],
+}
+`;
+
+exports[`Topic validates units (syllabus) 1`] = `
+Object {
+  "stats.duration": [ValidatorError: Path \`stats.duration\` is required.],
+  "stats.durationString": [ValidatorError: Path \`stats.durationString\` is required.],
+  "stats.exerciseCount": [ValidatorError: Path \`stats.exerciseCount\` is required.],
+  "stats.partCount": [ValidatorError: Path \`stats.partCount\` is required.],
+  "title": [ValidatorError: Path \`title\` is required.],
+}
+`;

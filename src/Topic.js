@@ -1,21 +1,5 @@
 const semver = require('semver');
-
-
-const parseSyllabus = v => (
-  (Array.isArray(v))
-    ? v
-    : Object.keys(v)
-      .sort((a, b) => {
-        if (v[a].order > v[b].order) {
-          return 1;
-        }
-        if (v[a].order < v[b].order) {
-          return -1;
-        }
-        return 0;
-      })
-      .map(slug => ({ ...v[slug], slug }))
-);
+const { orderedObjectToArray } = require('./common');
 
 
 module.exports = (conn, TopicSchema) => {
@@ -24,7 +8,20 @@ module.exports = (conn, TopicSchema) => {
     localField: '_id',
     foreignField: 'topic',
   }).set(function (v) {
-    this._syllabus = parseSyllabus(v);
+    this._syllabus = orderedObjectToArray(v);
+  });
+
+  TopicSchema.post('validate', function (doc, next) {
+    if (!this._syllabus) {
+      return next();
+    }
+
+    return Promise.all(this._syllabus.map((unitData) => {
+      const unit = new conn.models.TopicUnit({ ...unitData, topic: doc._id });
+      return unit.validate();
+    }))
+      .then(() => next())
+      .catch(next);
   });
 
   TopicSchema.post('save', function (doc, next) {
@@ -70,7 +67,7 @@ module.exports = (conn, TopicSchema) => {
       return next();
     }
 
-    const parsedSyllabus = parseSyllabus(syllabus);
+    const parsedSyllabus = orderedObjectToArray(syllabus);
 
     return Topic.find(this.getQuery())
       .then(topics => Promise.all(
