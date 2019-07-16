@@ -12,8 +12,8 @@
   "dependencies": {
     "jsdom": "^15.1.1",
     "mongoose-paginate": "^5.0.3",
-    "schemas": "Laboratoria/schemas#v1.0.0-alpha.11",
-    "semver": "^6.3.0"
+    "schemas": "Laboratoria/schemas#v1.0.0-alpha.12",
+    "semver": "^6.1.1"
   },
   "devDependencies": {
     "eslint": "^6.1.0",

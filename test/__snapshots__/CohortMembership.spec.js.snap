@@ -1,0 +1,28 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CohortMembership should fail validation with a wrong membership role 1`] = `
+Object {
+  "role": [ValidatorError: \`other\` is not a valid enum value for path \`role\`.],
+}
+`;
+
+exports[`CohortMembership should fail when cohort or user are not ObjecIds 1`] = `
+Object {
+  "cohort": [CastError: Cast to ObjectID failed for value "cohort._id" at path "cohort"],
+  "user": [CastError: Cast to ObjectID failed for value "user._id" at path "user"],
+}
+`;
+
+exports[`CohortMembership should fail when missing props 1`] = `
+Object {
+  "cohort": [ValidatorError: Path \`cohort\` is required.],
+  "role": [ValidatorError: Path \`role\` is required.],
+  "user": [ValidatorError: Path \`user\` is required.],
+}
+`;
+
+exports[`CohortMembership should fail with missing role 1`] = `
+Object {
+  "role": [ValidatorError: Path \`role\` is required.],
+}
+`;

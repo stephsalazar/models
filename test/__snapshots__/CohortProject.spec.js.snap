@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CohortProject should fail when cohort or project are not ObjecIds 1`] = `
+Object {
+  "cohort": [CastError: Cast to ObjectID failed for value "cohort._id" at path "cohort"],
+  "project": [CastError: Cast to ObjectID failed for value "project._id" at path "project"],
+}
+`;
+
+exports[`CohortProject should fail when missing props 1`] = `
+Object {
+  "cohort": [ValidatorError: Path \`cohort\` is required.],
+  "project": [ValidatorError: Path \`project\` is required.],
+}
+`;
+
+exports[`CohortProject should save successfully with appropriate fields 1`] = `undefined`;

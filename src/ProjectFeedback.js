@@ -1,21 +1,25 @@
 module.exports = (conn, ProjectFeedbackSchema) => {
-  const { Cohort, Project, ReviewerSurvey } = conn.models;
-
   ProjectFeedbackSchema.pre('save', function (next) {
+    const {
+      CohortProject,
+      CohortMembership,
+      User,
+    } = conn.models;
+
     Promise.all([
-      Cohort.findById(this.cohort),
-      Project.findById(this.project),
-      ReviewerSurvey.findById(this.reviewerSurvey),
+      CohortProject.findById(this.cohortProject),
+      CohortMembership.findById(this.cohortMembership),
+      User.findById(this.createdBy),
     ])
-      .then(([cohort, project, reviewerSurvey]) => {
-        if (!project) {
-          return next(new Error('Project does not exist'));
+      .then(([cohortProject, cohortMembership, createdBy]) => {
+        if (!cohortProject) {
+          return next(new Error('CohortProject does not exist'));
         }
-        if (!cohort) {
-          return next(new Error('Cohort does not exist'));
+        if (!cohortMembership) {
+          return next(new Error('CohortMembership does not exist'));
         }
-        if (!reviewerSurvey) {
-          return next(new Error('ReviewerSurvey does not exist'));
+        if (!createdBy) {
+          return next(new Error('CreatedBy does not exist'));
         }
         return next();
       })

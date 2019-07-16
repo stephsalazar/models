@@ -1,0 +1,5 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ReviewerSurvey should fail when reviewQuestion is not a valid ObjectId 1`] = `"ReviewerSurvey validation failed: questions: Cast to Array failed for value \\"[ 'foo' ]\\" at path \\"questions\\""`;
+
+exports[`ReviewerSurvey should fail with missing props 1`] = `"ReviewerSurvey validation failed: version: Path \`version\` is required."`;

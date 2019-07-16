@@ -1,0 +1,7 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`User should fail given an AcademicProfile comments with missing cohortProject 1`] = `"User validation failed: academicProfile.comments.0.cohortProject: Cast to ObjectID failed for value \\"cohortProject._id\\" at path \\"cohortProject\\", academicProfile: Validation failed: comments.0.cohortProject: Cast to ObjectID failed for value \\"cohortProject._id\\" at path \\"cohortProject\\""`;
+
+exports[`User should fail given an AcademicProfile comments with missing text 1`] = `"User validation failed: academicProfile.comments.0.text: Path \`text\` is required., academicProfile: Validation failed: comments.0.text: Path \`text\` is required."`;
+
+exports[`User should fail given an AcademicProfile comments with type other 1`] = `"User validation failed: academicProfile.comments.0.type: \`other\` is not a valid enum value for path \`type\`., academicProfile: Validation failed: comments.0.type: \`other\` is not a valid enum value for path \`type\`."`;

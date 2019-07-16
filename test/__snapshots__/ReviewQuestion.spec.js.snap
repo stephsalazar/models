@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ReviewerQuestion should fail when type is unknown 1`] = `
+Object {
+  "type": [ValidatorError: \`other\` is not a valid enum value for path \`type\`.],
+}
+`;
+
+exports[`ReviewerQuestion should fail when visibility is unknown 1`] = `
+Object {
+  "visibility": [ValidatorError: \`other\` is not a valid enum value for path \`visibility\`.],
+}
+`;
+
+exports[`ReviewerQuestion should fail with missing props 1`] = `
+Object {
+  "i18nId": [ValidatorError: Path \`i18nId\` is required.],
+  "type": [ValidatorError: Path \`type\` is required.],
+  "visibility": [ValidatorError: Path \`visibility\` is required.],
+}
+`;

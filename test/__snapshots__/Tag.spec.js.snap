@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Tag should fail when tag is not a string 1`] = `
+Object {
+  "text": [CastError: Cast to String failed for value "[]" at path "text"],
+}
+`;
+
+exports[`Tag should fail with missing props 1`] = `
+Object {
+  "text": [ValidatorError: Path \`text\` is required.],
+}
+`;

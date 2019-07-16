@@ -1,26 +1,31 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`ProjectFeedback should fail when missing props 1`] = `
+exports[`ProjectFeedback should fail validation when missing fields are provided 1`] = `
 Object {
+  "cohortMembership": [ValidatorError: Path \`cohortMembership\` is required.],
+  "cohortProject": [ValidatorError: Path \`cohortProject\` is required.],
+  "createdBy": [ValidatorError: Path \`createdBy\` is required.],
   "rubric": [ValidatorError: Path \`rubric\` is required.],
-  "rubricResults": [ValidatorError: Path \`rubricResults\` is required.],
 }
 `;
 
-exports[`ProjectFeedback should fail when project, cohort or reviewerSurvey not ObjectId 1`] = `
+exports[`ProjectFeedback should fail when cohortProject, cohortMembership, createdBy or reviewAnswer not ObjecId 1`] = `
 Object {
-  "cohort": [CastError: Cast to ObjectID failed for value "lim-2019-01-bc-js-09" at path "cohort"],
-  "project": [CastError: Cast to ObjectID failed for value "cipher" at path "project"],
-  "reviewerSurvey": [CastError: Cast to ObjectID failed for value "xxxx" at path "reviewerSurvey"],
-  "rubric": [ValidatorError: Path \`rubric\` is required.],
-  "rubricResults": [ValidatorError: Path \`rubricResults\` is required.],
+  "cohortMembership": [CastError: Cast to ObjectID failed for value "cohortMembership._id" at path "cohortMembership"],
+  "cohortProject": [CastError: Cast to ObjectID failed for value "cohortProject._id" at path "cohortProject"],
+  "createdBy": [CastError: Cast to ObjectID failed for value "createdBy._id" at path "createdBy"],
+  "reviewerSurveyResults": [CastError: Cast to Array failed for value "[ 'reviewAnswer._id' ]" at path "reviewerSurveyResults"],
 }
 `;
 
-exports[`ProjectFeedback should save projectFeedback and save again with reviewerSurveyResults 1`] = `
+exports[`ProjectFeedback should fail when reviewAnswer does not exist 1`] = `
 Object {
-  "n": 1,
-  "nModified": 1,
-  "ok": 1,
+  "cohortMembership": [ValidatorError: Path \`cohortMembership\` is required.],
+}
+`;
+
+exports[`ProjectFeedback should pass with reviewerSurveyResults 1`] = `
+Object {
+  "cohortMembership": [ValidatorError: Path \`cohortMembership\` is required.],
 }
 `;
