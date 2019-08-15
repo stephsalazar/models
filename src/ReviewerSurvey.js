@@ -18,5 +18,32 @@ module.exports = (conn, ReviewerSurveySchema) => {
 
   const ReviewerSurvey = conn.model('ReviewerSurvey', ReviewerSurveySchema);
 
+  ReviewerSurvey.findLatest = function () {
+    return this.aggregate([
+      {
+        $sort: { version: -1 },
+      },
+      {
+        $group: {
+          _id: null,
+          id: { $first: '$_id' },
+          latestVersion: { $first: '$version' },
+          questions: { $first: '$questions' },
+        },
+      },
+      { $sort: { _id: -1 } },
+      {
+        $lookup:
+          {
+            from: 'review_questions',
+            localField: 'questions',
+            foreignField: '_id',
+            as: 'questions',
+          },
+      },
+    ])
+      .then(docs => docs.map(({ id, ...doc }) => ({ ...doc, _id: id })));
+  };
+
   return ReviewerSurvey;
 };
