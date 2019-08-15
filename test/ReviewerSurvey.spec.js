@@ -44,6 +44,28 @@ describe('ReviewerSurvey', () => {
       });
   });
 
+  it('should be able to query reviewerSurveys latest version', async () => {
+    const reviewQuestion = new ReviewQuestion({
+      i18nId: 'dropout',
+      type: 'open',
+      visibility: 'public',
+    });
+
+    const reviewerSurvey1 = new ReviewerSurvey({ questions: [reviewQuestion._id], version: '1.0.0' });
+    const reviewerSurvey2 = new ReviewerSurvey({ questions: [reviewQuestion._id], version: '2.0.0' });
+
+    await reviewQuestion.save();
+
+    return reviewerSurvey1.save()
+      .then(() => reviewerSurvey2.save())
+      .then(() => ReviewerSurvey.findLatest())
+      .then(() => ReviewerSurvey.findLatest())
+      .then((doc) => {
+        expect(`${doc[0]._id}`).toBe(`${reviewerSurvey2._id}`);
+        expect(doc[0].latestVersion).toBe(reviewerSurvey2.version);
+      });
+  });
+
   it('should passing', async () => {
     const reviewQuestion = new ReviewQuestion({
       i18nId: 'dropout',
