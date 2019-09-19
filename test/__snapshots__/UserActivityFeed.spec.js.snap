@@ -1,0 +1,27 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AcademicProfileCommentEvent should fail with missing props 1`] = `
+Object {
+  "commentType": [ValidatorError: Path \`commentType\` is required.],
+  "createdBy": [ValidatorError: Path \`createdBy\` is required.],
+  "doc": [ValidatorError: Path \`doc\` is required.],
+  "project": [ValidatorError: Path \`project\` is required.],
+  "text": [ValidatorError: Path \`text\` is required.],
+}
+`;
+
+exports[`ReviewAnswerEvent should fail with missing props 1`] = `
+Object {
+  "commentType": [ValidatorError: Path \`commentType\` is required.],
+  "createdBy": [ValidatorError: Path \`createdBy\` is required.],
+  "doc": [ValidatorError: Path \`doc\` is required.],
+  "project": [ValidatorError: Path \`project\` is required.],
+  "text": [ValidatorError: Path \`text\` is required.],
+}
+`;
+
+exports[`UserActivityFeedEvent should fail with missing props 1`] = `
+Object {
+  "doc": [ValidatorError: Path \`doc\` is required.],
+}
+`;
