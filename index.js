@@ -25,6 +25,7 @@ const Topic = require('./src/Topic');
 const TopicUnit = require('./src/TopicUnit');
 const TopicUnitPart = require('./src/TopicUnitPart');
 const User = require('./src/User');
+const UserActivityFeedModels = require('./src/UserActivityFeed');
 
 
 module.exports = (conn) => {
@@ -54,6 +55,7 @@ module.exports = (conn) => {
     TopicUnitSchema,
     TopicUnitPartSchema,
     UserSchema,
+    UserActivityFeedEventSchemas,
   } = schemas(conn, (new JSDOM()).window.document);
 
   return {
@@ -82,6 +84,7 @@ module.exports = (conn) => {
     TopicUnit: TopicUnit(conn, TopicUnitSchema),
     TopicUnitPart: TopicUnitPart(conn, TopicUnitPartSchema),
     User: User(conn, UserSchema),
+    UserActivityFeedEvents: UserActivityFeedModels(conn, UserActivityFeedEventSchemas),
     CampusSchema,
     CohortSchema,
     CohortMembershipSchema,
@@ -107,5 +110,6 @@ module.exports = (conn) => {
     TopicUnitSchema,
     TopicUnitPartSchema,
     UserSchema,
+    UserActivityFeedEventSchemas,
   };
 };
