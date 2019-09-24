@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Opportunity should fail validation when fields missing 1`] = `
+Object {
+  "active": [ValidatorError: Path \`active\` is required.],
+  "address": [ValidatorError: Path \`address\` is required.],
+  "campus": [ValidatorError: Path \`campus\` is required.],
+  "city": [ValidatorError: Path \`city\` is required.],
+  "description": [ValidatorError: Path \`description\` is required.],
+  "employer": [ValidatorError: Path \`employer\` is required.],
+  "salaryRange": [ValidatorError: Path \`salaryRange\` is required.],
+  "title": [ValidatorError: Path \`title\` is required.],
+  "vacancies": [ValidatorError: Path \`vacancies\` is required.],
+}
+`;

@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CohortSchema should fail validation when fields missing 1`] = `
+Object {
+  "campus": [ValidatorError: Path \`campus\` is required.],
+  "program": [ValidatorError: Path \`program\` is required.],
+  "track": [ValidatorError: Path \`track\` is required.],
+}
+`;
+
+exports[`CohortSchema should fail validation when unknown program 1`] = `
+Object {
+  "program": [ValidatorError: \`foo\` is not a valid enum value for path \`program\`.],
+}
+`;

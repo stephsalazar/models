@@ -1,0 +1,8 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`UserSchema should fail validation when fields missing 1`] = `
+Object {
+  "email": [ValidatorError: Path \`email\` is required.],
+  "uid": [ValidatorError: Path \`uid\` is required.],
+}
+`;

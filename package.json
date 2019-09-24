@@ -6,13 +6,12 @@
   "scripts": {
     "pretest": "eslint .",
     "test": "jest --coverage --verbose --runInBand",
-    "link-schemas": "rm -rf node_modules/schemas && ln -s ../../schemas ./node_modules/schemas",
+    "test:schemas": "npm run test -- --config=jest.schemas.config.js",
     "changelog": "git log $(git describe --tags --abbrev=0)..HEAD --oneline --format=\"* %h %s (%an <%ae>)\""
   },
   "dependencies": {
     "jsdom": "^15.1.1",
     "mongoose-paginate": "^5.0.3",
-    "schemas": "Laboratoria/schemas#v1.0.0-alpha.16",
     "semver": "^6.1.1"
   },
   "devDependencies": {

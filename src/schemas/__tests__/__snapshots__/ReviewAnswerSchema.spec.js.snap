@@ -1,0 +1,7 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ReviewAnswerSchema should fail validation when missing fields are provided 1`] = `
+Object {
+  "question": [ValidatorError: Path \`question\` is required.],
+}
+`;

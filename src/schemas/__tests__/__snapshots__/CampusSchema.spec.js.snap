@@ -1,0 +1,10 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CampusSchema should fail validation when fields missing 1`] = `
+Object {
+  "locale": [ValidatorError: Path \`locale\` is required.],
+  "name": [ValidatorError: Path \`name\` is required.],
+  "slug": [ValidatorError: Path \`slug\` is required.],
+  "timezone": [ValidatorError: Path \`timezone\` is required.],
+}
+`;

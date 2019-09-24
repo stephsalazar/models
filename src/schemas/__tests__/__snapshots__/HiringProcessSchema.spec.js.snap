@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`HiringProcessSchema should fail validation when fields missing 1`] = `
+Object {
+  "active": [ValidatorError: Path \`active\` is required.],
+  "createDate": [ValidatorError: Path \`createDate\` is required.],
+  "opportunity": [ValidatorError: Path \`opportunity\` is required.],
+  "organization": [ValidatorError: Path \`organization\` is required.],
+  "user": [ValidatorError: Path \`user\` is required.],
+}
+`;
