@@ -29,6 +29,7 @@ describe('UserActivityFeedEvent', () => {
 
   it('should save successfully with appropriate fields', () => {
     const event = new UserActivityFeedEvent({
+      user: mongoose.Types.ObjectId(),
       doc: mongoose.Types.ObjectId(),
     });
 
@@ -71,6 +72,7 @@ describe('AcademicProfileCommentEvent', () => {
 
   it('should save successfully with appropriate fields', () => {
     const event = new AcademicProfileCommentEvent({
+      user: user._id,
       doc: mongoose.Types.ObjectId(),
       createdBy: user._id,
       commentType: 'tech',
@@ -87,6 +89,7 @@ describe('AcademicProfileCommentEvent', () => {
 
   it('should fail when createdBy does not exist', async () => {
     const event = new AcademicProfileCommentEvent({
+      user: (new User())._id,
       doc: mongoose.Types.ObjectId(),
       createdBy: (new User())._id,
       commentType: 'tech',
@@ -132,6 +135,7 @@ describe('ReviewAnswerEvent', () => {
 
   it('should save successfully with appropriate fields', () => {
     const event = new ReviewAnswerEvent({
+      user: user._id,
       doc: mongoose.Types.ObjectId(),
       createdBy: user._id,
       commentType: 'tech',
@@ -148,6 +152,7 @@ describe('ReviewAnswerEvent', () => {
 
   it('should fail when createdBy does not exist', async () => {
     const event = new ReviewAnswerEvent({
+      user: (new User())._id,
       doc: mongoose.Types.ObjectId(),
       createdBy: (new User())._id,
       commentType: 'tech',

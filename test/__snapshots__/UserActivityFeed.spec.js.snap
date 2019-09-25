@@ -7,6 +7,7 @@ Object {
   "doc": [ValidatorError: Path \`doc\` is required.],
   "project": [ValidatorError: Path \`project\` is required.],
   "text": [ValidatorError: Path \`text\` is required.],
+  "user": [ValidatorError: Path \`user\` is required.],
 }
 `;
 
@@ -17,11 +18,13 @@ Object {
   "doc": [ValidatorError: Path \`doc\` is required.],
   "project": [ValidatorError: Path \`project\` is required.],
   "text": [ValidatorError: Path \`text\` is required.],
+  "user": [ValidatorError: Path \`user\` is required.],
 }
 `;
 
 exports[`UserActivityFeedEvent should fail with missing props 1`] = `
 Object {
   "doc": [ValidatorError: Path \`doc\` is required.],
+  "user": [ValidatorError: Path \`user\` is required.],
 }
 `;
