@@ -1,3 +1,5 @@
+const mongoosePaginate = require('mongoose-paginate');
+
 module.exports = (conn, CohortSchema) => {
   const { Campus } = conn.models;
 
@@ -25,6 +27,13 @@ module.exports = (conn, CohortSchema) => {
     foreignField: 'cohort',
   });
 
+  CohortSchema.virtual('memberships', {
+    ref: 'CohortMembership',
+    localField: '_id',
+    foreignField: 'cohort',
+    count: true,
+  });
+
   CohortSchema.pre('save', function (next) {
     Campus.findById(this.campus)
       .then(campus => (
@@ -35,5 +44,6 @@ module.exports = (conn, CohortSchema) => {
       .catch(next);
   });
 
+  CohortSchema.plugin(mongoosePaginate);
   return conn.model('Cohort', CohortSchema);
 };
