@@ -134,7 +134,11 @@ yarn e2e
 * [`CohortTopic`](./src/CohortTopic.js)
 * [`CohortTopicSettings`](./src/CohortTopicSettings.js)
 * [`CohortProject`](./src/CohortProject.js)
-* [`CohortPlatziCourse`](./src/CohortPlatziCourse.js)
+* [`CohortPlatziCourse`](./src/CohortPlatziCourse.js) (deprecated)
+
+### Endorsement
+
+* [`Endorsement`](./src/Endorsement.js)
 
 ### Graduates
 
@@ -158,6 +162,11 @@ yarn e2e
 * [`Project`](./src/Project.js)
 * [`ProjectFeedback`](./src/ProjectFeedback.js)
 * [`ReviewerSurvey`](./src/ReviewerSurvey.js)
+* [`ReviewQuestion`](./src/ReviewQuestion.js)
+
+### Tags
+
+* [`Tag`](./src/Tag.js)
 
 ### Topics
 
@@ -169,6 +178,9 @@ yarn e2e
 ### Users
 
 * [`User`](./src/User.js)
+* [`UserActivityFeedEvent`](./src/UserActivityFeed.js)
+* [`AcademicProfileCommentEvent`](./src/UserActivityFeed.js)
+* [`ReviewAnswerEvent`](./src/UserActivityFeed.js)
 
 ## Schemas
 
