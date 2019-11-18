@@ -5,6 +5,13 @@ module.exports = (conn, GraduateProfileSchema) => {
     foreignField: 'user',
   });
 
+  GraduateProfileSchema.virtual('projects', {
+    ref: 'GraduateProfileProject',
+    localField: 'user',
+    foreignField: 'user',
+  });
+
+
   return conn.model(
     'GraduateProfile',
     GraduateProfileSchema,
