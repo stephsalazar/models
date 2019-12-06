@@ -180,6 +180,8 @@ yarn e2e
 * [`User`](./src/User.js)
 * [`UserActivityFeedEvent`](./src/UserActivityFeed.js)
 * [`AcademicProfileCommentEvent`](./src/UserActivityFeed.js)
+* [`AcademicProfileTagAssignedEvent`](./src/UserActivityFeed.js)
+* [`AcademicProfileTagRemovalEvent`](./src/UserActivityFeed.js)
 * [`ReviewAnswerEvent`](./src/UserActivityFeed.js)
 
 ## Schemas
