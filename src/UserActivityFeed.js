@@ -3,6 +3,8 @@ module.exports = (
   {
     UserActivityFeedEventSchema,
     AcademicProfileCommentEventSchema,
+    AcademicProfileTagAssignedEventSchema,
+    AcademicProfileTagRemovalEventSchema,
     ReviewAnswerEventSchema,
   },
 ) => {
@@ -11,14 +13,25 @@ module.exports = (
     'AcademicProfileCommentEvent',
     AcademicProfileCommentEventSchema,
   );
+  const AcademicProfileTagAssignedEvent = UserActivityFeedEvent.discriminator(
+    'AcademicProfileTagAssignedEvent',
+    AcademicProfileTagAssignedEventSchema,
+  );
+  const AcademicProfileTagRemovalEvent = UserActivityFeedEvent.discriminator(
+    'AcademicProfileTagRemovalEvent',
+    AcademicProfileTagRemovalEventSchema,
+  );
   const ReviewAnswerEvent = UserActivityFeedEvent.discriminator(
     'ReviewAnswerEvent',
     ReviewAnswerEventSchema,
   );
 
+
   return {
     UserActivityFeedEvent,
     AcademicProfileCommentEvent,
+    AcademicProfileTagAssignedEvent,
+    AcademicProfileTagRemovalEvent,
     ReviewAnswerEvent,
   };
 };
