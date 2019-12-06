@@ -11,6 +11,26 @@ Object {
 }
 `;
 
+exports[`AcademicProfileTagAssignedEvent should fail with missing props 1`] = `
+Object {
+  "assignmentReason": [ValidatorError: Path \`assignmentReason\` is required.],
+  "createdBy": [ValidatorError: Path \`createdBy\` is required.],
+  "doc": [ValidatorError: Path \`doc\` is required.],
+  "tag": [ValidatorError: Path \`tag\` is required.],
+  "user": [ValidatorError: Path \`user\` is required.],
+}
+`;
+
+exports[`AcademicProfileTagRemovalEvent should fail with missing props 1`] = `
+Object {
+  "doc": [ValidatorError: Path \`doc\` is required.],
+  "removalReason": [ValidatorError: Path \`removalReason\` is required.],
+  "removedBy": [ValidatorError: Path \`removedBy\` is required.],
+  "tag": [ValidatorError: Path \`tag\` is required.],
+  "user": [ValidatorError: Path \`user\` is required.],
+}
+`;
+
 exports[`ReviewAnswerEvent should fail with missing props 1`] = `
 Object {
   "commentType": [ValidatorError: Path \`commentType\` is required.],

@@ -180,7 +180,7 @@ describe('User', () => {
             createdBy: user._id,
             cohortProject: 'cohortProject._id',
             type: 'tech',
-            text: 'foo',
+            i18nId: 'foo',
           },
         ],
       },
