@@ -12,7 +12,7 @@
   "dependencies": {
     "jsdom": "^15.1.1",
     "mongoose-paginate": "^5.0.3",
-    "schemas": "Laboratoria/schemas#v1.0.0-alpha.18",
+    "schemas": "Laboratoria/schemas#v1.0.0-alpha.19",
     "semver": "^6.1.1"
   },
   "devDependencies": {
