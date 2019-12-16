@@ -23,7 +23,7 @@ describe('Tag', () => {
 
   it('should fail when tag is not a string', () => {
     const tag = new Tag({
-      text: [],
+      i18nId: [],
     });
     return tag.save()
       .catch(err => expect(err.errors).toMatchSnapshot());
@@ -31,13 +31,13 @@ describe('Tag', () => {
 
   it('should save successfully with appropriate fields', () => {
     const tag = new Tag({
-      text: 'foo',
+      i18nId: 'foo',
     });
 
     return tag.save()
       .then((result) => {
-        expect(typeof result.text).toBe('string');
-        expect(result.text).toBe(tag.text);
+        expect(typeof result.i18nId).toBe('string');
+        expect(result.i18nId).toBe(tag.i18nId);
       });
   });
 });

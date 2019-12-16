@@ -93,7 +93,7 @@ describe('User', () => {
   });
 
   it('should fail given an AcademicProfile Tag with missing createdBy', async () => {
-    const tag = new Tag({ text: 'foo' });
+    const tag = new Tag({ i18nId: 'foo' });
     const doc = new User({
       uid: 'abcdefghijklmnopqrstuvwxyz',
       email: 'someone@someone',

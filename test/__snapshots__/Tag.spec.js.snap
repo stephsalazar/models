@@ -2,12 +2,12 @@
 
 exports[`Tag should fail when tag is not a string 1`] = `
 Object {
-  "text": [CastError: Cast to String failed for value "[]" at path "text"],
+  "i18nId": [CastError: Cast to String failed for value "[]" at path "i18nId"],
 }
 `;
 
 exports[`Tag should fail with missing props 1`] = `
 Object {
-  "text": [ValidatorError: Path \`text\` is required.],
+  "i18nId": [ValidatorError: Path \`i18nId\` is required.],
 }
 `;
