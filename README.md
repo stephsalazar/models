@@ -5,7 +5,7 @@
 This module is meant to be used with Node.js and expects the Node.js version of
 the [`mongoose`](https://mongoosejs.com/) module as an argument. If you are
 looking for _schemas_ to be used in the front-end please check
-[`Laboratoria/schemas`](https://github.com/Laboratoria/schemas).
+[`Laboratoria/schemas`](./src/schemas/README.md).
 
 ## Installation
 
@@ -186,4 +186,4 @@ yarn e2e
 
 ## Schemas
 
-See [`Laboratoria/schemas`](https://github.com/Laboratoria/schemas).
+See [`Laboratoria/schemas`](./src/schemas/README.md).

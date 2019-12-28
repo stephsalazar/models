@@ -1,0 +1,8 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`UserActivityFeedEventSchema should fail validation when missing fields are provided 1`] = `
+Object {
+  "doc": [ValidatorError: Path \`doc\` is required.],
+  "user": [ValidatorError: Path \`user\` is required.],
+}
+`;

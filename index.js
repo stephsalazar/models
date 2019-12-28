@@ -1,5 +1,5 @@
 const { JSDOM } = require('jsdom');
-const schemas = require('schemas');
+const schemas = require('./src/schemas');
 const Campus = require('./src/Campus');
 const Cohort = require('./src/Cohort');
 const CohortMembership = require('./src/CohortMembership');

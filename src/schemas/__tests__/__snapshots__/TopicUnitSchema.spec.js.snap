@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TopicUnitSchema should fail validation when fields missing 1`] = `
+Object {
+  "slug": [ValidatorError: Path \`slug\` is required.],
+  "stats.duration": [ValidatorError: Path \`stats.duration\` is required.],
+  "stats.durationString": [ValidatorError: Path \`stats.durationString\` is required.],
+  "stats.exerciseCount": [ValidatorError: Path \`stats.exerciseCount\` is required.],
+  "stats.partCount": [ValidatorError: Path \`stats.partCount\` is required.],
+  "title": [ValidatorError: Path \`title\` is required.],
+  "topic": [ValidatorError: Path \`topic\` is required.],
+}
+`;

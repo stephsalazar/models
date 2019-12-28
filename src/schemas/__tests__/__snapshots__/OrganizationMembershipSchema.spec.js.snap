@@ -1,0 +1,10 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`OrganizationMembershipSchema should fail validation when fields missing 1`] = `
+Object {
+  "organization": [ValidatorError: Path \`organization\` is required.],
+  "phone": [ValidatorError: Path \`phone\` is required.],
+  "position": [ValidatorError: Path \`position\` is required.],
+  "user": [ValidatorError: Path \`user\` is required.],
+}
+`;

@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ReviewQuestionSchema should fail validation providing an unknown type 1`] = `
+Object {
+  "type": [ValidatorError: \`other\` is not a valid enum value for path \`type\`.],
+}
+`;
+
+exports[`ReviewQuestionSchema should fail validation when missing fields are provided 1`] = `
+Object {
+  "i18nId": [ValidatorError: Path \`i18nId\` is required.],
+  "type": [ValidatorError: Path \`type\` is required.],
+  "visibility": [ValidatorError: Path \`visibility\` is required.],
+}
+`;
+
+exports[`ReviewQuestionSchema should fail validation when question is missing i18nId 1`] = `"Validation failed: i18nId: Path \`i18nId\` is required."`;

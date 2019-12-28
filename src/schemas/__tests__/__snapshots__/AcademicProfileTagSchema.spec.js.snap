@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AcademicProfileTagSchema should fail validation when missing fields are provided 1`] = `
+Object {
+  "assignmentReason": [ValidatorError: Path \`assignmentReason\` is required.],
+  "createdBy": [ValidatorError: Path \`createdBy\` is required.],
+  "tag": [ValidatorError: Path \`tag\` is required.],
+}
+`;

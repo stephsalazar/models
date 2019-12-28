@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ProjectSchema should fail validation when missing fields are provided 1`] = `
+Object {
+  "locale": [ValidatorError: Path \`locale\` is required.],
+  "parserVersion": [ValidatorError: Path \`parserVersion\` is required.],
+  "path": [ValidatorError: Path \`path\` is required.],
+  "prefix": [ValidatorError: Path \`prefix\` is required.],
+  "repo": [ValidatorError: Path \`repo\` is required.],
+  "slug": [ValidatorError: Path \`slug\` is required.],
+  "title": [ValidatorError: Path \`title\` is required.],
+  "track": [ValidatorError: Path \`track\` is required.],
+  "version": [ValidatorError: Path \`version\` is required.],
+}
+`;
