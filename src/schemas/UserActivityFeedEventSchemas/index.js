@@ -1,4 +1,6 @@
 const AcademicProfileCommentEventSchema = require('./AcademicProfileCommentEventSchema');
+const AcademicProfileTagAssignedEventSchema = require('./AcademicProfileTagAssignedEventSchema');
+const AcademicProfileTagRemovalEventSchema = require('./AcademicProfileTagRemovalEventSchema');
 const ReviewAnswerEventSchema = require('./ReviewAnswerEventSchema');
 
 module.exports = (conn) => {
@@ -29,6 +31,8 @@ module.exports = (conn) => {
   return {
     UserActivityFeedEventSchema,
     AcademicProfileCommentEventSchema: AcademicProfileCommentEventSchema(conn),
+    AcademicProfileTagAssignedEventSchema: AcademicProfileTagAssignedEventSchema(conn),
+    AcademicProfileTagRemovalEventSchema: AcademicProfileTagRemovalEventSchema(conn),
     ReviewAnswerEventSchema: ReviewAnswerEventSchema(conn),
   };
 };

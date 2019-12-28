@@ -20,6 +20,7 @@ module.exports = (conn) => {
       enum: [
         'tech',
         'soft',
+        'general',
       ],
     },
     text: {

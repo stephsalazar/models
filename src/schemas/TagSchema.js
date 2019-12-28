@@ -1,6 +1,6 @@
 module.exports = (conn) => {
   const TagSchema = new conn.Schema({
-    text: {
+    i18nId: {
       type: String,
       required: true,
       index: true,
@@ -8,7 +8,7 @@ module.exports = (conn) => {
   });
 
   TagSchema.index({
-    text: 'text',
+    i18nId: 'text',
   });
 
   return TagSchema;

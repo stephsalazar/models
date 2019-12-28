@@ -1,4 +1,3 @@
-
 const AcademicProfileTagSchema = require('./AcademicProfileTagSchema');
 const AcademicProfileEndorsementSchema = require('./AcademicProfileEndorsementSchema');
 const AcademicProfileCommentSchema = require('./AcademicProfileCommentSchema');

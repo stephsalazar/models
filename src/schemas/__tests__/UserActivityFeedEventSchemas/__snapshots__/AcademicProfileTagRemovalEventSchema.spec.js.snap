@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AcademicProfileTagRemovalEventSchema should fail validation when missing fields are provided 1`] = `
+Object {
+  "removalReason": [ValidatorError: Path \`removalReason\` is required.],
+  "removedBy": [ValidatorError: Path \`removedBy\` is required.],
+  "tag": [ValidatorError: Path \`tag\` is required.],
+}
+`;

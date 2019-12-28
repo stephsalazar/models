@@ -5,14 +5,25 @@ module.exports = (conn) => {
       ref: 'User',
       required: true,
     },
+    removedBy: {
+      type: conn.Schema.Types.ObjectId,
+      ref: 'User',
+    },
     createdAt: {
       type: Date,
       default: Date.now,
+    },
+    deletedAt: {
+      type: Date,
     },
     tag: {
       type: conn.Schema.Types.ObjectId,
       ref: 'Tag',
       required: true,
+    },
+    customTitle: {
+      type: String,
+      trim: true,
     },
     assignmentReason: {
       type: String,

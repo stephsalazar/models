@@ -60,7 +60,11 @@ module.exports = (conn) => {
       type: String,
       enum: ['basic', 'intermediate', 'advanced'],
     },
-  }, { collection: 'graduate_profiles' });
+  }, {
+    collection: 'graduate_profiles',
+    toJSON: { virtuals: true },
+    toObject: { virtuals: true },
+  });
 
   // GraduateProfileSchema.index({ '$**': 'text' });
 

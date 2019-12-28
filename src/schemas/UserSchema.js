@@ -119,6 +119,9 @@ module.exports = (conn) => {
     // NOTE: ????
     // currentJob: String, // Reference to UserJob collection
     academicProfile: AcademicProfileSchema(conn),
+  }, {
+    toJSON: { virtuals: true },
+    toObject: { virtuals: true },
   });
 
 
