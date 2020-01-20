@@ -60,9 +60,9 @@ module.exports = (conn) => {
   } = schemas(conn, (new JSDOM()).window.document);
 
   return {
-    Application: Application(conn, ApplicationSchema),
     Campus: Campus(conn, CampusSchema),
     Cohort: Cohort(conn, CohortSchema),
+    Application: Application(conn, ApplicationSchema),
     CohortMembership: CohortMembership(conn, CohortMembershipSchema),
     CohortPlatziCourse: CohortPlatziCourse(conn, CohortPlatziCourseSchema),
     CohortProject: CohortProject(conn, CohortProjectSchema),

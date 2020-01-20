@@ -8,7 +8,7 @@ module.exports = (conn, ApplicationSchema) => {
             new Error(`Cohort "${this.cohortSlug}" does not exist`),
             {
               name: 'ValidationError',
-              errors: { cohort: new Error(`Cohort "${this.cohortSlug}" does not exist`) },
+              errors: { cohortSlug: new Error(`CohortSlug "${this.cohortSlug}" does not exist`) },
             },
           ),
         )
