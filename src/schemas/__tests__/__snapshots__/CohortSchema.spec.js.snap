@@ -8,6 +8,12 @@ Object {
 }
 `;
 
+exports[`CohortSchema should fail validation when slug exceed max length 1`] = `
+Object {
+  "slug": [ValidatorError: Path \`slug\` (\`lim-2019-11-l4b-business-afphabitat-adoptando-un-mindset-digital-maxlenght-greater-than-100-characters\`) is longer than the maximum allowed length (100).],
+}
+`;
+
 exports[`CohortSchema should fail validation when unknown program 1`] = `
 Object {
   "program": [ValidatorError: \`foo\` is not a valid enum value for path \`program\`.],

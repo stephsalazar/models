@@ -8,7 +8,6 @@ module.exports = (conn) => {
       ...slug,
       required: false,
       unique: false,
-      maxlength: 60,
     },
     campus: {
       type: conn.Schema.Types.ObjectId,
