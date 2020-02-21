@@ -18,7 +18,8 @@ const JobOpportunity = require('./src/JobOpportunity');
 const Organization = require('./src/Organization');
 const OrganizationMembership = require('./src/OrganizationMembership');
 const Project = require('./src/Project');
-const ProjectFeedback = require('./src/ProjectFeedback');
+const ProgressProject = require('./src/ProgressProject');
+const Feedback = require('./src/Feedback');
 const ReviewerSurvey = require('./src/ReviewerSurvey');
 const ReviewQuestion = require('./src/ReviewQuestion');
 const Tag = require('./src/Tag');
@@ -53,7 +54,8 @@ module.exports = (conn) => {
     JobOpportunitySchema,
     HiringProcessSchema,
     ProjectSchema,
-    ProjectFeedbackSchema,
+    ProgressProjectSchema,
+    FeedbackSchema,
     ReviewerSurveySchema,
     ReviewQuestionSchema,
     TagSchema,
@@ -86,7 +88,8 @@ module.exports = (conn) => {
     JobOpportunity: JobOpportunity(conn, JobOpportunitySchema),
     HiringProcess: HiringProcess(conn, HiringProcessSchema),
     Project: Project(conn, ProjectSchema),
-    ProjectFeedback: ProjectFeedback(conn, ProjectFeedbackSchema),
+    ProgressProject: ProgressProject(conn, ProgressProjectSchema),
+    Feedback: Feedback(conn, FeedbackSchema),
     ReviewerSurvey: ReviewerSurvey(conn, ReviewerSurveySchema),
     ReviewQuestion: ReviewQuestion(conn, ReviewQuestionSchema),
     Tag: Tag(conn, TagSchema),
@@ -116,7 +119,8 @@ module.exports = (conn) => {
     JobOpportunitySchema,
     HiringProcessSchema,
     ProjectSchema,
-    ProjectFeedbackSchema,
+    ProgressProjectSchema,
+    FeedbackSchema,
     ReviewerSurveySchema,
     ReviewQuestionSchema,
     TagSchema,
