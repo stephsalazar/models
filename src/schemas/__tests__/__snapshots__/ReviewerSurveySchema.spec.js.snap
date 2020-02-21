@@ -2,6 +2,7 @@
 
 exports[`ReviewerSurveySchema should fail validation when missing fields are provided 1`] = `
 Object {
+  "slug": [ValidatorError: Path \`slug\` is required.],
   "version": [ValidatorError: Path \`version\` is required.],
 }
 `;

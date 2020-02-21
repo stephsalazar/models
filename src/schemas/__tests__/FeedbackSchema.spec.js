@@ -2,15 +2,15 @@ const mongoose = require('mongoose/browser');
 const {
   CohortProjectSchema,
   CohortMembershipSchema,
-  ProjectFeedbackSchema,
+  FeedbackSchema,
   ReviewQuestionSchema,
   UserSchema,
-} = require('../')(mongoose);
+} = require('..')(mongoose);
 const ReviewAnswerSchema = require('../ReviewAnswerSchema')(mongoose);
 
-describe('ProjectFeedbackSchema', () => {
+describe('FeedbackSchema', () => {
   it('should fail validation when missing fields are provided', () => {
-    const doc = new mongoose.Document({}, ProjectFeedbackSchema);
+    const doc = new mongoose.Document({}, FeedbackSchema);
     expect(doc.validateSync().errors).toMatchSnapshot();
   });
 
@@ -30,7 +30,8 @@ describe('ProjectFeedbackSchema', () => {
         communication: 4,
         github: 5,
       },
-    }, ProjectFeedbackSchema);
+      reviewerSurvey: 'project-feedback',
+    }, FeedbackSchema);
 
     return doc.validate((err) => {
       expect(err).toBe(null);
@@ -59,10 +60,11 @@ describe('ProjectFeedbackSchema', () => {
         communication: 4,
         github: 5,
       },
+      reviewerSurvey: 'project-feedback',
       reviewerSurveyResults: [
         reviewAnswer,
       ],
-    }, ProjectFeedbackSchema);
+    }, FeedbackSchema);
 
     return doc.validate((err) => {
       expect(err).toBe(null);

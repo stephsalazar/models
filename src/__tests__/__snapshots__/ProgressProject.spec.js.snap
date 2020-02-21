@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ProgressProject should fail validation when missing fields are provided 1`] = `
+Object {
+  "cohortMembership": [ValidatorError: Path \`cohortMembership\` is required.],
+  "cohortProject": [ValidatorError: Path \`cohortProject\` is required.],
+}
+`;
+
+exports[`ProgressProject should fail when cohortProject, cohortMembership or createdBy not ObjecId 1`] = `
+Object {
+  "cohortMembership": [CastError: Cast to ObjectID failed for value "cohortMembership._id" at path "cohortMembership"],
+  "cohortProject": [CastError: Cast to ObjectID failed for value "cohortProject._id" at path "cohortProject"],
+}
+`;

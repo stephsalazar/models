@@ -12,6 +12,7 @@ describe('ReviewerSurveySchema', () => {
     const doc = new mongoose.Document({
       questions: [question._id],
       version: 'foo',
+      slug: 'project-feedback',
     }, ReviewerSurveySchema);
 
     return doc.validate()
@@ -23,6 +24,7 @@ describe('ReviewerSurveySchema', () => {
     const doc = new mongoose.Document({
       questions: [question._id],
       version: '2.0.0',
+      slug: 'project-feedback',
     }, ReviewerSurveySchema);
 
     return doc.validate((err) => {

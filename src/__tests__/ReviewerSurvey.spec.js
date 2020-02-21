@@ -25,6 +25,7 @@ describe('ReviewerSurvey', () => {
     const reviewerSurvey = new ReviewerSurvey({
       questions: ['foo'],
       version: '2.0.0',
+      slug: 'project-feedback',
     });
 
     return reviewerSurvey.save()
@@ -36,6 +37,7 @@ describe('ReviewerSurvey', () => {
     const reviewerSurvey = new ReviewerSurvey({
       questions: [question._id],
       version: '2.0.0',
+      slug: 'project-feedback',
     });
 
     return reviewerSurvey.save()
@@ -51,8 +53,8 @@ describe('ReviewerSurvey', () => {
       visibility: 'public',
     });
 
-    const reviewerSurvey1 = new ReviewerSurvey({ questions: [reviewQuestion._id], version: '1.0.0' });
-    const reviewerSurvey2 = new ReviewerSurvey({ questions: [reviewQuestion._id], version: '2.0.0' });
+    const reviewerSurvey1 = new ReviewerSurvey({ questions: [reviewQuestion._id], version: '1.0.0', slug: 'project-feedback' });
+    const reviewerSurvey2 = new ReviewerSurvey({ questions: [reviewQuestion._id], version: '2.0.0', slug: 'project-feedback' });
 
     await reviewQuestion.save();
 
@@ -76,6 +78,7 @@ describe('ReviewerSurvey', () => {
     const reviewerSurvey = new ReviewerSurvey({
       questions: [reviewQuestion._id],
       version: '2.0.0',
+      slug: 'project-feedback',
     });
 
     await reviewQuestion.save();

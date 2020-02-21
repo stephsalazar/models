@@ -25,7 +25,7 @@ module.exports = (conn, ReviewerSurveySchema) => {
       },
       {
         $group: {
-          _id: null,
+          _id: '$slug',
           id: { $first: '$_id' },
           slug: { $first: '$slug' },
           latestVersion: { $first: '$version' },

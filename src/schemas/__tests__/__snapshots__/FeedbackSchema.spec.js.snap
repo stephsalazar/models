@@ -1,10 +1,10 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`ProjectFeedbackSchema should fail validation when missing fields are provided 1`] = `
+exports[`FeedbackSchema should fail validation when missing fields are provided 1`] = `
 Object {
   "cohortMembership": [ValidatorError: Path \`cohortMembership\` is required.],
   "cohortProject": [ValidatorError: Path \`cohortProject\` is required.],
   "createdBy": [ValidatorError: Path \`createdBy\` is required.],
-  "rubric": [ValidatorError: Path \`rubric\` is required.],
+  "reviewerSurvey": [ValidatorError: Path \`reviewerSurvey\` is required.],
 }
 `;

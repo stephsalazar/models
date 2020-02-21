@@ -5,13 +5,12 @@ const {
   CohortProject,
   CohortMembership,
   User,
-  ProjectFeedback,
+  ProgressProject,
   Project,
-  ReviewQuestion,
-} = require('../../')(mongoose);
+} = require('../..')(mongoose);
 
 
-describe('ProjectFeedback', () => {
+describe('ProgressProject', () => {
   let campus;
   let cohort;
   let project;
@@ -81,25 +80,18 @@ describe('ProjectFeedback', () => {
   });
 
   it('should fail validation when missing fields are provided', () => {
-    const doc = new ProjectFeedback();
+    const doc = new ProgressProject();
 
     return doc.save()
       .catch(err => expect(err.errors).toMatchSnapshot());
   });
 
-  it('should fail when cohortProject, cohortMembership, createdBy or reviewAnswer not ObjecId', () => {
-    const doc = new ProjectFeedback({
+  it('should fail when cohortProject, cohortMembership or createdBy not ObjecId', () => {
+    const doc = new ProgressProject({
       cohortProject: 'cohortProject._id',
       cohortMembership: 'cohortMembership._id',
       createdBy: 'createdBy._id',
-      rubric: '2',
-      rubricResults: {
-        completion: 3,
-        selfLearning: 2,
-      },
-      reviewerSurveyResults: [
-        'reviewAnswer._id',
-      ],
+      openedAt: new Date(),
     });
 
     return doc.save()
@@ -118,15 +110,11 @@ describe('ProjectFeedback', () => {
       project: project._id,
     });
 
-    const doc = new ProjectFeedback({
+    const doc = new ProgressProject({
       cohortProject: cohortProject._id,
       cohortMembership: cohortMembership._id,
       createdBy: (new User())._id,
-      rubric: '2',
-      rubricResults: {
-        completion: 3,
-        selfLearning: 2,
-      },
+      openedAt: new Date(),
     });
 
     await cohortMembership.save();
@@ -147,15 +135,11 @@ describe('ProjectFeedback', () => {
 
     const cohortProject = new CohortProject();
 
-    const doc = new ProjectFeedback({
+    const doc = new ProgressProject({
       cohortProject: cohortProject._id,
       cohortMembership: cohortMembership._id,
       createdBy: user._id,
-      rubric: '2',
-      rubricResults: {
-        completion: 3,
-        selfLearning: 2,
-      },
+      openedAt: new Date(),
     });
 
     await cohortMembership.save();
@@ -173,15 +157,11 @@ describe('ProjectFeedback', () => {
     });
 
     const cohortMembership = new CohortMembership();
-    const doc = new ProjectFeedback({
+    const doc = new ProgressProject({
       cohortProject: cohortProject._id,
       cohortMembership: cohortMembership._id,
       createdBy: user._id,
-      rubric: '2',
-      rubricResults: {
-        completion: 3,
-        selfLearning: 2,
-      },
+      openedAt: new Date(),
     });
 
     await cohortProject.save();
@@ -192,95 +172,33 @@ describe('ProjectFeedback', () => {
       });
   });
 
-  it('should fail when reviewAnswer does not exist', async () => {
+  it('should save successfully with appropriate fields', async () => {
     const cohortProject = new CohortProject({
       cohort: cohort._id,
       project: project._id,
     });
 
-    const doc = new ProjectFeedback({
-      cohortProject: cohortProject._id,
-      createdBy: user._id,
-      rubric: '2',
-      rubricResults: {
-        completion: 3,
-        selfLearning: 2,
-      },
-      reviewerSurveyResults: [{
-        question: 'question._id',
-        value: 'foo',
-      }],
-    });
-
-    await cohortProject.save();
-
-    return doc.save()
-      .catch(err => expect(err.errors).toMatchSnapshot());
-  });
-
-  it('should pass with reviewerSurveyResults', async () => {
-    const cohortProject = new CohortProject({
-      cohort: cohort._id,
-      project: project._id,
-    });
-
-    const question = new ReviewQuestion({
-      i18nId: 'dropout',
-      type: 'multipleChoice',
-      visibility: 'private',
-      options: ['foo', 'bar'],
-    });
-
-    const doc = new ProjectFeedback({
-      cohortProject: cohortProject._id,
-      createdBy: user._id,
-      rubric: '2',
-      rubricResults: {
-        completion: 3,
-        selfLearning: 2,
-      },
-      reviewerSurveyResults: [{
-        question: question._id,
-        value: 'foo',
-      }],
-    });
-
-    await cohortProject.save();
-
-    return doc.save()
-      .catch(err => expect(err.errors).toMatchSnapshot());
-  });
-
-  it('should pass without reviewerSurveyResults', async () => {
     const cohortMembership = new CohortMembership({
       cohort: cohort._id,
       user: user._id,
       role: 'student',
     });
 
-    const cohortProject = new CohortProject({
-      cohort: cohort._id,
-      project: project._id,
-    });
-
-    const doc = new ProjectFeedback({
+    const doc = new ProgressProject({
       cohortProject: cohortProject._id,
       cohortMembership: cohortMembership._id,
       createdBy: user._id,
-      rubric: '2',
-      rubricResults: {
-        completion: 3,
-        selfLearning: 2,
-      },
+      openedAt: new Date(),
     });
 
-    await cohortMembership.save();
     await cohortProject.save();
+    await cohortMembership.save();
 
     return doc.save()
       .then((result) => {
         expect(`${result.cohortProject}`).toBe(`${cohortProject._id}`);
         expect(`${result.cohortMembership}`).toBe(`${cohortMembership._id}`);
-      });
+      })
+      .catch(err => expect(err.errors).toMatchSnapshot());
   });
 });
