@@ -21,12 +21,13 @@ module.exports = (conn, ReviewerSurveySchema) => {
   ReviewerSurvey.findLatest = function () {
     return this.aggregate([
       {
-        $sort: { version: -1 },
+        $sort: { slug: 1, version: -1 },
       },
       {
         $group: {
           _id: null,
           id: { $first: '$_id' },
+          slug: { $first: '$slug' },
           latestVersion: { $first: '$version' },
           questions: { $first: '$questions' },
         },

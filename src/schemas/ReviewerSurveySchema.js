@@ -10,7 +10,13 @@ module.exports = (conn) => {
       required: true,
     },
     version: semverVersion,
+    slug: {
+      type: String,
+      required: true,
+    },
   }, { collection: 'reviewer_surveys' });
+
+  ReviewerSurveySchema.index({ slug: 1, version: 1 }, { unique: true });
 
   return ReviewerSurveySchema;
 };
