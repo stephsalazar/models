@@ -1,5 +1,5 @@
-module.exports = (conn, ProjectFeedbackSchema) => {
-  ProjectFeedbackSchema.pre('save', function (next) {
+module.exports = (conn, FeedbackSchema) => {
+  FeedbackSchema.pre('save', function (next) {
     const {
       CohortProject,
       CohortMembership,
@@ -27,7 +27,7 @@ module.exports = (conn, ProjectFeedbackSchema) => {
   });
 
 
-  const ProjectFeedback = conn.model('ProjectFeedback', ProjectFeedbackSchema);
+  const Feedback = conn.model('Feedback', FeedbackSchema);
 
-  return ProjectFeedback;
+  return Feedback;
 };

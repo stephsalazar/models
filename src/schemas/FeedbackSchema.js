@@ -5,7 +5,7 @@
 const ReviewAnswerSchema = require('./ReviewAnswerSchema');
 
 module.exports = (conn) => {
-  const ProjectFeedbackSchema = new conn.Schema({
+  const FeedbackSchema = new conn.Schema({
     cohortProject: {
       type: conn.Schema.Types.ObjectId,
       ref: 'CohortProject',
@@ -30,14 +30,17 @@ module.exports = (conn) => {
     },
     rubric: {
       type: String,
-      required: true,
     },
     rubricResults: {
       type: Map,
       of: Number,
     },
+    reviewerSurvey: {
+      type: String,
+      required: true,
+    },
     reviewerSurveyResults: [ReviewAnswerSchema(conn)],
   });
 
-  return ProjectFeedbackSchema;
+  return FeedbackSchema;
 };
