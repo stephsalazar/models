@@ -10,6 +10,9 @@ module.exports = (conn, document) => {
     },
     slug: { ...slug, unique: false },
     title: { type: String, required: true },
+    embeds: { type: [{}], default: undefined },
+    questions: { type: [{}], default: undefined },
+    exercises: { type: {} },
     type: {
       type: String,
       required: true,
@@ -19,6 +22,7 @@ module.exports = (conn, document) => {
         'workshop',
         'quiz',
         'practice',
+        'typeform',
         'other',
       ],
     },
@@ -52,6 +56,11 @@ module.exports = (conn, document) => {
     if (['practice', 'quiz'].indexOf(this.type) === -1 && !this.body) {
       return next(new Error(`Body is required for part type ${this.type}`));
     }
+
+    if (this.type === 'quiz' && !this.questions) {
+      return next(new Error(`Questions is required for part type ${this.type}`));
+    }
+
     return next();
   });
 
