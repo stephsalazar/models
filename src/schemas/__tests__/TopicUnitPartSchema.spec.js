@@ -23,7 +23,7 @@ describe('TopicUnitPartSchema', () => {
       .catch(err => expect(err.message).toBe('Body is required for part type read'));
   });
 
-  it('should pass validation when type quiz and missing body', () => {
+  it('should fail validation when type quiz and missing questions', () => {
     const unit = new mongoose.Document({}, TopicUnitSchema);
     const doc = new mongoose.Document({
       unit: unit._id,
@@ -35,7 +35,8 @@ describe('TopicUnitPartSchema', () => {
       title: 'Quiz 1',
     }, TopicUnitPartSchema);
 
-    return doc.validate();
+    return doc.validate()
+      .catch(err => expect(err.message).toBe('Questions is required for part type quiz'));
   });
 
   it('should pass validation when type practice and missing body', () => {
@@ -85,6 +86,29 @@ describe('TopicUnitPartSchema', () => {
     expect(doc.validateSync()).toBe(undefined);
     expect(doc.body).toBe(body);
     expect(doc.searchableBody).toBe('Blah blah.*-+_ blah...');
+  });
+
+  it('should pass validation when type quiz and has questions', () => {
+    const unit = new mongoose.Document({}, TopicUnitSchema);
+    const questions = [
+      {
+        title: 'is HTML a programming language?',
+        options: ['yes', 'no'],
+        answers: [1],
+      },
+    ];
+    const doc = new mongoose.Document({
+      unit: unit._id,
+      slug: '00-opening',
+      duration: 15,
+      durationString: '15min',
+      format: 'self-paced',
+      type: 'quiz',
+      title: 'Opening',
+      questions,
+    }, TopicUnitPartSchema);
+    expect(doc.validateSync()).toBe(undefined);
+    expect(doc.questions[0]).toBe(questions[0]);
   });
 
   it('should validate existing topic json', () => {
