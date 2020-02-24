@@ -1,3 +1,9 @@
+const activities = {
+  USER_ACTIVITY_LOG_IN: 'USER_ACTIVITY_LOG_IN',
+  USER_ACTIVITY_REGISTER: 'USER_ACTIVITY_REGISTER',
+  USER_ACTIVITY_DEFAULT_LOG: 'USER_ACTIVITY_DEFAULT_LOG',
+};
+
 module.exports = (conn) => {
   const UserActivityLogSchema = new conn.Schema({
     uid: {
@@ -13,15 +19,13 @@ module.exports = (conn) => {
     },
     activity: {
       type: conn.Schema.Types.String,
-      enum: [
-        'USER_ACTIVITY_LOG_IN',
-        'USER_ACTIVITY_REGISTER',
-        'USER_ACTIVITY_DEFAULT_LOG',
-      ],
-      default: 'USER_ACTIVITY_DEFAULT_LOG',
+      enum: Object.values(activities),
+      default: activities.USER_ACTIVITY_DEFAULT_LOG,
     },
   });
   UserActivityLogSchema.index({ uid: 1, activity: 1 });
 
   return UserActivityLogSchema;
 };
+
+module.exports.activities = activities;

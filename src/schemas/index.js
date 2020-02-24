@@ -27,6 +27,8 @@ const UserSchema = require('./UserSchema');
 const UserActivityFeedEventSchemas = require('./UserActivityFeedEventSchemas');
 const UserActivityLogSchema = require('./UserActivityLogSchema');
 
+const { activities } = require('./UserActivityLogSchema');
+
 module.exports = (conn, document) => ({
   ApplicationSchema: ApplicationSchema(conn),
   CampusSchema: CampusSchema(conn),
@@ -57,4 +59,6 @@ module.exports = (conn, document) => ({
   UserSchema: UserSchema(conn),
   UserActivityFeedEventSchemas: UserActivityFeedEventSchemas(conn),
   UserActivityLogSchema: UserActivityLogSchema(conn),
+  // enums
+  activities,
 });

@@ -29,6 +29,9 @@ const User = require('./src/User');
 const UserActivityFeedModels = require('./src/UserActivityFeed');
 const UserActivityLog = require('./src/UserActivityLog');
 
+// enums
+const { activities } = require('./src/schemas/UserActivityLogSchema');
+
 module.exports = (conn) => {
   const {
     ApplicationSchema,
@@ -119,4 +122,10 @@ module.exports = (conn) => {
     UserActivityFeedEventSchemas,
     UserActivityLogSchema,
   };
+};
+
+
+// Enums
+module.exports.enums = {
+  USER_ACTIVITY: activities,
 };
