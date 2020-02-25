@@ -83,13 +83,7 @@ module.exports = (conn, TopicSchema) => {
       .catch(next);
   };
 
-
-  TopicSchema.post('update', handleUpdate);
-  TopicSchema.post('updateOne', handleUpdate);
-  TopicSchema.post('findOneAndUpdate', handleUpdate);
-  TopicSchema.post('updateMany', handleUpdate);
-
-  TopicSchema.pre('remove', { query: true, document: true }, function (next) {
+  const handleRemove = function (next) {
     const { Topic, TopicUnit } = conn.models;
 
     if (this instanceof conn.Query) {
@@ -104,7 +98,17 @@ module.exports = (conn, TopicSchema) => {
     return TopicUnit.remove({ topic: this._id })
       .then(() => next())
       .catch(next);
-  });
+  };
+
+  TopicSchema.post('update', handleUpdate);
+  TopicSchema.post('updateOne', handleUpdate);
+  TopicSchema.post('findOneAndUpdate', handleUpdate);
+  TopicSchema.post('updateMany', handleUpdate);
+
+  TopicSchema.pre('remove', { query: true, document: true }, handleRemove);
+  TopicSchema.pre('deleteMany', { query: true, document: true }, handleRemove);
+  TopicSchema.pre('deleteOne', { query: true, document: true }, handleRemove);
+  TopicSchema.pre('findOneAndDelete', { query: true, document: true }, handleRemove);
 
 
   const Topic = conn.model('Topic', TopicSchema);
