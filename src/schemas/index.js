@@ -12,7 +12,7 @@ const GraduateProfileProjectSchema = require('./GraduateProfileProjectSchema');
 const GraduateProfileSchema = require('./GraduateProfileSchema');
 const OrganizationSchema = require('./OrganizationSchema');
 const FeedbackSchema = require('./FeedbackSchema');
-const ProgressProjectSchema = require('./ProgressProjectSchema');
+const ProjectProgressSchema = require('./ProjectProgressSchema');
 const ProjectSchema = require('./ProjectSchema');
 const ReviewerSurveySchema = require('./ReviewerSurveySchema');
 const ReviewQuestionSchema = require('./ReviewQuestionSchema');
@@ -47,7 +47,7 @@ module.exports = (conn, document) => ({
   GraduateProfileSchema: GraduateProfileSchema(conn),
   OrganizationSchema: OrganizationSchema(conn),
   FeedbackSchema: FeedbackSchema(conn),
-  ProgressProjectSchema: ProgressProjectSchema(conn),
+  ProjectProgressSchema: ProjectProgressSchema(conn),
   ProjectSchema: ProjectSchema(conn),
   ReviewerSurveySchema: ReviewerSurveySchema(conn),
   ReviewQuestionSchema: ReviewQuestionSchema(conn),

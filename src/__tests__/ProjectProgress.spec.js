@@ -5,12 +5,12 @@ const {
   CohortProject,
   CohortMembership,
   User,
-  ProgressProject,
+  ProjectProgress,
   Project,
 } = require('../..')(mongoose);
 
 
-describe('ProgressProject', () => {
+describe('ProjectProgress', () => {
   let campus;
   let cohort;
   let project;
@@ -80,50 +80,21 @@ describe('ProgressProject', () => {
   });
 
   it('should fail validation when missing fields are provided', () => {
-    const doc = new ProgressProject();
+    const doc = new ProjectProgress();
 
     return doc.save()
       .catch(err => expect(err.errors).toMatchSnapshot());
   });
 
-  it('should fail when cohortProject, cohortMembership or createdBy not ObjecId', () => {
-    const doc = new ProgressProject({
+  it('should fail when cohortProject or cohortMembership not ObjecId', () => {
+    const doc = new ProjectProgress({
       cohortProject: 'cohortProject._id',
       cohortMembership: 'cohortMembership._id',
-      createdBy: 'createdBy._id',
-      openedAt: new Date(),
+      createdAt: new Date(),
     });
 
     return doc.save()
       .catch(err => expect(err.errors).toMatchSnapshot());
-  });
-
-  it('should fail when createdBy does not exist', async () => {
-    const cohortMembership = new CohortMembership({
-      cohort: cohort._id,
-      user: user._id,
-      role: 'student',
-    });
-
-    const cohortProject = new CohortProject({
-      cohort: cohort._id,
-      project: project._id,
-    });
-
-    const doc = new ProgressProject({
-      cohortProject: cohortProject._id,
-      cohortMembership: cohortMembership._id,
-      createdBy: (new User())._id,
-      openedAt: new Date(),
-    });
-
-    await cohortMembership.save();
-    await cohortProject.save();
-
-    return doc.save()
-      .catch((err) => {
-        expect(err.message).toBe('CreatedBy does not exist');
-      });
   });
 
   it('should fail when cohortProject does not exist', async () => {
@@ -135,11 +106,10 @@ describe('ProgressProject', () => {
 
     const cohortProject = new CohortProject();
 
-    const doc = new ProgressProject({
+    const doc = new ProjectProgress({
       cohortProject: cohortProject._id,
       cohortMembership: cohortMembership._id,
-      createdBy: user._id,
-      openedAt: new Date(),
+      createdAt: new Date(),
     });
 
     await cohortMembership.save();
@@ -157,11 +127,10 @@ describe('ProgressProject', () => {
     });
 
     const cohortMembership = new CohortMembership();
-    const doc = new ProgressProject({
+    const doc = new ProjectProgress({
       cohortProject: cohortProject._id,
       cohortMembership: cohortMembership._id,
-      createdBy: user._id,
-      openedAt: new Date(),
+      createdAt: new Date(),
     });
 
     await cohortProject.save();
@@ -184,11 +153,10 @@ describe('ProgressProject', () => {
       role: 'student',
     });
 
-    const doc = new ProgressProject({
+    const doc = new ProjectProgress({
       cohortProject: cohortProject._id,
       cohortMembership: cohortMembership._id,
-      createdBy: user._id,
-      openedAt: new Date(),
+      createdAt: new Date(),
     });
 
     await cohortProject.save();

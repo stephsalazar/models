@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`ProgressProjectSchema should fail validation when missing fields are provided 1`] = `
+exports[`ProjectProgressSchema should fail validation when missing fields are provided 1`] = `
 Object {
   "cohortMembership": [ValidatorError: Path \`cohortMembership\` is required.],
   "cohortProject": [ValidatorError: Path \`cohortProject\` is required.],

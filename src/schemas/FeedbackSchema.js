@@ -35,6 +35,8 @@ module.exports = (conn) => {
       type: Map,
       of: Number,
     },
+    // Es el tipo de feedback opciones project-feedback, sprint-checkout or
+    // project-checkout, este debe coincidir con el `slug` de ReviwerSurvey
     reviewerSurvey: {
       type: String,
       required: true,

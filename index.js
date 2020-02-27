@@ -18,7 +18,7 @@ const JobOpportunity = require('./src/JobOpportunity');
 const Organization = require('./src/Organization');
 const OrganizationMembership = require('./src/OrganizationMembership');
 const Project = require('./src/Project');
-const ProgressProject = require('./src/ProgressProject');
+const ProjectProgress = require('./src/ProjectProgress');
 const Feedback = require('./src/Feedback');
 const ReviewerSurvey = require('./src/ReviewerSurvey');
 const ReviewQuestion = require('./src/ReviewQuestion');
@@ -54,7 +54,7 @@ module.exports = (conn) => {
     JobOpportunitySchema,
     HiringProcessSchema,
     ProjectSchema,
-    ProgressProjectSchema,
+    ProjectProgressSchema,
     FeedbackSchema,
     ReviewerSurveySchema,
     ReviewQuestionSchema,
@@ -88,7 +88,7 @@ module.exports = (conn) => {
     JobOpportunity: JobOpportunity(conn, JobOpportunitySchema),
     HiringProcess: HiringProcess(conn, HiringProcessSchema),
     Project: Project(conn, ProjectSchema),
-    ProgressProject: ProgressProject(conn, ProgressProjectSchema),
+    ProjectProgress: ProjectProgress(conn, ProjectProgressSchema),
     Feedback: Feedback(conn, FeedbackSchema),
     ReviewerSurvey: ReviewerSurvey(conn, ReviewerSurveySchema),
     ReviewQuestion: ReviewQuestion(conn, ReviewQuestionSchema),
@@ -119,7 +119,7 @@ module.exports = (conn) => {
     JobOpportunitySchema,
     HiringProcessSchema,
     ProjectSchema,
-    ProgressProjectSchema,
+    ProjectProgressSchema,
     FeedbackSchema,
     ReviewerSurveySchema,
     ReviewQuestionSchema,

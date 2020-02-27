@@ -1,6 +1,6 @@
 
 module.exports = (conn) => {
-  const ProjectProgressSchema = new conn.Schema({
+  const ProgressProjectSchema = new conn.Schema({
     cohortProject: {
       type: conn.Schema.Types.ObjectId,
       ref: 'CohortProject',
@@ -11,14 +11,14 @@ module.exports = (conn) => {
       ref: 'CohortMembership',
       required: true,
     },
-    openedAt: {
+    createdAt: {
       type: Date,
       default: Date.now,
     },
     completedAt: {
       type: Date,
     },
-  });
+  }, { collection: 'project_progresses' });
 
-  return ProjectProgressSchema;
+  return ProgressProjectSchema;
 };

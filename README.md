@@ -164,7 +164,7 @@ yarn e2e
 ### Projects
 
 * [`Project`](./src/Project.js)
-* [`ProgressProject`](./src/ProgressProject.js)
+* [`ProjectProgress`](./src/ProjectProgress.js)
 * [`Feedback`](./src/Feedback.js)
 * [`ReviewerSurvey`](./src/ReviewerSurvey.js)
 * [`ReviewQuestion`](./src/ReviewQuestion.js)

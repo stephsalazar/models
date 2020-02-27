@@ -2,12 +2,12 @@ const mongoose = require('mongoose/browser');
 const {
   CohortProjectSchema,
   CohortMembershipSchema,
-  ProgressProjectSchema,
+  ProjectProgressSchema,
 } = require('..')(mongoose);
 
-describe('ProgressProjectSchema', () => {
+describe('ProjectProgressSchema', () => {
   it('should fail validation when missing fields are provided', () => {
-    const doc = new mongoose.Document({}, ProgressProjectSchema);
+    const doc = new mongoose.Document({}, ProjectProgressSchema);
     expect(doc.validateSync().errors).toMatchSnapshot();
   });
 
@@ -18,8 +18,8 @@ describe('ProgressProjectSchema', () => {
     const doc = new mongoose.Document({
       cohortProject: cohortProject._id,
       cohortMembership: cohortMembership._id,
-      openedAt: new Date(),
-    }, ProgressProjectSchema);
+      createdAt: new Date(),
+    }, ProjectProgressSchema);
 
     return doc.validate((err) => {
       expect(err).toBe(null);
@@ -34,8 +34,8 @@ describe('ProgressProjectSchema', () => {
     const doc = new mongoose.Document({
       cohortProject: cohortProject._id,
       cohortMembership: cohortMembership._id,
-      openedAt: new Date(),
-    }, ProgressProjectSchema);
+      createdAt: new Date(),
+    }, ProjectProgressSchema);
 
     return doc.validate((err) => {
       expect(err).toBe(null);

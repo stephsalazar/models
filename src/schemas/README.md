@@ -87,6 +87,7 @@ project.validate()
 ### Projects
 
 * [`ProjectSchema`](./ProjectSchema.js)
+* [`ProjectProgressSchema`](./ProjectProgressSchema.js)
 * [`FeedbackSchema`](./FeedbackSchema.js)
 * [`ReviewerSurveySchema`](./ReviewerSurveySchema.js)
 * [`ReviewQuestionSchema`](./ReviewQuestionSchema.js)

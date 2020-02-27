@@ -1,5 +1,5 @@
-module.exports = (conn, ProgressProjectSchema) => {
-  ProgressProjectSchema.pre('save', function (next) {
+module.exports = (conn, ProjectProgressSchema) => {
+  ProjectProgressSchema.pre('save', function (next) {
     const {
       CohortProject,
       CohortMembership,
@@ -22,7 +22,7 @@ module.exports = (conn, ProgressProjectSchema) => {
   });
 
 
-  const ProgressProject = conn.model('ProgressProject', ProgressProjectSchema);
+  const ProjectProgress = conn.model('ProjectProgress', ProjectProgressSchema);
 
-  return ProgressProject;
+  return ProjectProgress;
 };
