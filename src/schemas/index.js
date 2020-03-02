@@ -23,6 +23,8 @@ const OrganizationMembershipSchema = require('./OrganizationMembershipSchema');
 const TopicSchema = require('./TopicSchema');
 const TopicUnitSchema = require('./TopicUnitSchema');
 const TopicUnitPartSchema = require('./TopicUnitPartSchema');
+const TopicProgressSchema = require('./TopicProgressSchema');
+const TopicProgressStatSchema = require('./TopicProgressStatSchema');
 const UserSchema = require('./UserSchema');
 const UserActivityFeedEventSchemas = require('./UserActivityFeedEventSchemas');
 const UserActivityLogSchema = require('./UserActivityLogSchema');
@@ -56,6 +58,9 @@ module.exports = (conn, document) => ({
   TopicUnitSchema: TopicUnitSchema(conn),
   // eslint-disable-next-line no-undef
   TopicUnitPartSchema: TopicUnitPartSchema(conn, document || (typeof window !== 'undefined' ? window : {}).document),
+  TopicProgressSchema: TopicProgressSchema(conn),
+  TopicProgressStatSchema: TopicProgressStatSchema(conn),
+
   UserSchema: UserSchema(conn),
   UserActivityFeedEventSchemas: UserActivityFeedEventSchemas(conn),
   UserActivityLogSchema: UserActivityLogSchema(conn),

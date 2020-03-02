@@ -25,6 +25,8 @@ const Tag = require('./src/Tag');
 const Topic = require('./src/Topic');
 const TopicUnit = require('./src/TopicUnit');
 const TopicUnitPart = require('./src/TopicUnitPart');
+const TopicProgress = require('./src/TopicProgress');
+const TopicProgressStat = require('./src/TopicProgressStat');
 const User = require('./src/User');
 const UserActivityFeedModels = require('./src/UserActivityFeed');
 const UserActivityLog = require('./src/UserActivityLog');
@@ -59,6 +61,8 @@ module.exports = (conn) => {
     TopicSchema,
     TopicUnitSchema,
     TopicUnitPartSchema,
+    TopicProgressSchema,
+    TopicProgressStatSchema,
     UserSchema,
     UserActivityFeedEventSchemas,
     UserActivityLogSchema,
@@ -90,6 +94,8 @@ module.exports = (conn) => {
     Topic: Topic(conn, TopicSchema),
     TopicUnit: TopicUnit(conn, TopicUnitSchema),
     TopicUnitPart: TopicUnitPart(conn, TopicUnitPartSchema),
+    TopicProgress: TopicProgress(conn, TopicProgressSchema),
+    TopicProgressStat: TopicProgressStat(conn, TopicProgressStatSchema),
     User: User(conn, UserSchema),
     UserActivityFeedEvents: UserActivityFeedModels(conn, UserActivityFeedEventSchemas),
     UserActivityLog: UserActivityLog(conn, UserActivityLogSchema),
