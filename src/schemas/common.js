@@ -16,7 +16,7 @@ exports.slug = {
 exports.locale = {
   type: String,
   required: true,
-  enum: ['es-ES', 'es-PE', 'es-CL', 'es-MX', 'pt-BR', 'en-US'],
+  enum: ['en-US', 'es-CL', 'es-CO', 'es-ES', 'es-MX', 'es-PE', 'pt-BR'],
 };
 
 
