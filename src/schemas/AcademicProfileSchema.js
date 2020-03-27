@@ -13,7 +13,7 @@ module.exports = (conn) => {
       index: true,
       type: String,
       default: 'student',
-      enum: ['inJobPlacement', 'inOutplacement', 'notWantToWork', 'working', 'student'],
+      enum: ['inJobPlacement', 'inOutPlacement', 'notWantToWork', 'working', 'student'],
     },
   });
 
