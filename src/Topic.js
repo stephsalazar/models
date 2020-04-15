@@ -11,6 +11,10 @@ module.exports = (conn, TopicSchema) => {
     this._syllabus = orderedObjectToArray(v);
   });
 
+  TopicSchema.virtual('premium').get(function () {
+    return this.price > 0;
+  });
+
   TopicSchema.post('validate', function (doc, next) {
     if (!this._syllabus) {
       return next();

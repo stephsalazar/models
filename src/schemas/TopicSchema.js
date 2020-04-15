@@ -35,6 +35,7 @@ module.exports = (conn) => {
       unitCount: { type: Number, required: true },
       partCount: { type: Number, required: true },
     },
+    price: { type: Number, default: 0 },
   });
 
   TopicSchema.index({ slug: 1, version: 1 }, { unique: true });
