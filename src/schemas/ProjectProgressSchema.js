@@ -1,6 +1,5 @@
-
 module.exports = (conn) => {
-  const ProgressProjectSchema = new conn.Schema({
+  const ProjectProgressSchema = new conn.Schema({
     cohortProject: {
       type: conn.Schema.Types.ObjectId,
       ref: 'CohortProject',
@@ -15,10 +14,28 @@ module.exports = (conn) => {
       type: Date,
       default: Date.now,
     },
+    feedbackRequestedAt: {
+      type: Date,
+    },
     completedAt: {
       type: Date,
     },
-  }, { collection: 'project_progresses' });
+  }, {
+    collection: 'project_progresses',
+  });
 
-  return ProgressProjectSchema;
+  ProjectProgressSchema.virtual('state').get(function () {
+    if (this.feedbackRequestedAt && !this.completedAt) {
+      return 'readyForFeedback';
+    }
+
+    if (this.completedAt) {
+      return 'completed';
+    }
+    return 'inProgress';
+  });
+
+  ProjectProgressSchema.set('toJSON', { getters: true });
+
+  return ProjectProgressSchema;
 };
