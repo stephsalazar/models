@@ -1,19 +1,43 @@
+const { slug } = require('./common');
+//
+// # OrganizationSchema
+//
+// This schema describes "organizations objects”,  which hold company´s info.
+//
+// Example new organization:
+// {
+//   hubspotId: '440521902',
+//   slug: 'laboratoria',
+//   name: 'Laboratoria',
+//   website: 'www.laboratoria.la',
+//   domain: 'laboratoria.la',
+//   industry: 'EDUCATION',
+//   category: 'SMALL_AND_MEDIUM_SIZED_BUSINESS',
+//   subcategory: 'STARTUP',
+//   size: 'SMALL',
+//   logo: 'https://v.fastcdn.co/u/cf943cfe/27418802-0-Laboratoria-Logo-RGB.png',
+// }
+
 module.exports = (conn) => {
   const OrganizationSchema = new conn.Schema({
-    slug: {
+    // `hubspotId`: the organization's HubSpot id.
+    hubspotId: {
       type: String,
-      required: true,
       trim: true,
-      lowercase: true,
       index: true,
       unique: true,
     },
+    slug,
     name: {
       type: String,
       required: true,
       trim: true,
     },
-    url: {
+    website: {
+      type: String,
+      trim: true,
+    },
+    domain: {
       type: String,
       trim: true,
     },
@@ -29,9 +53,72 @@ module.exports = (conn) => {
       type: String,
       trim: true,
     },
-    address: {
+    // It refers to the economic activity carried out
+    industry: {
       type: String,
-      trim: true,
+      enum: [
+        'AGRICULTURE',
+        'BANKING',
+        'CONSTRUCTION',
+        'CONSULTING',
+        'MASS_CONSUMPTION',
+        'EDUCATION',
+        'ENERGY',
+        'PHARMACEUTICAL/LABORATORIES',
+        'FINANCIAL',
+        'REAL_STATE',
+        'MANUFACTURING',
+        'MEDIA_OUTLETS',
+        'MINIG',
+        'OIL_INDUSTRY',
+        'RETAIL',
+        'HEALTH',
+        'PUBLIC_SECTOR',
+        'PUBLIC_SERVICES',
+        'TECHNOLOGY',
+        'TELECOMMUNICATIONS',
+        'TRANSPORT',
+        'TOURISM',
+      ],
+    },
+    // Classification of your technological development
+    category: {
+      type: String,
+      enum: [
+        'DIGITAL_TRANSFORMATION',
+        'SOFTWARE_FACTORY',
+        'AGENCY',
+        'SMALL_AND_MEDIUM_SIZED_BUSINESS',
+        'HIGH_TECH',
+      ],
+    },
+    // Subclassification depending on the category
+    subcategory: {
+      type: String,
+      enum: [
+        'EARLY_STAGE_CORPORATION', // category: 'digital transformation'
+        'IN-DEVELOP_CORPORATION', // category: 'digital transformation'
+        'MATURE_CORPORATION', // category: 'digital transformation'
+        'TECH_CONSULTING_FIRM', // category: 'software factory'
+        'SOFTWARE_BOUTIQUE', // category: 'software factory'
+        'UX/UI_AGENCY', // category: 'agency'
+        'DIGITAL_AGENCY', // category: 'agency'
+        'TRADITIONAL_BUSINESS', // category: 'small and medium sized business'
+        'STARTUP', // category: 'small and medium sized business'
+      ],
+    },
+    size: {
+      type: String,
+      enum: [
+        'SMALL', // 50 - 500 employees
+        'MEDIUM', // 500 - 1,000 employees
+        'BIG', // 1,000 - 10,000 employees
+        'CORPORATE', // 10,000+ employees
+      ],
+    },
+    // `logo`: url of a organization logo
+    logo: {
+      type: String,
     },
   });
 
