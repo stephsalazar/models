@@ -37,6 +37,7 @@ const ExperimentIteration = require('./src/ExperimentIteration');
 const ExperimentUserPersona = require('./src/ExperimentUserPersona');
 const ExperimentProblem = require('./src/ExperimentProblem');
 const ExperimentMetric = require('./src/ExperimentMetric');
+const ExperimentDefinition = require('./src/ExperimentDefinition');
 const ExperimentLearning = require('./src/ExperimentLearning');
 const ExperimentHypothesis = require('./src/ExperimentHypothesis');
 
@@ -81,6 +82,7 @@ module.exports = (conn) => {
     ExperimentProblemSchema,
     ExperimentHypothesisSchema,
     ExperimentMetricSchema,
+    ExperimentDefinitionSchema,
     ExperimentLearningSchema,
   } = schemas(conn, (new JSDOM()).window.document);
 
@@ -119,6 +121,7 @@ module.exports = (conn) => {
     ExperimentIteration: ExperimentIteration(conn, ExperimentIterationSchema),
     ExperimentUserPersona: ExperimentUserPersona(conn, ExperimentUserPersonaSchema),
     ExperimentProblem: ExperimentProblem(conn, ExperimentProblemSchema),
+    ExperimentDefinition: ExperimentDefinition(conn, ExperimentDefinitionSchema),
     ExperimentHypothesis: ExperimentHypothesis(conn, ExperimentHypothesisSchema),
     ExperimentMetric: ExperimentMetric(conn, ExperimentMetricSchema),
     ExperimentLearning: ExperimentLearning(conn, ExperimentLearningSchema),
@@ -151,6 +154,7 @@ module.exports = (conn) => {
     UserActivityFeedEventSchemas,
     UserActivityLogSchema,
     ExperimentSchema,
+    ExperimentDefinitionSchema,
     ExperimentHypothesisSchema,
     ExperimentLearningSchema,
     ExperimentMetricSchema,

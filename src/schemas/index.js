@@ -36,6 +36,7 @@ const ExperimentHypothesisSchema = require('./Experimentation/ExperimentHypothes
 const ExperimentProblemSchema = require('./Experimentation/ExperimentProblemSchema');
 const ExperimentMetricSchema = require('./Experimentation/ExperimentMetricSchema');
 const ExperimentLearningSchema = require('./Experimentation/ExperimentLearningSchema');
+const ExperimentDefinitionSchema = require('./Experimentation/ExperimentDefinitionSchema');
 const ExperimentUserPersonaSchema = require('./Experimentation/ExperimentUserPersonaSchema');
 
 const { activities } = require('./UserActivityLogSchema');
@@ -83,5 +84,6 @@ module.exports = (conn, document) => ({
   ExperimentHypothesisSchema: ExperimentHypothesisSchema(conn),
   ExperimentProblemSchema: ExperimentProblemSchema(conn),
   ExperimentMetricSchema: ExperimentMetricSchema(conn),
+  ExperimentDefinitionSchema: ExperimentDefinitionSchema(conn),
   ExperimentLearningSchema: ExperimentLearningSchema(conn),
 });
