@@ -29,6 +29,15 @@ const UserSchema = require('./UserSchema');
 const UserActivityFeedEventSchemas = require('./UserActivityFeedEventSchemas');
 const UserActivityLogSchema = require('./UserActivityLogSchema');
 
+// Experimenation
+const ExperimentSchema = require('./Experimentation/ExperimentSchema');
+const ExperimentIterationSchema = require('./Experimentation/ExperimentIterationSchema');
+const ExperimentHypothesisSchema = require('./Experimentation/ExperimentHypothesisSchema');
+const ExperimentProblemSchema = require('./Experimentation/ExperimentProblemSchema');
+const ExperimentMetricSchema = require('./Experimentation/ExperimentMetricSchema');
+const ExperimentLearningSchema = require('./Experimentation/ExperimentLearningSchema');
+const ExperimentUserPersonaSchema = require('./Experimentation/ExperimentUserPersonaSchema');
+
 const { activities } = require('./UserActivityLogSchema');
 
 module.exports = (conn, document) => ({
@@ -66,4 +75,13 @@ module.exports = (conn, document) => ({
   UserActivityLogSchema: UserActivityLogSchema(conn),
   // enums
   activities,
+
+  // experiments
+  ExperimentSchema: ExperimentSchema(conn),
+  ExperimentIterationSchema: ExperimentIterationSchema(conn),
+  ExperimentUserPersonaSchema: ExperimentUserPersonaSchema(conn),
+  ExperimentHypothesisSchema: ExperimentHypothesisSchema(conn),
+  ExperimentProblemSchema: ExperimentProblemSchema(conn),
+  ExperimentMetricSchema: ExperimentMetricSchema(conn),
+  ExperimentLearningSchema: ExperimentLearningSchema(conn),
 });

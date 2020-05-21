@@ -31,6 +31,15 @@ const User = require('./src/User');
 const UserActivityFeedModels = require('./src/UserActivityFeed');
 const UserActivityLog = require('./src/UserActivityLog');
 
+// Experiments
+const Experiment = require('./src/Experiment');
+const ExperimentIteration = require('./src/ExperimentIteration');
+const ExperimentUserPersona = require('./src/ExperimentUserPersona');
+const ExperimentProblem = require('./src/ExperimentProblem');
+const ExperimentMetric = require('./src/ExperimentMetric');
+const ExperimentLearning = require('./src/ExperimentLearning');
+const ExperimentHypothesis = require('./src/ExperimentHypothesis');
+
 // enums
 const { activities } = require('./src/schemas/UserActivityLogSchema');
 
@@ -66,6 +75,13 @@ module.exports = (conn) => {
     UserSchema,
     UserActivityFeedEventSchemas,
     UserActivityLogSchema,
+    ExperimentSchema,
+    ExperimentIterationSchema,
+    ExperimentUserPersonaSchema,
+    ExperimentProblemSchema,
+    ExperimentHypothesisSchema,
+    ExperimentMetricSchema,
+    ExperimentLearningSchema,
   } = schemas(conn, (new JSDOM()).window.document);
 
   return {
@@ -99,6 +115,13 @@ module.exports = (conn) => {
     User: User(conn, UserSchema),
     UserActivityFeedEvents: UserActivityFeedModels(conn, UserActivityFeedEventSchemas),
     UserActivityLog: UserActivityLog(conn, UserActivityLogSchema),
+    Experiment: Experiment(conn, ExperimentSchema),
+    ExperimentIteration: ExperimentIteration(conn, ExperimentIterationSchema),
+    ExperimentUserPersona: ExperimentUserPersona(conn, ExperimentUserPersonaSchema),
+    ExperimentProblem: ExperimentProblem(conn, ExperimentProblemSchema),
+    ExperimentHypothesis: ExperimentHypothesis(conn, ExperimentHypothesisSchema),
+    ExperimentMetric: ExperimentMetric(conn, ExperimentMetricSchema),
+    ExperimentLearning: ExperimentLearning(conn, ExperimentLearningSchema),
     ApplicationSchema,
     CampusSchema,
     CohortSchema,
@@ -127,6 +150,12 @@ module.exports = (conn) => {
     UserSchema,
     UserActivityFeedEventSchemas,
     UserActivityLogSchema,
+    ExperimentSchema,
+    ExperimentHypothesisSchema,
+    ExperimentLearningSchema,
+    ExperimentMetricSchema,
+    ExperimentProblemSchema,
+    ExperimentUserPersonaSchema,
   };
 };
 
