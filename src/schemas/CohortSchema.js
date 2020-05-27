@@ -38,5 +38,7 @@ module.exports = (conn) => {
     },
   });
 
+  CohortSchema.index({ slug: 'text' });
+
   return CohortSchema;
 };
