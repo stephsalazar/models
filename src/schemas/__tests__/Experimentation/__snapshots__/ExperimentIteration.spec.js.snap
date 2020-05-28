@@ -1,0 +1,7 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ExperimentIterationSchema should fail validation when fields missing 1`] = `
+Object {
+  "version": [ValidatorError: Path \`version\` is required.],
+}
+`;

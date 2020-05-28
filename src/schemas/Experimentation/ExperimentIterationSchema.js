@@ -1,6 +1,5 @@
-
 module.exports = (conn) => {
-  const ExperimentUserPersona = require('./ExperimentUserPersonaSchema');
+  const ExperimentUserPersonaSchema = require('./ExperimentUserPersonaSchema');
   const ExperimentHypothesisSchema = require('./ExperimentHypothesisSchema');
   const ExperimentProblemSchema = require('./ExperimentProblemSchema');
   const ExperimentDefinitionSchema = require('./ExperimentDefinitionSchema');
@@ -9,9 +8,9 @@ module.exports = (conn) => {
 
   const ExperimentIterationSchema = new conn.Schema({
     version: { type: String, required: true },
-    active: { type: Boolean, require: true, default: true },
+    active: { type: Boolean, required: true, default: true },
     parts: {
-      userPersona: [ExperimentUserPersona(conn)],
+      userPersona: [ExperimentUserPersonaSchema(conn)],
       problem: [ExperimentProblemSchema(conn)],
       hypothesis: [ExperimentHypothesisSchema(conn)],
       metric: [ExperimentMetricSchema(conn)],
