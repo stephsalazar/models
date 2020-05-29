@@ -10,12 +10,30 @@ module.exports = (conn) => {
     version: { type: String, required: true },
     active: { type: Boolean, required: true, default: true },
     parts: {
-      userPersona: [ExperimentUserPersonaSchema(conn)],
-      problem: [ExperimentProblemSchema(conn)],
-      hypothesis: [ExperimentHypothesisSchema(conn)],
-      metric: [ExperimentMetricSchema(conn)],
-      experimentDefinition: [ExperimentDefinitionSchema(conn)],
-      learning: [ExperimentLearningSchema(conn)],
+      userPersona: {
+        type: ExperimentUserPersonaSchema(conn),
+        default: null,
+      },
+      problem: {
+        type: ExperimentProblemSchema(conn),
+        default: null,
+      },
+      hypothesis: {
+        type: ExperimentHypothesisSchema(conn),
+        default: null,
+      },
+      metric: {
+        type: ExperimentMetricSchema(conn),
+        default: null,
+      },
+      experimentDefinition: {
+        type: ExperimentDefinitionSchema(conn),
+        default: null,
+      },
+      learning: {
+        type: ExperimentLearningSchema(conn),
+        default: null,
+      },
     },
   }, { collection: 'iterations', timestamps: true });
 
