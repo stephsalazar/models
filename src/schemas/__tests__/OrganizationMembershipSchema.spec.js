@@ -14,8 +14,6 @@ describe('OrganizationMembershipSchema', () => {
     const employer = new mongoose.Document({
       user: user._id,
       organization: organization._id,
-      phone: '+5511999999999',
-      position: 'HR',
     }, OrganizationMembershipSchema);
 
     employer.validate((err) => {
