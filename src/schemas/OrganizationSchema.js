@@ -26,6 +26,7 @@ module.exports = (conn) => {
       trim: true,
       index: true,
       unique: true,
+      sparse: true,
     },
     slug,
     name: {
