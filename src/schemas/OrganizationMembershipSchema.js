@@ -14,13 +14,10 @@ module.exports = (conn) => {
     },
     phone: {
       type: String,
-      required: true,
     },
     position: {
       type: String,
-      required: true,
     },
-
   });
   return OrganizationMembershipSchema;
 };
