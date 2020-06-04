@@ -6,7 +6,7 @@ const { slug } = require('./common');
 //
 // Example new organization:
 // {
-//   hubspotId: '440521902',
+//   externalId: '440521902',
 //   slug: 'laboratoria',
 //   name: 'Laboratoria',
 //   website: 'www.laboratoria.la',
@@ -20,8 +20,8 @@ const { slug } = require('./common');
 
 module.exports = (conn) => {
   const OrganizationSchema = new conn.Schema({
-    // `hubspotId`: the organization's HubSpot id.
-    hubspotId: {
+    // `externalId`: Customer Relationship Management (to date ID used by HubsPot).
+    externalId: {
       type: String,
       trim: true,
       index: true,
