@@ -36,6 +36,11 @@ module.exports = (conn) => {
       partCount: { type: Number, required: true },
     },
     price: { type: Number, default: 0 },
+    hasCertification: {
+      type: Boolean,
+      default: false,
+      required: true,
+    },
   });
 
   TopicSchema.index({ slug: 1, version: 1 }, { unique: true });
