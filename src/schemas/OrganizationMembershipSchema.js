@@ -19,6 +19,7 @@ module.exports = (conn) => {
       type: String,
     },
   }, {
+    collection: 'organization_memberships',
     timestamps: true,
   });
   return OrganizationMembershipSchema;
