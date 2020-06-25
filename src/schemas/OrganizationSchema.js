@@ -132,6 +132,8 @@ module.exports = (conn) => {
     logo: {
       type: String,
     },
+  }, {
+    timestamps: true,
   });
 
   return OrganizationSchema;

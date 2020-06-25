@@ -18,6 +18,8 @@ module.exports = (conn) => {
     position: {
       type: String,
     },
+  }, {
+    timestamps: true,
   });
   return OrganizationMembershipSchema;
 };
