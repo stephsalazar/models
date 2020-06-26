@@ -36,6 +36,11 @@ module.exports = (conn) => {
       default: '2',
       enum: ['0', '1', '2'],
     },
+    organization: {
+      type: conn.Schema.Types.ObjectId,
+      ref: 'Organization',
+      default: null,
+    },
   });
 
   CohortSchema.index({ slug: 'text' });

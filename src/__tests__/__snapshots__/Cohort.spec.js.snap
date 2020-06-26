@@ -5,6 +5,7 @@ Object {
   "__v": 0,
   "generation": 1,
   "name": "am",
+  "organization": null,
   "program": "bc",
   "publicAdmission": false,
   "rubric": "2",
