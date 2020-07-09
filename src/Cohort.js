@@ -15,12 +15,6 @@ module.exports = (conn, CohortSchema) => {
     foreignField: 'cohort',
   });
 
-  CohortSchema.virtual('platziCourses', {
-    ref: 'CohortPlatziCourse',
-    localField: '_id',
-    foreignField: 'cohort',
-  });
-
   CohortSchema.virtual('topicSettings', {
     ref: 'CohortTopicSettings',
     localField: '_id',

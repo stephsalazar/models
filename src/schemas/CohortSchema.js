@@ -24,9 +24,8 @@ module.exports = (conn) => {
       type: String,
     },
     generation: { type: Number },
-    createdAt: { type: Date, default: Date.now, required: true },
-    startAt: { type: Date, default: Date.now, required: true },
-    endAt: { type: Date },
+    start: { type: Date, default: Date.now, required: true },
+    end: { type: Date },
     publicAdmission: {
       type: Boolean,
       default: false,
@@ -45,11 +44,11 @@ module.exports = (conn) => {
     state: {
       index: true,
       type: String,
-      default: 'loadingStudents',
-      enum: ['loadingStudents', 'planned', 'active', 'finished'],
+      default: 'inProgress',
+      enum: ['inProgress', 'closed'],
     },
   }, {
-    timestamps: true,
+    timestamps: { createdAt: true, updatedAt: true },
   });
 
   CohortSchema.index({ slug: 'text' });
