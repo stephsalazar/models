@@ -74,7 +74,10 @@ describe('Project', () => {
       .then(() => project3.save())
       .then(() => Project.findLatest())
       .then((docs) => {
-        expect(docs.map(({ _id, ...doc }) => doc)).toMatchSnapshot();
+        expect(docs.map((result) => {
+          const { _id, createdAt, ...obj } = result.toJSON();
+          return { ...obj };
+        })).toMatchSnapshot();
         return Project.findLatest('cipher-1');
       })
       .then((doc) => {

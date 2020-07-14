@@ -1,26 +1,35 @@
+const semver = require('semver');
+
 module.exports = (conn, ProjectSchema) => {
   const Project = conn.model('Project', ProjectSchema);
 
-  Project.findLatest = function (slug) {
+  const find = function (slug, stable = true) {
+    // eslint-disable-next-line no-shadow
+    const getBySlug = slug => this.find({ slug }, 'version')
+      .then(versions => versions
+        .map(({ version }) => version)
+        .filter(version => !stable || version.indexOf('-') === -1)
+        .sort((a, b) => {
+          if (semver.lt(a, b)) {
+            return 1;
+          }
+          if (semver.gt(a, b)) {
+            return -1;
+          }
+          return 0;
+        }))
+      .then(sortedVersions => sortedVersions[0])
+      .then(version => this.findOne({ slug, version }));
+
     return (slug)
-      ? this.findOne({ slug })
-        .sort({ version: -1 })
-        .limit(1)
-      : this.aggregate([
-        { $sort: { slug: 1, version: -1 } },
-        {
-          $group: {
-            _id: '$slug',
-            id: { $first: '$_id' },
-            slug: { $first: '$slug' },
-            name: { $first: '$title' },
-            latestVersion: { $first: '$version' },
-            versions: { $push: '$version' },
-          },
-        },
-        { $sort: { _id: 1 } },
-      ])
-        .then(docs => docs.map(({ id, ...doc }) => ({ ...doc, _id: id })));
+      ? getBySlug(slug)
+      : this.distinct('slug')
+        .then(slugs => Promise.all(slugs.map(getBySlug)))
+        .then(projects => projects.filter(project => project));
+  };
+
+  Project.findLatest = function (slug) {
+    return find.call(this, slug, false);
   };
 
   return Project;
