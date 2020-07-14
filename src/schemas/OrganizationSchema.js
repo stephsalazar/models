@@ -136,5 +136,7 @@ module.exports = (conn) => {
     timestamps: true,
   });
 
+  OrganizationSchema.index({ slug: 'text' });
+
   return OrganizationSchema;
 };
