@@ -4,11 +4,7 @@ const { slug, program, track } = require('./common');
 module.exports = (conn) => {
   const CohortSchema = new conn.Schema({
     // Previous id in firestore (deprecated/legacy)
-    slug: {
-      ...slug,
-      required: false,
-      unique: false,
-    },
+    slug,
     campus: {
       type: conn.Schema.Types.ObjectId,
       ref: 'Campus',
