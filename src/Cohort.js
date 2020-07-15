@@ -1,8 +1,6 @@
 const mongoosePaginate = require('mongoose-paginate');
 
 module.exports = (conn, CohortSchema) => {
-  const { Campus, Organization } = conn.models;
-
   CohortSchema.virtual('topics', {
     ref: 'CohortTopic',
     localField: '_id',
@@ -29,6 +27,7 @@ module.exports = (conn, CohortSchema) => {
   });
 
   CohortSchema.pre('save', function (next) {
+    const { Campus, Cohort, Organization } = conn.models;
     Promise.all([
       Campus.findById(this.campus),
       this.organization ? Organization.findById(this.organization) : null,
@@ -43,6 +42,16 @@ module.exports = (conn, CohortSchema) => {
 
         if (['pre', 'bc', 'jp'].includes(this.program) && !this.generation) {
           return next(new Error('Generation is required for the next programs bc, pre and jp'));
+        }
+        const generationString = this.program !== 'l4b' && `${this.generation}`.padStart(3, '0');
+        this.name = this.program === 'l4b' || this.name ? this.name : `${campus.slug}${generationString}`;
+        this.slug = this.slug || `${campus.slug}-${new Date().toISOString().slice(0, 7)}-${this.program}-${this.track}-${this.name}`;
+
+        return Cohort.findOne({ slug: this.slug });
+      })
+      .then((cohort) => {
+        if (cohort) {
+          return next(new Error(`Cohort ${cohort.slug} already exists`));
         }
         return next();
       })
