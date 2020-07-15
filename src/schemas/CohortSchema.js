@@ -38,13 +38,17 @@ module.exports = (conn) => {
     organization: {
       type: conn.Schema.Types.ObjectId,
       ref: 'Organization',
-      default: null,
     },
     state: {
       index: true,
       type: String,
       default: 'inProgress',
       enum: ['inProgress', 'closed'],
+    },
+    hasExperiments: {
+      type: Boolean,
+      default: false,
+      required: true,
     },
   }, {
     timestamps: { createdAt: true, updatedAt: true },

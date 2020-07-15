@@ -14,6 +14,11 @@ module.exports = (conn) => {
     iterations: [ExperimentIterationSchema(conn)],
     active: { type: Boolean, required: true, default: true },
     lastVersion: { type: Number, required: true, default: 0 },
+    cohort: {
+      type: conn.Schema.Types.ObjectId,
+      ref: 'Cohort',
+      required: true,
+    },
   }, { collection: 'experiments', timestamps: true });
 
   return ExperimentSchema;
