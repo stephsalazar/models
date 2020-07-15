@@ -40,6 +40,10 @@ module.exports = (conn, CohortSchema) => {
         if (this.organization && !organization) {
           return next(new Error('Organization does not exist'));
         }
+
+        if (['pre', 'bc', 'jp'].includes(this.program) && !this.generation) {
+          return next(new Error('Generation is required for the next programs bc, pre and jp'));
+        }
         return next();
       })
       .catch(next);
