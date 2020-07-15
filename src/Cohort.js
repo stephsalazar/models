@@ -1,7 +1,7 @@
 const mongoosePaginate = require('mongoose-paginate');
 
 module.exports = (conn, CohortSchema) => {
-  const { Campus } = conn.models;
+  const { Campus, Organization } = conn.models;
 
   CohortSchema.virtual('topics', {
     ref: 'CohortTopic',
@@ -29,12 +29,19 @@ module.exports = (conn, CohortSchema) => {
   });
 
   CohortSchema.pre('save', function (next) {
-    Campus.findById(this.campus)
-      .then(campus => (
-        (!campus)
-          ? next(new Error('Campus does not exist'))
-          : next()
-      ))
+    Promise.all([
+      Campus.findById(this.campus),
+      this.organization ? Organization.findById(this.organization) : null,
+    ])
+      .then(([campus, organization]) => {
+        if (!campus) {
+          return next(new Error('Campus does not exist'));
+        }
+        if (this.organization && !organization) {
+          return next(new Error('Organization does not exist'));
+        }
+        return next();
+      })
       .catch(next);
   });
 
