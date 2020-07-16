@@ -2,12 +2,14 @@
 
 exports[`Experiment should fail when experiment has fields missing 1`] = `
 Object {
+  "cohort": [ValidatorError: Path \`cohort\` is required.],
   "description": [ValidatorError: Path \`description\` is required.],
 }
 `;
 
 exports[`Experiment should fail with missing props 1`] = `
 Object {
+  "cohort": [ValidatorError: Path \`cohort\` is required.],
   "createdBy": [ValidatorError: Path \`createdBy\` is required.],
   "description": [ValidatorError: Path \`description\` is required.],
   "name": [ValidatorError: Path \`name\` is required.],

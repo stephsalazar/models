@@ -4,8 +4,8 @@ exports[`Cohort should create common core cohort for a given generation 1`] = `
 Object {
   "__v": 0,
   "generation": 1,
+  "hasExperiments": false,
   "name": "am",
-  "organization": null,
   "program": "bc",
   "publicAdmission": false,
   "rubric": "2",

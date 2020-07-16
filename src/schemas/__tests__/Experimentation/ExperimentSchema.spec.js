@@ -14,6 +14,7 @@ describe('ExperimentSchema', () => {
       slug: 'text',
       name: 'text',
       description: 'prueba text',
+      cohort: mongoose.Types.ObjectId('7967ec06c8931404bd672e36'),
     }, ExperimentSchema);
     return doc.validate();
   });
@@ -27,6 +28,7 @@ describe('ExperimentSchema', () => {
       description: 'prueba text',
       active: false,
       lastVersion: 2,
+      cohort: mongoose.Types.ObjectId('7967ec06c8931404bd672e36'),
     }, ExperimentSchema);
     return doc.validate();
   });

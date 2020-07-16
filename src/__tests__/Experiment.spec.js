@@ -38,6 +38,7 @@ describe('Experiment', () => {
       slug: 'text',
       name: 'text',
       description: 'prueba text',
+      cohort: mongoose.Types.ObjectId('7967ec06c8931404bd672e36'),
     });
 
     return experiment.save()
