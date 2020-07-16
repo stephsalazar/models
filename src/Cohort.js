@@ -43,6 +43,11 @@ module.exports = (conn, CohortSchema) => {
         if (['pre', 'bc', 'jp'].includes(this.program) && !this.generation) {
           return next(new Error('Generation is required for the next programs bc, pre and jp'));
         }
+
+        if (this.program === 'l4b' && !this.name) {
+          return next(new Error('name is required'));
+        }
+
         const generationString = this.program !== 'l4b' && `${this.generation}`.padStart(3, '0');
         this.name = this.program === 'l4b' || this.name ? this.name : `${campus.slug}${generationString}`;
         this.slug = this.slug || `${campus.slug}-${new Date().toISOString().slice(0, 7)}-${this.program}-${this.track}-${this.name}`;
