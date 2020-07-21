@@ -34,18 +34,25 @@ module.exports = (conn, CohortSchema) => {
     ])
       .then(([campus, organization]) => {
         if (!campus) {
-          return next(new Error('Campus does not exist'));
+          return next(Object.assign(new Error('Campus does not exist'), { name: 'ValidationError' }));
         }
         if (this.organization && !organization) {
-          return next(new Error('Organization does not exist'));
+          return next(Object.assign(new Error('Organization does not exist'), { name: 'ValidationError' }));
         }
 
         if (['pre', 'bc', 'jp'].includes(this.program) && !this.generation) {
-          return next(new Error('Generation is required for the next programs bc, pre and jp'));
+          return next(
+            Object.assign(
+              new Error(
+                'Generation is required for the programs bc, pre and jp',
+              ),
+              { name: 'ValidationError' },
+            ),
+          );
         }
 
         if (this.program === 'l4b' && !this.name) {
-          return next(new Error('name is required'));
+          return next(Object.assign(new Error('name is required'), { name: 'ValidationError' }));
         }
 
         const generationString = this.program !== 'l4b' && `${this.generation}`.padStart(3, '0');
@@ -56,7 +63,12 @@ module.exports = (conn, CohortSchema) => {
       })
       .then((cohort) => {
         if (cohort) {
-          return next(new Error(`Cohort ${cohort.slug} already exists`));
+          return next(
+            Object.assign(new Error(
+              `Cohort ${cohort.slug} already exists`,
+            ),
+            { name: 'ValidationError' }),
+          );
         }
         return next();
       })
