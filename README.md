@@ -178,7 +178,8 @@ yarn e2e
 * [`Topic`](./src/Topic.js)
 * [`TopicUnit`](./src/TopicUnit.js)
 * [`TopicUnitPart`](./src/TopicUnitPart.js)
-* `TopicProgress` (TBD)
+* [`TopicProgress`](./src/TopicProgress.js)
+* [`TopicProgressStat`](./src/TopicProgressStat.js)
 
 ### Users
 
