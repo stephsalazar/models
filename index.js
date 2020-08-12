@@ -41,6 +41,9 @@ const ExperimentDefinition = require('./src/ExperimentDefinition');
 const ExperimentLearning = require('./src/ExperimentLearning');
 const ExperimentHypothesis = require('./src/ExperimentHypothesis');
 
+const Team = require('./src/Team');
+const TeamMembership = require('./src/TeamMembership');
+
 // enums
 const { activities } = require('./src/schemas/UserActivityLogSchema');
 
@@ -84,6 +87,8 @@ module.exports = (conn) => {
     ExperimentMetricSchema,
     ExperimentDefinitionSchema,
     ExperimentLearningSchema,
+    TeamSchema,
+    TeamMembershipSchema,
   } = schemas(conn, (new JSDOM()).window.document);
 
   return {
@@ -125,6 +130,8 @@ module.exports = (conn) => {
     ExperimentHypothesis: ExperimentHypothesis(conn, ExperimentHypothesisSchema),
     ExperimentMetric: ExperimentMetric(conn, ExperimentMetricSchema),
     ExperimentLearning: ExperimentLearning(conn, ExperimentLearningSchema),
+    Team: Team(conn, TeamSchema),
+    TeamMembership: TeamMembership(conn, TeamMembershipSchema),
     ApplicationSchema,
     CampusSchema,
     CohortSchema,
@@ -160,6 +167,8 @@ module.exports = (conn) => {
     ExperimentMetricSchema,
     ExperimentProblemSchema,
     ExperimentUserPersonaSchema,
+    TeamSchema,
+    TeamMembershipSchema,
   };
 };
 

@@ -19,6 +19,10 @@ module.exports = (conn) => {
       ref: 'Cohort',
       required: true,
     },
+    team: {
+      type: conn.Schema.Types.ObjectId,
+      ref: 'Team',
+    },
   }, { collection: 'experiments', timestamps: true });
 
   return ExperimentSchema;
