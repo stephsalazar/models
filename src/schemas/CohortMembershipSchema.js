@@ -12,7 +12,7 @@ module.exports = (conn) => {
     },
     role: {
       type: String,
-      enum: ['student', 'coach', 'admin'],
+      enum: ['student', 'coach', 'instructor', 'admin', 'hr'],
       required: true,
     },
     // createdAt??
