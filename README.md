@@ -10,17 +10,7 @@ looking for _schemas_ to be used in the front-end please check
 ## Installation
 
 ```sh
-npm install --save Laboratoria/models
-```
-
-Or add it in your `package.json` and then `npm install`:
-
-```json
-{
-  "dependencies": {
-    "models": "Laboratoria/models#v1.0.0-alpha.1"
-  }
-}
+npm install --save @Laboratoria/models
 ```
 
 ## Usage

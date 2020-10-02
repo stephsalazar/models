@@ -1,3 +1,5 @@
+const aggregatePaginate = require('mongoose-aggregate-paginate-v2');
+
 module.exports = (conn, CohortMembershipSchema) => {
   CohortMembershipSchema.pre('save', function (next) {
     const {
@@ -20,6 +22,8 @@ module.exports = (conn, CohortMembershipSchema) => {
       })
       .catch(next);
   });
+
+  CohortMembershipSchema.plugin(aggregatePaginate);
 
   const CohortMembership = conn.model('CohortMembership', CohortMembershipSchema);
 
