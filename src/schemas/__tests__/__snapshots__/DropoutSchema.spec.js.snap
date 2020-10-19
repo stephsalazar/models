@@ -1,0 +1,16 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`DropoutSchema should fail validation when missing fields are provided 1`] = `
+Object {
+  "city": [ValidatorError: Path \`city\` is required.],
+  "codeStudent": [ValidatorError: Path \`codeStudent\` is required.],
+  "cohort": [ValidatorError: Path \`cohort\` is required.],
+  "observations": [ValidatorError: Path \`observations\` is required.],
+  "otherReason": [ValidatorError: Path \`otherReason\` is required.],
+  "reason": [ValidatorError: Path \`reason\` is required.],
+  "sad": [ValidatorError: Path \`sad\` is required.],
+  "stage": [ValidatorError: Path \`stage\` is required.],
+  "type": [ValidatorError: Path \`type\` is required.],
+  "user": [ValidatorError: Path \`user\` is required.],
+}
+`;
