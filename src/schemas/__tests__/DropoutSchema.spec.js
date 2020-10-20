@@ -3,7 +3,7 @@ const { UserSchema } = require('..')(mongoose);
 const DropoutSchema = require('../DropoutSchema')(mongoose);
 
 describe('DropoutSchema', () => {
-  it('should fail validation when missing fields are provided', () => {
+  it('should fail validation when fields are missing', () => {
     const doc = new mongoose.Document({}, DropoutSchema);
     expect(doc.validateSync().errors).toMatchSnapshot();
   });

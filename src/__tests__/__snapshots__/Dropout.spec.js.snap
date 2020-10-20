@@ -1,21 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Dropout should fail validation when missing fields are provided 1`] = `
-Object {
-  "city": [ValidatorError: Path \`city\` is required.],
-  "cohort": [ValidatorError: Path \`cohort\` is required.],
-  "observations": [ValidatorError: Path \`observations\` is required.],
-  "otherReason": [ValidatorError: Path \`otherReason\` is required.],
-  "reason": [ValidatorError: Path \`reason\` is required.],
-  "sad": [ValidatorError: Path \`sad\` is required.],
-  "stage": [ValidatorError: Path \`stage\` is required.],
-  "studentCode": [ValidatorError: Path \`studentCode\` is required.],
-  "type": [ValidatorError: Path \`type\` is required.],
-  "user": [ValidatorError: Path \`user\` is required.],
-}
-`;
-
-exports[`Dropout should fail when user not ObjecId 1`] = `
+exports[`Dropout should fail when user is not an ObjectId 1`] = `
 Object {
   "user": [CastError: Cast to ObjectID failed for value "user._id" at path "user"],
 }

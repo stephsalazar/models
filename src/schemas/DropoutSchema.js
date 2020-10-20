@@ -13,23 +13,27 @@ module.exports = (conn) => {
       ref: 'User',
       required: true,
     },
-    // It refers to the stage in which she leave the program, for example: 1st day
+    // the stage in which a student leaves the bootcamp, for example: "1st day", "project 1"
     stage: {
       type: String,
       required: true,
     },
-    // It refers to the student code, for example: LIM022222
+    // the student code is create when applicants are admitted and It's generate with these info,
+    // sede(LIM), generation(018) and number(012) according of the quanty(50)
+    // for example: "LIM018012"
     studentCode: {
       type: String,
       required: true,
     },
-    // It means to the date of the dropout
+    // the date when a student leaves the bootcamp
     when: {
       type: Date,
       required: true,
       default: Date.now,
     },
-    // It means how she leave the program, Leave the program voluntarily
+    // The way a student leaves the bootcamp, for example
+    // "invitedToLeave", she is invited to leave literally
+    // "dropout", she leaves voluntarily
     type: {
       type: String,
       required: true,
@@ -38,17 +42,17 @@ module.exports = (conn) => {
       type: String,
       required: true,
     },
-    // It means to how the BC team see her
+    // The bootcamp team's observations about the student
     observations: {
       type: String,
       required: true,
     },
-    // It means if the BC team is sad, because she is leaving
+    // Is the bootcamp team sad because of the dropout? true or false
     sad: {
       type: Boolean,
       required: true,
     },
-    // It refers to other reason, for example: coronavirus
+    // Additional reasons for the dropout, for example: "coronavirus"
     otherReason: {
       type: String,
       required: true,

@@ -24,14 +24,7 @@ describe('Dropout', () => {
     await user.save();
   });
 
-  it('should fail validation when missing fields are provided', () => {
-    const doc = new Dropout();
-
-    return doc.save()
-      .catch(err => expect(err.errors).toMatchSnapshot());
-  });
-
-  it('should fail when user not ObjecId', () => {
+  it('should fail when user is not an ObjectId', () => {
     const doc = new Dropout({
       city: 'LIM',
       cohort: 'LIM007',
@@ -70,7 +63,7 @@ describe('Dropout', () => {
         expect(err.message).toBe('user does not exist');
       });
   });
-  it('should successful when user does exist', async () => {
+  it('should create a new dropout', async () => {
     const doc = new Dropout({
       city: 'LIM',
       cohort: 'LIM007',
@@ -86,8 +79,8 @@ describe('Dropout', () => {
     });
 
     return doc.save()
-      .catch((err) => {
-        expect(err.message).toBe('user does exist');
+      .then((dropout) => {
+        expect(dropout.user).toBe(user._id);
       });
   });
 });
