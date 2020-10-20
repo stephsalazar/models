@@ -15,10 +15,12 @@ module.exports = (conn) => {
       enum: ['student', 'coach', 'instructor', 'admin', 'hr'],
       required: true,
     },
-    // createdAt??
-    // status??? (active, dropout, expelled??)
-    // ...
-  }, { collection: 'cohort_memberships' });
+    state: {
+      type: String,
+      default: 'active',
+      enum: ['active', 'dropout'],
+    },
+  }, { collection: 'cohort_memberships', timestamps: true });
 
   return CohortMembershipSchema;
 };
