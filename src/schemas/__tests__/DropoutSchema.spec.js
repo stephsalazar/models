@@ -2,7 +2,7 @@ const mongoose = require('mongoose/browser');
 const { UserSchema } = require('..')(mongoose);
 const DropoutSchema = require('../DropoutSchema')(mongoose);
 
-describe.only('DropoutSchema', () => {
+describe('DropoutSchema', () => {
   it('should fail validation when missing fields are provided', () => {
     const doc = new mongoose.Document({}, DropoutSchema);
     expect(doc.validateSync().errors).toMatchSnapshot();
@@ -14,7 +14,7 @@ describe.only('DropoutSchema', () => {
       cohort: 'LIM007',
       user: userSchema._id,
       stage: 'Project 1',
-      codeStudent: 'LIM181080',
+      studentCode: 'LIM181080',
       when: '5/14/2018',
       type: 'Leave the program voluntarily',
       reason: 'Problemas familiares y económicos',

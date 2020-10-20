@@ -6,6 +6,7 @@ const CohortProjectSchema = require('./CohortProjectSchema');
 const CohortSchema = require('./CohortSchema');
 const CohortTopicSchema = require('./CohortTopicSchema');
 const CohortTopicSettingsSchema = require('./CohortTopicSettingsSchema');
+const DropoutSchema = require('./DropoutSchema');
 const GraduateProfileEndorsementSchema = require('./GraduateProfileEndorsementSchema');
 const GraduateProfileLifeSkillSchema = require('./GraduateProfileLifeSkillSchema');
 const GraduateProfileProjectSchema = require('./GraduateProfileProjectSchema');
@@ -53,6 +54,7 @@ module.exports = (conn, document) => ({
   CohortSchema: CohortSchema(conn),
   CohortTopicSchema: CohortTopicSchema(conn),
   CohortTopicSettingsSchema: CohortTopicSettingsSchema(conn),
+  DropoutSchema: DropoutSchema(conn),
   GraduateProfileEndorsementSchema: GraduateProfileEndorsementSchema(conn),
   GraduateProfileLifeSkillSchema: GraduateProfileLifeSkillSchema(conn),
   GraduateProfileProjectSchema: GraduateProfileProjectSchema(conn),

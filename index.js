@@ -8,6 +8,7 @@ const CohortPlatziCourse = require('./src/CohortPlatziCourse');
 const CohortProject = require('./src/CohortProject');
 const CohortTopic = require('./src/CohortTopic');
 const CohortTopicSettings = require('./src/CohortTopicSettings');
+const Dropout = require('./src/Dropout');
 const GraduateProfile = require('./src/GraduateProfile');
 const GraduateProfileEndorsement = require('./src/GraduateProfileEndorsement');
 const GraduateProfileLifeSkill = require('./src/GraduateProfileLifeSkill');
@@ -57,6 +58,7 @@ module.exports = (conn) => {
     CohortProjectSchema,
     CohortTopicSchema,
     CohortTopicSettingsSchema,
+    DropoutSchema,
     GraduateProfileSchema,
     GraduateProfileEndorsementSchema,
     GraduateProfileLifeSkillSchema,
@@ -100,6 +102,7 @@ module.exports = (conn) => {
     CohortProject: CohortProject(conn, CohortProjectSchema),
     CohortTopic: CohortTopic(conn, CohortTopicSchema),
     CohortTopicSettings: CohortTopicSettings(conn, CohortTopicSettingsSchema),
+    Dropout: Dropout(conn, DropoutSchema),
     GraduateProfile: GraduateProfile(conn, GraduateProfileSchema),
     GraduateProfileEndorsement: GraduateProfileEndorsement(conn, GraduateProfileEndorsementSchema),
     GraduateProfileProject: GraduateProfileProject(conn, GraduateProfileProjectSchema),
@@ -140,6 +143,7 @@ module.exports = (conn) => {
     CohortProjectSchema,
     CohortTopicSchema,
     CohortTopicSettingsSchema,
+    DropoutSchema,
     GraduateProfileSchema,
     GraduateProfileEndorsementSchema,
     GraduateProfileLifeSkillSchema,

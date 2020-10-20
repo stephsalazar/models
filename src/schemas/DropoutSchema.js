@@ -17,7 +17,7 @@ module.exports = (conn) => {
       type: String,
       required: true,
     },
-    codeStudent: {
+    studentCode: {
       type: String,
       required: true,
     },
@@ -46,9 +46,6 @@ module.exports = (conn) => {
       type: String,
       required: true,
     },
-    // createdAt??
-    // status??? (active, dropout, expelled??)
-    // ...
-  }, { collection: 'dropouts' });
+  }, { collection: 'dropouts', timestamps: true });
   return DropoutSchema;
 };
