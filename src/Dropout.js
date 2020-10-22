@@ -2,7 +2,7 @@ module.exports = (conn, DropoutSchema) => {
   DropoutSchema.pre('save', function (next) {
     const { User } = conn.models;
 
-    User.findById(this.user)
+    User.findOne({ email: this.email })
       .then((user) => {
         if (!user) {
           return next(new Error('user does not exist'));
