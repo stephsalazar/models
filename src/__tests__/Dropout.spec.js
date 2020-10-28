@@ -24,38 +24,21 @@ describe('Dropout', () => {
     await user.save();
   });
 
-  it('should fail when user is not an ObjectId', () => {
+  it('should fail when email does not exist', async () => {
     const doc = new Dropout({
       city: 'LIM',
       cohort: 'LIM007',
-      email: 'someone@somewhere.com',
+      fullName: 'Diego Vélez',
+      email: '',
+      signUpCohortCity: 'BOG',
+      date: '5/14/2018',
       stage: 'Project 1',
       studentCode: 'LIM181080',
-      when: '5/14/2018',
-      type: 'Leave the program voluntarily',
-      reason: 'Problemas familiares y económicos',
-      observations: 'Una lástima, era una buena estudiante :(',
+      reason: 'Leave the program voluntarily',
+      reasonDetail: 'Problemas familiares y económicos',
+      notes: 'Una lástima, era una buena estudiante :(',
       sad: true,
-      otherReason: 'I do not know (pero ya agoté todos los recursos para averiguarlo)',
-    });
-
-    return doc.save()
-      .catch(err => expect(err.errors).toMatchSnapshot());
-  });
-
-  it('should fail when user does not exist', async () => {
-    const doc = new Dropout({
-      city: 'LIM',
-      cohort: 'LIM007',
-      email: 'someone@somewhere.com',
-      stage: 'Project 1',
-      studentCode: 'LIM181080',
-      when: '5/14/2018',
-      type: 'Leave the program voluntarily',
-      reason: 'Problemas familiares y económicos',
-      observations: 'Una lástima, era una buena estudiante :(',
-      sad: true,
-      otherReason: 'I do not know (pero ya agoté todos los recursos para averiguarlo)',
+      covidRelated: true,
     });
 
     return doc.save()
@@ -67,15 +50,17 @@ describe('Dropout', () => {
     const doc = new Dropout({
       city: 'LIM',
       cohort: 'LIM007',
+      fullName: 'Diego Vélez',
       email: 'someone@somewhere.com',
+      signUpCohortCity: 'BOG',
+      date: '5/14/2018',
       stage: 'Project 1',
       studentCode: 'LIM181080',
-      when: '5/14/2018',
-      type: 'Leave the program voluntarily',
-      reason: 'Problemas familiares y económicos',
-      observations: 'Una lástima, era una buena estudiante :(',
+      reason: 'Leave the program voluntarily',
+      reasonDetail: 'Problemas familiares y económicos',
+      notes: 'Una lástima, era una buena estudiante :(',
       sad: true,
-      otherReason: 'I do not know (pero ya agoté todos los recursos para averiguarlo)',
+      covidRelated: true,
     });
 
     return doc.save()

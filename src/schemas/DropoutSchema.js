@@ -8,9 +8,27 @@ module.exports = (conn) => {
       type: String,
       required: true,
     },
+    // It is only need to consider when migrating old data
+    track: {
+      type: String,
+    },
+    fullName: {
+      type: String,
+      required: true,
+    },
     email: {
       type: String,
       required: true,
+    },
+    signUpCohortCity: {
+      type: String,
+      required: true,
+    },
+    // the date when a student leaves the bootcamp
+    date: {
+      type: Date,
+      required: true,
+      default: Date.now,
     },
     // the stage in which a student leaves the bootcamp, for example: "1st day", "project 1"
     stage: {
@@ -24,25 +42,19 @@ module.exports = (conn) => {
       type: String,
       required: true,
     },
-    // the date when a student leaves the bootcamp
-    when: {
-      type: Date,
-      required: true,
-      default: Date.now,
-    },
     // The way a student leaves the bootcamp, for example
     // "invitedToLeave", she is invited to leave literally
     // "dropout", she leaves voluntarily
-    type: {
-      type: String,
-      required: true,
-    },
     reason: {
       type: String,
       required: true,
     },
+    reasonDetail: {
+      type: String,
+      required: true,
+    },
     // The bootcamp team's observations about the student
-    observations: {
+    notes: {
       type: String,
       required: true,
     },
@@ -51,9 +63,8 @@ module.exports = (conn) => {
       type: Boolean,
       required: true,
     },
-    // Additional reasons for the dropout, for example: "coronavirus"
-    otherReason: {
-      type: String,
+    covidRelated: {
+      type: Boolean,
       required: true,
     },
   }, { collection: 'dropouts', timestamps: true });

@@ -10,15 +10,17 @@ describe('DropoutSchema', () => {
     const doc = new mongoose.Document({
       city: 'LIM',
       cohort: 'LIM007',
-      email: 'test@laboratoria.la',
+      fullName: 'Diego Vélez',
+      email: 'someone@somewhere.com',
+      signUpCohortCity: 'BOG',
+      date: '5/14/2018',
       stage: 'Project 1',
       studentCode: 'LIM181080',
-      when: '5/14/2018',
-      type: 'Leave the program voluntarily',
-      reason: 'Problemas familiares y económicos',
-      observations: 'Una lástima, era una buena estudiante :(',
+      reason: 'Leave the program voluntarily',
+      reasonDetail: 'Problemas familiares y económicos',
+      notes: 'Una lástima, era una buena estudiante :(',
       sad: true,
-      otherReason: 'I do not know (pero ya agoté todos los recursos para averiguarlo)',
+      covidRelated: true,
     }, DropoutSchema);
     return doc.validate((err) => {
       expect(err).toBe(null);
