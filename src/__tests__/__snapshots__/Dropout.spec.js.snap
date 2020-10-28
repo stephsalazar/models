@@ -1,3 +1,0 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
-
-exports[`Dropout should fail when user is not an ObjectId 1`] = `undefined`;

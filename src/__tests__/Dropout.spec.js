@@ -24,12 +24,12 @@ describe('Dropout', () => {
     await user.save();
   });
 
-  it('should fail when email does not exist', async () => {
+  it('should fail when user does not exist', async () => {
     const doc = new Dropout({
       city: 'LIM',
       cohort: 'LIM007',
       fullName: 'Diego Vélez',
-      email: '',
+      email: 'someone@somewhere',
       signUpCohortCity: 'BOG',
       date: '5/14/2018',
       stage: 'Project 1',
