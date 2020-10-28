@@ -28,7 +28,7 @@ describe('Dropout', () => {
     const doc = new Dropout({
       city: 'LIM',
       cohort: 'LIM007',
-      user: 'user._id',
+      email: 'someone@somewhere.com',
       stage: 'Project 1',
       studentCode: 'LIM181080',
       when: '5/14/2018',
@@ -47,7 +47,7 @@ describe('Dropout', () => {
     const doc = new Dropout({
       city: 'LIM',
       cohort: 'LIM007',
-      user: (new User())._id,
+      email: 'someone@somewhere.com',
       stage: 'Project 1',
       studentCode: 'LIM181080',
       when: '5/14/2018',
@@ -67,7 +67,7 @@ describe('Dropout', () => {
     const doc = new Dropout({
       city: 'LIM',
       cohort: 'LIM007',
-      user: user._id,
+      email: 'someone@somewhere.com',
       stage: 'Project 1',
       studentCode: 'LIM181080',
       when: '5/14/2018',
@@ -80,7 +80,7 @@ describe('Dropout', () => {
 
     return doc.save()
       .then((dropout) => {
-        expect(dropout.user).toBe(user._id);
+        expect(dropout.email).toBe(doc.email);
       });
   });
 });

@@ -8,9 +8,8 @@ module.exports = (conn) => {
       type: String,
       required: true,
     },
-    user: {
-      type: conn.Schema.Types.ObjectId,
-      ref: 'User',
+    email: {
+      type: String,
       required: true,
     },
     // the stage in which a student leaves the bootcamp, for example: "1st day", "project 1"

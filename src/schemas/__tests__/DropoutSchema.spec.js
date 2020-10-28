@@ -1,5 +1,4 @@
 const mongoose = require('mongoose/browser');
-const { UserSchema } = require('..')(mongoose);
 const DropoutSchema = require('../DropoutSchema')(mongoose);
 
 describe('DropoutSchema', () => {
@@ -8,11 +7,10 @@ describe('DropoutSchema', () => {
     expect(doc.validateSync().errors).toMatchSnapshot();
   });
   it('should successfully validate with proper values', (done) => {
-    const userSchema = new mongoose.Document({}, UserSchema);
     const doc = new mongoose.Document({
       city: 'LIM',
       cohort: 'LIM007',
-      user: userSchema._id,
+      email: 'test@laboratoria.la',
       stage: 'Project 1',
       studentCode: 'LIM181080',
       when: '5/14/2018',
