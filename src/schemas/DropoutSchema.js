@@ -35,19 +35,22 @@ module.exports = (conn) => {
       type: String,
       required: true,
     },
-    // the student code is create when applicants are admitted and It's generate with these info,
-    // sede(LIM), generation(018) and number(012) according of the quanty(50)
-    // for example: "LIM018012"
+    // it's created when an applicant is admitted.
+    // example: "LIM018012"
+    // LIM = campus, 018 = generation, 012 = incremental number
     studentCode: {
       type: String,
       required: true,
     },
-    // The way a student leaves the bootcamp, for example
-    // "invitedToLeave", she is invited to leave literally
-    // "dropout", she leaves voluntarily
+    // the way a student leaves the bootcamp, for example
     reason: {
       type: String,
       required: true,
+      enum: [
+        'Leave the program voluntarily',
+        'We invite her to leave the program',
+        'She repeats - Change cohort',
+      ],
     },
     reasonDetail: {
       type: String,
@@ -66,6 +69,7 @@ module.exports = (conn) => {
     covidRelated: {
       type: Boolean,
       required: true,
+      default: false,
     },
   }, { collection: 'dropouts', timestamps: true });
   return DropoutSchema;
