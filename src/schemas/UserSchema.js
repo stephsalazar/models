@@ -53,6 +53,24 @@ module.exports = (conn) => {
       type: String,
       trim: true,
     },
+    lastName: {
+      type: String,
+    },
+    dateOfBirth: {
+      type: Date,
+    },
+    gender: {
+      type: String,
+      enum: ['male', 'female', 'other'],
+    },
+    city: {
+      type: String,
+      trim: true,
+    },
+    country: {
+      type: String,
+      trim: true,
+    },
     // use common `locale`???
     locale: {
       type: String,
@@ -64,6 +82,10 @@ module.exports = (conn) => {
       trim: true,
     },
     linkedin: {
+      type: String,
+      trim: true,
+    },
+    twitter: {
       type: String,
       trim: true,
     },
