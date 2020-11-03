@@ -5,7 +5,6 @@ module.exports = (conn) => {
       ref: 'User',
       required: true,
       index: true,
-      unique: true,
     },
     organization: {
       type: conn.Schema.Types.ObjectId,
