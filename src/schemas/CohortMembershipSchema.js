@@ -15,10 +15,25 @@ module.exports = (conn) => {
       enum: ['student', 'coach', 'instructor', 'admin', 'hr'],
       required: true,
     },
-    state: {
+    isActive: {
+      type: Boolean,
+      default: true,
+    },
+    dropoutReason: {
       type: String,
-      default: 'active',
-      enum: ['active', 'dropout'],
+      enum: [
+        'dropout',
+        'invitedToLeave',
+        'changeCohort',
+        'noShow',
+      ],
+    },
+    studentCode: {
+      type: String,
+    },
+    previousCohort: {
+      type: conn.Schema.Types.ObjectId,
+      ref: 'Cohort',
     },
   }, { collection: 'cohort_memberships', timestamps: true });
 
