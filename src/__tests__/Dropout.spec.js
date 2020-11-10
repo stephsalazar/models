@@ -17,7 +17,7 @@ const campusJSON = {
 
 describe('Dropout', () => {
   let user;
-  let cohortMembership;
+  let cohort;
 
   beforeAll(async () => {
     await mongoose.connect(global.__MONGO_URI__, { useNewUrlParser: true });
@@ -42,43 +42,36 @@ describe('Dropout', () => {
 
     await user.save();
     const campus = new Campus(campusJSON);
-    const cohort = new Cohort({
+    cohort = new Cohort({
       campus: campus._id,
       program: 'bc',
       track: 'core',
-      generation: 1,
+      generation: 7,
       start: new Date(),
       end: new Date(),
+      name: 'LIM007',
     });
 
     await campus.save();
     await cohort.save();
-
-    cohortMembership = new CohortMembership({
-      user: user._id,
-      cohort: cohort._id,
-      role: 'student',
-    });
-
-    await cohortMembership.save();
   });
 
   it('should fail when user does not exist', async () => {
     const doc = new Dropout({
       campus: 'lim',
       cohort: 'lim007',
-      cohortMembership: cohortMembership._id,
       fullName: 'Diego Vélez',
       email: 'someone@somewhere',
       signUpCampus: 'LIM',
       date: '5/14/2018',
+      track: 'core',
       project: 'Cipher',
       stage: 1,
       studentCode: 'LIM181080',
       reason: 'dropout',
       reasonDetail: 'Problemas familiares y económicos',
       notes: 'Una lástima, era una buena estudiante :(',
-      isStaffSad: true,
+      staffSad: true,
       covidRelated: 'yes',
     });
 
@@ -88,52 +81,52 @@ describe('Dropout', () => {
       });
   });
 
-
-  it('should fail when cohortMembership does not ObjectId', async () => {
+  it('should fail when cohort does not exist', async () => {
     const doc = new Dropout({
       campus: 'lim',
-      cohort: 'lim007',
-      cohortMembership: 'cohortMembership._id',
+      cohort: 'lim006',
       fullName: 'Diego Vélez',
       email: 'someone@somewhere',
       signUpCampus: 'LIM',
       date: '5/14/2018',
+      track: 'core',
       project: 'Cipher',
       stage: 1,
       studentCode: 'LIM181080',
       reason: 'dropout',
       reasonDetail: 'Problemas familiares y económicos',
       notes: 'Una lástima, era una buena estudiante :(',
-      isStaffSad: true,
+      staffSad: true,
       covidRelated: 'yes',
     });
 
     return doc.save()
-      .catch(err => expect(err.message).toMatchSnapshot());
+      .catch((err) => {
+        expect(err.message).toBe('user does not exist');
+      });
   });
 
   it('should create a new dropout', async () => {
     const doc = new Dropout({
       campus: 'lim',
       cohort: 'lim007',
-      cohortMembership: cohortMembership._id,
       fullName: 'Diego Vélez',
       email: 'someone@somewhere.com',
       signUpCampus: 'LIM',
       date: '5/14/2018',
+      track: 'core',
       project: 'Cipher',
       stage: 1,
       studentCode: 'LIM181080',
       reason: 'dropout',
       reasonDetail: 'Problemas familiares y económicos',
       notes: 'Una lástima, era una buena estudiante :(',
-      isStaffSad: true,
+      staffSad: true,
       covidRelated: 'yes',
     });
 
     return doc.save()
       .then((dropout) => {
-        console.log('Debug', dropout, doc);
         expect(dropout.email).toBe(doc.email);
       });
   });

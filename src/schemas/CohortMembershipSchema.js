@@ -15,10 +15,12 @@ module.exports = (conn) => {
       enum: ['student', 'coach', 'instructor', 'admin', 'hr'],
       required: true,
     },
-    isActive: {
+    active: {
       type: Boolean,
       default: true,
     },
+    // This field refers to the Dropout scheme, which details why the student is
+    // dropping out
     dropoutReason: {
       type: String,
       enum: [
@@ -28,9 +30,15 @@ module.exports = (conn) => {
         'noShow',
       ],
     },
+    // it's created when an applicant is admitted.
+    // example: "LIM018012"
+    // LIM = campus, 018 = generation, 012 = incremental number
     studentCode: {
       type: String,
     },
+    // it's created when we want to refer to the pre-school cohort. Example if a
+    // student is in a preAdmission LIM012 cohort, it means that the previousCohort
+    // would be LIM012 of admission.
     previousCohort: {
       type: conn.Schema.Types.ObjectId,
       ref: 'Cohort',

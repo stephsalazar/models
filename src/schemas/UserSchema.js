@@ -114,32 +114,6 @@ module.exports = (conn) => {
       type: String,
       trim: true,
     },
-
-    // student code ???
-
-    //
-    // Alumnae stuff!! TBD
-    //
-    // avatar: { type: String },
-    // NOTE: status vs role? maybe a bit confusing? what about companies and guests?
-    // status: {
-    //   type: String,
-    //   enum: ['applicant', 'student', 'alumnae', 'expelled', 'laboratorian'],
-    // },
-    // NOTE: what is the `githubToken` used for?? why is it here?
-    // githubToken: { type: String },
-    // NOTE: should this be called `campus`? How does this relate to `signupCohort`??
-    // NOTE: campus slugs should match actual campus objects!!
-    // NOTE: This prop is no encluded in migration script???
-    // headquarter: {
-    //   type: String,
-    //   enum: ['MEX', 'GDL', 'SCL', 'LIM', 'SAP'], // SaoPaulo => SAP
-    // },
-    // Payment system data
-    // NOTE: WHAT IS THIS? Why is it here??
-    // paymentStart: Date,
-    // NOTE: ????
-    // currentJob: String, // Reference to UserJob collection
     academicProfile: {
       default: {},
       type: AcademicProfileSchema(conn),

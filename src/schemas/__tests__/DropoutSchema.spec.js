@@ -1,5 +1,5 @@
 const mongoose = require('mongoose/browser');
-const { DropoutSchema, CohortMembershipSchema } = require('..')(mongoose);
+const { DropoutSchema } = require('..')(mongoose);
 
 describe('DropoutSchema', () => {
   it('should fail validation when fields are missing', () => {
@@ -7,11 +7,9 @@ describe('DropoutSchema', () => {
     expect(doc.validateSync().errors).toMatchSnapshot();
   });
   it('should successfully validate with proper values', (done) => {
-    const cohortMembership = new mongoose.Document({}, CohortMembershipSchema);
     const doc = new mongoose.Document({
       campus: 'lim',
       cohort: 'lim007',
-      cohortMembership: cohortMembership._id,
       fullName: 'Diego Vélez',
       email: 'someone@somewhere.com',
       signUpCampus: 'BOG',
@@ -22,7 +20,7 @@ describe('DropoutSchema', () => {
       reason: 'dropout',
       reasonDetail: 'Problemas familiares y económicos',
       notes: 'Una lástima, era una buena estudiante :(',
-      isStaffSad: true,
+      staffSad: true,
       covidRelated: 'yes',
     }, DropoutSchema);
     return doc.validate((err) => {

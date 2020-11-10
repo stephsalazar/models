@@ -39,11 +39,14 @@ module.exports = (conn) => {
       type: conn.Schema.Types.ObjectId,
       ref: 'Organization',
     },
+    // Por el mometo vas a registrar 3 tipos de estados pora un cohort
+    // InProgress: Par cohorts en curso, notStarted: Para cohort que aún no han empezado
+    // y Closed: Para cohorts que ya han sido cerrados.
     state: {
       index: true,
       type: String,
       default: 'inProgress',
-      enum: ['inProgress', 'closed', 'onHold'],
+      enum: ['inProgress', 'closed', 'notStarted'],
     },
     hasExperiments: {
       type: Boolean,

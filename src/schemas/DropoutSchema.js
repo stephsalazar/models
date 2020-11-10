@@ -5,12 +5,8 @@ module.exports = (conn) => {
       required: true,
       uppercase: true,
     },
-    cohortMembership: {
-      type: conn.Schema.Types.ObjectId,
-      ref: 'cohortMembership',
-      required: true,
-    },
-    cohort: { // LIM007
+    // Example: LIM007
+    cohort: {
       type: String,
       required: true,
       uppercase: true,
@@ -30,6 +26,7 @@ module.exports = (conn) => {
     signUpCampus: {
       type: String,
       required: true,
+      uppercase: true,
     },
     // the date when a student leaves the bootcamp
     date: {
@@ -41,7 +38,11 @@ module.exports = (conn) => {
     project: {
       type: String,
     },
-    // the stage in which a student leaves the bootcamp, for example: 0, 1
+    // the stage indicates the order of the project in which the student left the bootcamp
+    // for example: if 0 means that the student did not show up at the bootcamp,
+    //  1 means that the student left the bootcamp in her first project
+    // as the students do not all start with the same project, with this field we
+    //  want to know the order in which they started the bootcamp
     stage: {
       type: Number,
       required: true,
@@ -74,14 +75,22 @@ module.exports = (conn) => {
       required: true,
     },
     // Is the bootcamp team sad because of the dropout? true or false
-    isStaffSad: {
+    staffSad: {
       type: Boolean,
       required: true,
     },
     covidRelated: {
       type: String,
       required: true,
+      enum: [
+        'yes',
+        'no',
+        'do not know',
+      ],
     },
   }, { collection: 'dropouts', timestamps: true });
+
+  DropoutSchema.index({ email: 1, cohort: 1 }, { unique: true });
+
   return DropoutSchema;
 };
