@@ -1,12 +1,19 @@
 module.exports = (conn) => {
   const DropoutSchema = new conn.Schema({
-    city: {
+    campus: {
       type: String,
+      required: true,
+      uppercase: true,
+    },
+    cohortMembership: {
+      type: conn.Schema.Types.ObjectId,
+      ref: 'cohortMembership',
       required: true,
     },
-    cohort: {
+    cohort: { // LIM007
       type: String,
       required: true,
+      uppercase: true,
     },
     // It is only need to consider when migrating old data
     track: {
@@ -20,7 +27,7 @@ module.exports = (conn) => {
       type: String,
       required: true,
     },
-    signUpCohortCity: {
+    signUpCampus: {
       type: String,
       required: true,
     },
@@ -30,9 +37,13 @@ module.exports = (conn) => {
       required: true,
       default: Date.now,
     },
-    // the stage in which a student leaves the bootcamp, for example: "1st day", "project 1"
-    stage: {
+    // the Project in which a student leaves the bootcamp, for example: "Cipher", "Data-love"
+    project: {
       type: String,
+    },
+    // the stage in which a student leaves the bootcamp, for example: 0, 1
+    stage: {
+      type: Number,
       required: true,
     },
     // it's created when an applicant is admitted.
@@ -47,9 +58,10 @@ module.exports = (conn) => {
       type: String,
       required: true,
       enum: [
-        'Leave the program voluntarily',
-        'We invite her to leave the program',
-        'She repeats - Change cohort',
+        'dropout',
+        'invitedToLeave',
+        'changeCohort',
+        'noShow',
       ],
     },
     reasonDetail: {
@@ -62,14 +74,13 @@ module.exports = (conn) => {
       required: true,
     },
     // Is the bootcamp team sad because of the dropout? true or false
-    sad: {
+    isStaffSad: {
       type: Boolean,
       required: true,
     },
     covidRelated: {
-      type: Boolean,
+      type: String,
       required: true,
-      default: false,
     },
   }, { collection: 'dropouts', timestamps: true });
   return DropoutSchema;

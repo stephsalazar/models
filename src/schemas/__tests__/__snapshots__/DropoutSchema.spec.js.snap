@@ -2,15 +2,16 @@
 
 exports[`DropoutSchema should fail validation when fields are missing 1`] = `
 Object {
-  "city": [ValidatorError: Path \`city\` is required.],
-  "cohort": [ValidatorError: Path \`cohort\` is required.],
+  "cohortName": [ValidatorError: Path \`cohortName\` is required.],
+  "covidRelated": [ValidatorError: Path \`covidRelated\` is required.],
   "email": [ValidatorError: Path \`email\` is required.],
   "fullName": [ValidatorError: Path \`fullName\` is required.],
+  "learningCenter": [ValidatorError: Path \`learningCenter\` is required.],
   "notes": [ValidatorError: Path \`notes\` is required.],
   "reason": [ValidatorError: Path \`reason\` is required.],
   "reasonDetail": [ValidatorError: Path \`reasonDetail\` is required.],
   "sad": [ValidatorError: Path \`sad\` is required.],
-  "signUpCohortCity": [ValidatorError: Path \`signUpCohortCity\` is required.],
+  "signUpCohortLocation": [ValidatorError: Path \`signUpCohortLocation\` is required.],
   "stage": [ValidatorError: Path \`stage\` is required.],
   "studentCode": [ValidatorError: Path \`studentCode\` is required.],
 }

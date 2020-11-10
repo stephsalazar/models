@@ -1,0 +1,3 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Dropout should fail when cohortMembership does not ObjectId 1`] = `"Dropout validation failed: cohortMembership: Cast to ObjectID failed for value \\"cohortMembership._id\\" at path \\"cohortMembership\\""`;
