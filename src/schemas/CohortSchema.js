@@ -43,7 +43,7 @@ module.exports = (conn) => {
       index: true,
       type: String,
       default: 'inProgress',
-      enum: ['inProgress', 'closed'],
+      enum: ['inProgress', 'closed', 'onHold'],
     },
     hasExperiments: {
       type: Boolean,
