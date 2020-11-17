@@ -3,7 +3,7 @@ module.exports = (conn, DropoutSchema) => {
     const { User, Cohort } = conn.models;
     Promise.all([
       User.findOne({ email: this.email }),
-      Cohort.findOne({ name: this.cohort.toUpperCase(), track: this.track }),
+      Cohort.findOne({ name: this.cohort.toLowerCase(), track: this.track }),
     ])
       .then(([user, cohort]) => {
         if (!user) {

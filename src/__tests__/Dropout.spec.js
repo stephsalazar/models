@@ -49,7 +49,7 @@ describe('Dropout', () => {
       generation: 7,
       start: new Date(),
       end: new Date(),
-      name: 'LIM007',
+      name: 'lim007',
     });
 
     await campus.save();
