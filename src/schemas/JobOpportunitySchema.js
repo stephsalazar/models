@@ -1,26 +1,22 @@
 module.exports = (conn) => {
   const JobOpportunitySchema = new conn.Schema({
-    employer: {
-      type: conn.Schema.Types.ObjectId,
-      ref: 'OrganizationMembership',
-      required: true,
-    },
-    address: {
+    id: {
       type: String,
-      required: true,
+      trim: true,
+      index: true,
+      unique: true,
+      sparse: true,
     },
-    city: {
+    externalId: { // dealID Hubspot
       type: String,
-      required: true,
+      trim: true,
+      index: true,
+      unique: true,
+      sparse: true,
     },
-    campus: {
-      type: conn.Schema.Types.ObjectId,
-      ref: 'Campus',
-      required: true,
-    },
-    vacancies: {
-      type: Number,
-      required: true,
+    creationDate: {
+      type: Date,
+      default: Date.now,
     },
     title: {
       type: String,
@@ -30,30 +26,69 @@ module.exports = (conn) => {
       type: String,
       required: true,
     },
-    type: {
+    link: {
       type: String,
-      enum: ['Front-end Developer', 'Prototyper', 'UX Designer'],
     },
-    hireType: {
+    vacancies: {
+      type: Number,
+      required: true,
+    },
+    newPosition: {
+      type: Boolean,
+      default: true,
+    },
+    location: { // Remoto?
+      enum: [
+        'BOG',
+        'CDMX',
+        'GDL',
+        'LIM',
+        'SCL',
+        'SPL',
+      ],
+      required: true,
+    },
+    profileType: { // Hay más categorias?
+      type: String,
+      enum: ['Front-end Developer', 'UX Designer'],
+    },
+    hireType: { // Hay más categorias?
       type: String,
       enum: ['payroll', 'independent'],
     },
-    scheduleType: {
+    employmentType: {
       type: String,
       enum: ['full-time', 'part-time'],
     },
-    salaryRange: {
+    salaryRange: { // Enum?? De cada sede? String enviado desde el front?
       type: String,
       required: true,
     },
-    tentativeStart: {
-      type: Date,
-      require: true,
+    experienceRange: { // ????
+      type: String,
+      required: true,
     },
-    active: {
+    isOpen: {
       type: Boolean,
       required: true,
     },
-  }, { collection: 'job_opportunities' });
+    organizationId: {
+      type: conn.Schema.Types.ObjectId,
+      ref: 'Organization',
+      required: true,
+    },
+    businessUnit: { // ????
+      type: String,
+      required: true,
+    },
+    internalJobCode: { // ???
+      type: String,
+      required: true,
+    },
+    recruiterID: { // id de Hubspot Contact??? id de OrganizationMembership???
+      type: String,
+      required: true,
+    },
+  }, { collection: 'job_opportunities' }); // Ya está funcionando???
   return JobOpportunitySchema;
 };
